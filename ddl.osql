@@ -8,16 +8,14 @@ CREATE LINK userorg TYPE link FROM UserMaster.orgId To OrganizationMaster.id INV
 
 CREATE CLASS OrganizationMaster;
 
-CREATE PROPERTY OrganizationMaster.orgName STRING;
+CREATE PROPERTY OrganizationMaster.orgName STRING
 CREATE PROPERTY OrganizationMaster.addressLine1 STRING
 CREATE PROPERTY OrganizationMaster.addressLine2 STRING
 CREATE PROPERTY OrganizationMaster.street STRING
 CREATE PROPERTY OrganizationMaster.dom STRING
-CREATE PROPERTY OrganizationMaster.countryCode STRING
 CREATE PROPERTY OrganizationMaster.status STRING
 CREATE PROPERTY OrganizationMaster.legalIdType STRING
 CREATE PROPERTY OrganizationMaster.legalIdNumber STRING
-CREATE PROPERTY OrganizationMaster.legalCountryCode STRING
 CREATE PROPERTY OrganizationMaster.contactName STRING
 CREATE PROPERTY OrganizationMaster.contactNumber STRING
 CREATE PROPERTY OrganizationMaster.fax STRING
@@ -26,3 +24,11 @@ CREATE PROPERTY OrganizationMaster.bei STRING
 CREATE PROPERTY OrganizationMaster.email STRING
 CREATE PROPERTY OrganizationMaster.webAddress STRING
 CREATE PROPERTY OrganizationMaster.customerReference STRING
+
+CREATE CLASS CountryMaster;
+
+CREATE PROPERTY CountryMaster.countryCode STRING;
+CREATE PROPERTY CountryMaster.CountryFullName STRING;
+
+CREATE LINK orgCountry TYPE link FROM OrganizationMaster.countryId To CountryMaster.id INVERSE
+CREATE LINK orgLegalCountry TYPE link FROM OrganizationMaster.legalCountryId To CountryMaster.id INVERSE
