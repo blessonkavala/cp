@@ -1,0 +1,8 @@
+server:
+  port: 9090
+#logging.level:
+#  "org.springframework": WARN
+spring.data.orient:
+  url: remote:localhost/cp
+  username: admin
+  password: admin

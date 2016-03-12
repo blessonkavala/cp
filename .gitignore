@@ -1,0 +1,7 @@
+**/target
+**/.project
+**/.classpath
+**/.settings
+**/.springBeans
+/.apt_generated/
+**/.factorypath
