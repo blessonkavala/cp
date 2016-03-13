@@ -6,4 +6,5 @@ import com.svcet.cashportal.domain.CountryMaster;
 
 public interface CountryMasterRepository extends PagingAndSortingRepository<CountryMaster, Long> {
 
+	CountryMaster findByCountryCode(String countrycode);
 }

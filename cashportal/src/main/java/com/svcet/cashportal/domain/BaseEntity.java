@@ -1,13 +1,12 @@
 package com.svcet.cashportal.domain;
 
-import javax.persistence.Id;
-import javax.persistence.Version;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.orientechnologies.orient.core.annotation.OId;
+import com.orientechnologies.orient.core.annotation.OVersion;
 
 /**
- * Base entity for OrientDB Hornbill data transfer object
- * Contains id and version
+ * Base entity for OrientDB Hornbill data transfer object Contains id and
+ * version
  * 
  * @author gekaczur
  *
@@ -15,55 +14,37 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties("handler")
 public abstract class BaseEntity {
 
-	@Version
+	@OVersion
 	private Long version;
 
-	@Id
-	private String id;
+	@OId
+	private String rid;
 
-	/**
-	 * @return the version
-	 */
 	public Long getVersion() {
 		return version;
 	}
 
-	/**
-	 * @param version the version to set
-	 */
 	public void setVersion(Long version) {
 		this.version = version;
 	}
 
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
+	public String getRid() {
+		return rid;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
+	public void setRid(String rid) {
+		this.rid = rid;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((rid == null) ? 0 : rid.hashCode());
 		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,10 +54,10 @@ public abstract class BaseEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		BaseEntity other = (BaseEntity) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (rid == null) {
+			if (other.rid != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!rid.equals(other.rid))
 			return false;
 		if (version == null) {
 			if (other.version != null)
@@ -86,11 +67,4 @@ public abstract class BaseEntity {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "BaseEntity [version=" + version + ", id=" + id + "]";
-	}
 }

@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	public UserMaster findUserByUserNamePasswordOrgName(String userName, String password, String orgName) {
 		try {
 			OrganizationMaster organizationMaster = organizationRepository.findByOrgName(orgName);
-			return userRepository.findOneByUserNameAndPasswordAndOrgId(userName, password, organizationMaster.getId());
+			return userRepository.findOneByUserNameAndPasswordAndOrgId(userName, password, organizationMaster.getRid());
 		} catch (IndexOutOfBoundsException e) {
 			LOGGER.debug("No entity was found in repository with the id [{}]", userName);
 		}
