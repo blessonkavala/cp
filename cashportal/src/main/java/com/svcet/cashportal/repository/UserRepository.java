@@ -6,4 +6,6 @@ import com.svcet.cashportal.domain.UserMaster;
 
 public interface UserRepository extends PagingAndSortingRepository<UserMaster, Long> {
 	UserMaster findOneByUserNameAndPasswordAndOrgId(String username, String password, String orgId);
+
+	UserMaster findOneByUserNameAndOrgId(String userName, String orgId);
 }
