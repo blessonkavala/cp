@@ -11,4 +11,8 @@ public interface UserService {
 	UserMaster save(UserMaster userMaster);
 
 	UserResponse save(UserRequest userRequest);
+
+	UserResponse findById(String id);
+
+	UserResponse update(UserRequest userRequest);
 }

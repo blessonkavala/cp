@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.svcet.cashportal.domain.OrganizationMaster;
 import com.svcet.cashportal.domain.UserMaster;
 import com.svcet.cashportal.exception.DuplicateUserException;
+import com.svcet.cashportal.exception.UserNotFoundException;
 import com.svcet.cashportal.repository.OrganizationRepository;
 import com.svcet.cashportal.repository.UserRepository;
 import com.svcet.cashportal.web.beans.UserRequest;
@@ -58,6 +59,38 @@ public class UserServiceImpl implements UserService {
 			BeanUtils.copyProperties(userMaster, userResponse, "orgId");
 			userResponse.setOrgId(userMaster.getOrgId().getRid());
 			return userResponse;
+		}
+	}
+
+	@Override
+	public UserResponse findById(String id) {
+		try {
+			UserMaster userMaster = userRepository.findByRid(id);
+			UserResponse userResponse = new UserResponse();
+			BeanUtils.copyProperties(userMaster, userResponse, "orgId");
+			userResponse.setOrgId(userMaster.getOrgId().getRid());
+			return userResponse;
+		} catch (IndexOutOfBoundsException e) {
+			throw new UserNotFoundException();
+		}
+	}
+
+	@Override
+	public UserResponse update(UserRequest userRequest) {
+		try {
+			UserMaster userMaster = userRepository.findByRid(userRequest.getRid());
+			BeanUtils.copyProperties(userRequest, userMaster, "orgId");
+
+			OrganizationMaster organizationMaster = organizationRepository.findByRid(userRequest.getOrgId());
+			userMaster.setOrgId(organizationMaster);
+			userMaster = userRepository.save(userMaster);
+
+			UserResponse userResponse = new UserResponse();
+			BeanUtils.copyProperties(userMaster, userResponse, "orgId");
+			userResponse.setOrgId(userMaster.getOrgId().getRid());
+			return userResponse;
+		} catch (IndexOutOfBoundsException e) {
+			throw new UserNotFoundException();
 		}
 	}
 }

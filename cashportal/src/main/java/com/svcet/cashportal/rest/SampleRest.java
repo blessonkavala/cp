@@ -30,9 +30,9 @@ public class SampleRest {
 	 * @param name
 	 * @return
 	 */
-	@RequestMapping("/user")
+	/*@RequestMapping("/user")
 	public UserMaster findOneByName(@RequestBody LoginRequest loginRequest) {
 		return userService.findUserByUserNamePasswordOrgName(loginRequest.getUsername(), loginRequest.getPassword(),
 				loginRequest.getOrganization());
-	}
+	}*/
 }

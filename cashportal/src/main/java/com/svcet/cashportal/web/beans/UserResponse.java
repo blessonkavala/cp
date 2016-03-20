@@ -1,6 +1,9 @@
 package com.svcet.cashportal.web.beans;
 
 public class UserResponse {
+
+	private String rid;
+
 	private String userName;
 
 	private String password;
@@ -29,6 +32,14 @@ public class UserResponse {
 
 	public void setOrgId(String orgId) {
 		this.orgId = orgId;
+	}
+
+	public String getRid() {
+		return rid;
+	}
+
+	public void setRid(String rid) {
+		this.rid = rid;
 	}
 
 }
