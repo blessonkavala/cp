@@ -1,5 +1,8 @@
 package com.svcet.cashportal.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.svcet.cashportal.domain.OrganizationMaster;
 import com.svcet.cashportal.domain.UserMaster;
 import com.svcet.cashportal.exception.DuplicateUserException;
+import com.svcet.cashportal.exception.OrganizationNotFoundException;
 import com.svcet.cashportal.exception.UserNotFoundException;
 import com.svcet.cashportal.repository.OrganizationRepository;
 import com.svcet.cashportal.repository.UserRepository;
@@ -67,8 +71,9 @@ public class UserServiceImpl implements UserService {
 		try {
 			UserMaster userMaster = userRepository.findByRid(id);
 			UserResponse userResponse = new UserResponse();
-			BeanUtils.copyProperties(userMaster, userResponse, "orgId");
+			BeanUtils.copyProperties(userMaster, userResponse, "orgId", "countryId");
 			userResponse.setOrgId(userMaster.getOrgId().getRid());
+
 			return userResponse;
 		} catch (IndexOutOfBoundsException e) {
 			throw new UserNotFoundException();
@@ -92,5 +97,22 @@ public class UserServiceImpl implements UserService {
 		} catch (IndexOutOfBoundsException e) {
 			throw new UserNotFoundException();
 		}
+	}
+
+	@Override
+	public List<UserResponse> findAll(String orgId) {
+		List<UserResponse> userResponseList = new ArrayList<UserResponse>();
+		try {
+			List<UserMaster> userMasterList = userRepository.findByOrgId(orgId);
+			for (UserMaster userMaster : userMasterList) {
+				UserResponse userResponse = new UserResponse();
+				BeanUtils.copyProperties(userMaster, userResponse, "orgId");
+				userResponse.setOrgId(userMaster.getOrgId().getRid());
+				userResponseList.add(userResponse);
+			}
+		} catch (IndexOutOfBoundsException e) {
+			throw new OrganizationNotFoundException();
+		}
+		return userResponseList;
 	}
 }

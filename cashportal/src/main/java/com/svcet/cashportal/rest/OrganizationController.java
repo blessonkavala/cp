@@ -1,5 +1,7 @@
 package com.svcet.cashportal.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,5 +35,12 @@ public class OrganizationController {
 	@RequestMapping(method = RequestMethod.PUT, value = "/organization/update")
 	public OrganizationReponse update(@RequestBody OrganizationRequest organizationRequest) {
 		return oraganizationService.update(organizationRequest);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/organization/list")
+	@ResponseBody
+	public OrganizationReponse[] findAll() {
+		List<OrganizationReponse> organizationReponseList = oraganizationService.findAll();
+		return organizationReponseList.toArray(new OrganizationReponse[organizationReponseList.size()]);
 	}
 }

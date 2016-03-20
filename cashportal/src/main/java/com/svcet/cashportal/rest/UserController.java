@@ -1,5 +1,9 @@
 package com.svcet.cashportal.rest;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +38,13 @@ public class UserController {
 	@ResponseBody
 	public UserResponse update(@RequestBody UserRequest userRequest) {
 		return userService.update(userRequest);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/user/list/{orgId}")
+	@ResponseBody
+	public UserResponse[] findAll(@PathVariable("orgId") String orgId) {
+		List<UserResponse> userResponseList = userService.findAll(orgId);
+		return userResponseList.toArray(new UserResponse[userResponseList.size()]);
 	}
 
 }

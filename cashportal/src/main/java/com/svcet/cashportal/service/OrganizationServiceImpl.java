@@ -1,5 +1,8 @@
 package com.svcet.cashportal.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,5 +81,19 @@ public class OrganizationServiceImpl implements OraganizationService {
 		} catch (IndexOutOfBoundsException e) {
 			throw new OrganizationNotFoundException();
 		}
+	}
+
+	@Override
+	public List<OrganizationReponse> findAll() {
+		List<OrganizationReponse> organizationReponseList = new ArrayList<OrganizationReponse>();
+		List<OrganizationMaster> organizationMasterList = organizationRepository.findAll();
+		for (OrganizationMaster organizationMaster : organizationMasterList) {
+			OrganizationReponse organizationReponse = new OrganizationReponse();
+			BeanUtils.copyProperties(organizationMaster, organizationReponse);
+			organizationReponse.setCountryCode(organizationMaster.getCountryId().getCountryCode());
+			organizationReponse.setLegalCountryCode(organizationMaster.getLegalCountryId().getCountryCode());
+			organizationReponseList.add(organizationReponse);
+		}
+		return organizationReponseList;
 	}
 }

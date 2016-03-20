@@ -1,5 +1,7 @@
 package com.svcet.cashportal.service;
 
+import java.util.List;
+
 import com.svcet.cashportal.domain.UserMaster;
 import com.svcet.cashportal.web.beans.UserRequest;
 import com.svcet.cashportal.web.beans.UserResponse;
@@ -15,4 +17,6 @@ public interface UserService {
 	UserResponse findById(String id);
 
 	UserResponse update(UserRequest userRequest);
+
+	List<UserResponse> findAll(String orgId);
 }

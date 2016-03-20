@@ -2,8 +2,17 @@ CREATE CLASS UserMaster;
 
 CREATE PROPERTY UserMaster.userName STRING;
 CREATE PROPERTY UserMaster.password STRING;
-
-CREATE LINK userorg TYPE link FROM UserMaster.orgId To OrganizationMaster.id INVERSE
+CREATE PROPERTY UserMaster.status STRING;
+CREATE PROPERTY UserMaster.addressLine1 STRING;
+CREATE PROPERTY UserMaster.addressLine2 STRING;
+CREATE PROPERTY UserMaster.dom STRING;
+CREATE PROPERTY UserMaster.email STRING;
+CREATE PROPERTY UserMaster.fax  STRING;
+CREATE PROPERTY UserMaster.firstName STRING;
+CREATE PROPERTY UserMaster.lastName  STRING;
+CREATE PROPERTY UserMaster.lastLogin  DATETIME;
+CREATE PROPERTY UserMaster.modifiedDttm DATETIME;
+CREATE PROPERTY UserMaster.phone  STRING;
 
 
 CREATE CLASS OrganizationMaster;
@@ -32,3 +41,7 @@ CREATE PROPERTY CountryMaster.CountryFullName STRING;
 
 CREATE LINK orgCountry TYPE link FROM OrganizationMaster.countryId To CountryMaster.id INVERSE
 CREATE LINK orgLegalCountry TYPE link FROM OrganizationMaster.legalCountryId To CountryMaster.id INVERSE
+
+CREATE LINK userorg TYPE link FROM UserMaster.orgId To OrganizationMaster.id INVERSE
+
+CREATE LINK userCountry TYPE link FROM UserMaster.userCountryId To CountryMaster.id INVERSE
