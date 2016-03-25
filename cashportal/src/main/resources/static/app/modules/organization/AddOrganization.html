@@ -1,0 +1,162 @@
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>New Organization</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Organization Name</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Organization Name" class="form-control input-md" required="" ng-model="org.orgName">
+  <span class="help-block">Enter a Unique Organization Name</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="addressLine1">Address</label>  
+  <div class="col-md-5">
+  <input id="addressLine1" name="addressLine1" type="text" placeholder="Address Line 1" class="form-control input-md" required=""  ng-model="org.addressLine1">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput"></label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Address Line 2" class="form-control input-md" required="" ng-model="org.addressLine2">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput"></label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Street" class="form-control input-md" required="" ng-model="org.street">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput"></label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="dom" class="form-control input-md" required="" ng-model="org.dom">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Country Code</label>  
+  <div class="col-md-1">
+  <input id="textinput" name="textinput" type="text" placeholder="Country Code" class="form-control input-md"  ng-model="org.countryCode">
+  <span class="help-block">help</span>  
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Status</label>
+  <div class="col-md-2">
+    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="org.status">
+      <option value="A">Active</option>
+      <option value="I">Inactive</option>
+      <option value="D">Deleted</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Legal ID Type</label>
+  <div class="col-md-2">
+    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="org.legalIdType">
+      <option value="1">Passport</option>
+      <option value="2">Adhaar Card</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Legal ID Number</label>  
+  <div class="col-md-1">
+  <input id="textinput" name="textinput" type="text" placeholder="Legal ID Number" class="form-control input-md" ng-model="org.legalIdNumber">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Legal Country Code</label>  
+  <div class="col-md-1">
+  <input id="textinput" name="textinput" type="text" placeholder="Legal  Country Code" class="form-control input-md" ng-model="org.legalCountryCode">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Contact Name</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Contact Name" class="form-control input-md" ng-model="org.contactName">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Contact Number</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Contact Number" class="form-control input-md" ng-model="org.contactNumber">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Fax</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Fax Number" class="form-control input-md" ng-model="org.fax">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Telex</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Telex Number" class="form-control input-md" ng-model="org.telex">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">BEI</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="BEI" class="form-control input-md" ng-model="org.bei">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Email</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Email" class="form-control input-md" ng-model="org.email">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Web Address</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Web Address" class="form-control input-md" ng-model="org.webAddress">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Customer Reference</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Customer Reference" class="form-control input-md" ng-model="org.customerReference">
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id"></label>
+  <div class="col-md-8">
+    <button id="button1id" name="button1id" class="btn btn-success" ng-click="vm.saveOrganization(org)">Save</button>
+    <button id="button2id" name="button2id" class="btn btn-warning">Cancel</button>
+  </div>
+</div>
+</fieldset>
+</form>

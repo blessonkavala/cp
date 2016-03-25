@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Sample App</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body ng-app="testApp">
+    <div ui-view=""></div>
+</body>
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+
+<script src="bower_components/toastr/toastr.js"></script>
+
+
+<!-- your app's js -->
+<script src="app/app.module.js"></script>
+<script src="app/core/core.module.js"></script>
+<script src="app/core/core.route.js"></script>
+<script src="app/core/config.js"></script>
+<script src="app/blocks/router/router.module.js"></script>
+<script src="app/blocks/router/router-helper.provider.js"></script>
+<script src="app/widgets/widgets.module.js"></script>
+<script src="app/modules/dashboard/dashboard.module.js"></script>
+<script src="app/modules/dashboard/dashboard.route.js"></script>
+<script src="app/modules/dashboard/DashboardController.js"></script>
+<script src="app/modules/login/login.module.js"></script>
+<script src="app/modules/login/login.route.js"></script>
+<script src="app/modules/login/LoginController.js"></script>
+<script src="app/modules/menu/MenuController.js"></script>
+
+<script src="app/modules/organization/organization.module.js"></script>
+<script src="app/modules/organization/organization.route.js"></script>
+<script src="app/modules/organization/AddOrganizationController.js"></script>
+
+</html>
