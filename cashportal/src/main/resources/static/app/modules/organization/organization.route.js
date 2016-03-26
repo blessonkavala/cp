@@ -13,10 +13,52 @@
                 state: 'addOrganization',
                 config: {
                     url: '/addOrganization',
-                    templateUrl: 'app/modules/organization/AddOrganization.html',
+                    templateUrl: 'app/modules/organization/OrganizationDetail.html',
                     controller: 'AddOrganizationController as vm'
                 }
+            },
+            {
+                state: 'listOrganization',
+                config: {
+                    url: '/listOrganization',
+                    templateUrl: 'app/modules/organization/ListOrganization.html',
+                    controller: 'ListOrganizationController as vm'
+                }
+            },
+            {
+                state: 'viewOrganization',
+                config: {
+                    url: '/viewOrganization',
+                    templateUrl: 'app/modules/organization/OrganizationDetail.html',
+                    controller: 'ViewOrganizationController as vm',
+                    params: {
+                        rid: true
+                    },
+                    resolve: {
+                        organizationDetails: getOrganizationDetailsResolve
+                    }
+                }
+            },
+            {
+                state: 'editOrganization',
+                config: {
+                    url: '/editOrganization',
+                    templateUrl: 'app/modules/organization/OrganizationDetail.html',
+                    controller: 'EditOrganizationController as vm',
+                    params: {
+                        rid: true
+                    },
+                    resolve: {
+                        organizationDetails: getOrganizationDetailsResolve
+                    }
+                }
             }
+            
         ];
+    }
+    
+    function getOrganizationDetailsResolve(OrganizationService, $stateParams) {
+    'ngInject';
+    return OrganizationService.getOrganizationDetails($stateParams.rid);
     }
 })();
