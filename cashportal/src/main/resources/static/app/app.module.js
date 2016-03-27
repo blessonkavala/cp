@@ -10,7 +10,8 @@
          */
         'app.dashboard',
         'app.login',
-        'app.organization'
+        'app.organization',
+        'app.user'
 
     ]);
 
