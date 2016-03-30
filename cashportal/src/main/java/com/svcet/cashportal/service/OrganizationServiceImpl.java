@@ -96,4 +96,13 @@ public class OrganizationServiceImpl implements OraganizationService {
 		}
 		return organizationReponseList;
 	}
+
+	@Override
+	public OrganizationMaster findByOrgName(String organizationName) {
+		try {
+			return organizationRepository.findByOrgName(organizationName);
+		} catch (IndexOutOfBoundsException e) {
+			throw new OrganizationNotFoundException();
+		}
+	}
 }

@@ -10,44 +10,61 @@
     function getStates() {
         return [
             {
-                state: 'addOrganization',
+                state: 'app.addOrganization',
                 config: {
                     url: '/addOrganization',
-                    templateUrl: 'app/modules/organization/OrganizationDetail.html',
-                    controller: 'AddOrganizationController as vm'
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/organization/OrganizationDetail.html',
+                            controller: 'AddOrganizationController as vm'
+                        }
+                    }
                 }
             },
             {
-                state: 'listOrganization',
+                state: 'app.listOrganization',
                 config: {
                     url: '/listOrganization',
-                    templateUrl: 'app/modules/organization/ListOrganization.html',
-                    controller: 'ListOrganizationController as vm'
+                    views: {
+                    'mainContent': {
+                        templateUrl: 'app/modules/organization/ListOrganization.html',
+                        controller: 'ListOrganizationController as vm'
+                        }
+                    }
                 }
             },
             {
-                state: 'viewOrganization',
+                state: 'app.viewOrganization',
                 config: {
                     url: '/viewOrganization',
+                    views: {
+                    'mainContent': {
                     templateUrl: 'app/modules/organization/OrganizationDetail.html',
                     controller: 'ViewOrganizationController as vm',
-                    params: {
-                        rid: true
+                        }
                     },
+                     params: {
+                        rid: true
+                            },
                     resolve: {
                         organizationDetails: getOrganizationDetailsResolve
                     }
                 }
             },
             {
-                state: 'editOrganization',
+                state: 'app.editOrganization',
                 config: {
                     url: '/editOrganization',
+                     views: {
+                    'mainContent': {
                     templateUrl: 'app/modules/organization/OrganizationDetail.html',
                     controller: 'EditOrganizationController as vm',
-                    params: {
-                        rid: true
+                   
+                        }
                     },
+                     params: {
+                        rid: true
+                            },
                     resolve: {
                         organizationDetails: getOrganizationDetailsResolve
                     }

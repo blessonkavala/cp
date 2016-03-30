@@ -45,3 +45,44 @@ CREATE LINK orgLegalCountry TYPE link FROM OrganizationMaster.legalCountryId To 
 CREATE LINK userorg TYPE link FROM UserMaster.orgId To OrganizationMaster.id INVERSE
 
 CREATE LINK userCountry TYPE link FROM UserMaster.userCountryId To CountryMaster.id INVERSE
+
+-- RBAC
+CREATE CLASS RoleMaster;
+
+CREATE PROPERTY RoleMaster.roleCode STRING
+CREATE PROPERTY RoleMaster.roleDescription STRING
+CREATE PROPERTY RoleMaster.roleDestination STRING
+
+CREATE CLASS PermissionMaster;
+
+CREATE PROPERTY PermissionMaster.permissionCode STRING
+CREATE PROPERTY PermissionMaster.permissionDescription STRING
+CREATE PROPERTY PermissionMaster.permissionDestination STRING
+
+CREATE CLASS RolePermissionMaster;
+
+CREATE LINK roleId TYPE link FROM RolePermissionMaster.roleId To RoleMaster.rid INVERSE
+CREATE LINK permissionId TYPE link FROM RolePermissionMaster.permissionId To PermissionMaster.rid INVERSE
+
+CREATE CLASS OrganizationRoles;
+CREATE LINK roleId TYPE link FROM OrganizationRoles.roleId To RoleMaster.rid INVERSE
+CREATE LINK orgId TYPE  link FROM OrganizationRoles.orgId To OrganizationMaster.rid INVERSE
+
+CREATE LINK UserRoles;
+CREATE LINK roleId TYPE link FROM UserRoles.roleId To RoleMaster.rid INVERSE
+CREATE LINK userId TYPE link FROM UserRoles.userId To UserMaster.rid INVERSE
+
+CREATE CLASS MenuMaster;
+CREATE PROPERTY MenuMaster.menuCode STRING
+CREATE PROPERTY MenuMaster.menuDesc STRING
+CREATE PROPERTY MenuMaster.order INTEGER
+CREATE LINK permissionId TYPE link FROM MenuMaster.permissionId To PermissionMaster.rid INVERSE
+
+CREATE CLASS MenuItems;
+CREATE PROPERTY MenuItems.ItemCode STRING
+CREATE PROPERTY MenuItems.ItemDesc STRING
+CREATE PROPERTY MenuItems.order INTEGER
+CREATE LINK menuId TYPE link FROM MenuItems.menuId To MenuMaster.rid INVERSE
+CREATE LINK permissionId TYPE link FROM MenuMaster.permissionId To PermissionMaster.rid INVERSE
+
+

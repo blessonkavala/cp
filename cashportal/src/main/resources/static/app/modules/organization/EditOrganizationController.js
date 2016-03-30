@@ -16,7 +16,7 @@
         vm.updateOrganization = function (org) {
        
         	$http.put('/organization/update',org).then(function(response){
-        		$state.go('listOrganization');
+        		$state.go('app.listOrganization');
         		console.log(response);
         	});
         	

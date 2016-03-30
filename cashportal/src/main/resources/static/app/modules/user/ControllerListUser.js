@@ -18,11 +18,11 @@
         }
 
         function viewUser(rid) {
-            $state.go('viewUser', {rid: rid});
+            $state.go('app.viewUser', {rid: rid});
         }
         
          function editUser(rid) {
-            $state.go('editUser', {rid: rid});
+            $state.go('app.editUser', {rid: rid});
         }
       
     }

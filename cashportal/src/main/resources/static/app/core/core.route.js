@@ -18,7 +18,7 @@
                 config: {
                     url: "/app",
                     abstract: true,
-                    templateUrl: "template/menu/menu.html",
+                    templateUrl: "app/modules/menu/menu.html",
                     controller: 'MenuController as vm'
                 }
             }

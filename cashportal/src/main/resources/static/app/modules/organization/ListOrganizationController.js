@@ -17,11 +17,11 @@
         }
 
         function viewOrganization(rid) {
-            $state.go('viewOrganization', {rid: rid});
+            $state.go('app.viewOrganization', {rid: rid});
         }
         
          function editOrganization(rid) {
-            $state.go('editOrganization', {rid: rid});
+            $state.go('app.editOrganization', {rid: rid});
         }
       
     }

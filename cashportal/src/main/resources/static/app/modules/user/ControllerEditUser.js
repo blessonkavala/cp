@@ -15,7 +15,7 @@
         vm.updateUser = function (user) {
        
         	$http.put('/user/update',user).then(function(response){
-        		$state.go('listUser');
+        		$state.go('app.listUser');
         		console.log(response);
         	});
         	

@@ -1,11 +1,8 @@
 package com.svcet.cashportal.rest;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,10 +25,10 @@ public class UserController {
 		return userService.save(userRequest);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/user/{id}")
+	@RequestMapping(method = RequestMethod.POST, value = "/user/query")
 	@ResponseBody
-	public UserResponse findOne(@PathVariable("id") String id) {
-		return userService.findById(id);
+	public UserResponse findOne(@RequestBody UserRequest userRequest) {
+		return userService.findById(userRequest.getRid());
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/user/update")
@@ -40,10 +37,10 @@ public class UserController {
 		return userService.update(userRequest);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/user/list/{orgId}")
+	@RequestMapping(method = RequestMethod.POST, value = "/user/list")
 	@ResponseBody
-	public UserResponse[] findAll(@PathVariable("orgId") String orgId) {
-		List<UserResponse> userResponseList = userService.findAll(orgId);
+	public UserResponse[] findAll(@RequestBody UserRequest userRequest) {
+		List<UserResponse> userResponseList = userService.findAll(userRequest.getOrgId());
 		return userResponseList.toArray(new UserResponse[userResponseList.size()]);
 	}
 

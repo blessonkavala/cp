@@ -14,7 +14,7 @@
         vm.saveUser = function (user) {
             //TODO:
            $http.post('/user/save',user).then(function(response){
-        		$state.go('listUser');
+        		$state.go('app.listUser');
         		console.log(response);
         	});
         	

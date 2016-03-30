@@ -8,7 +8,9 @@ import com.svcet.cashportal.web.beans.UserResponse;
 
 public interface UserService {
 
-	UserMaster findUserByUserNamePasswordOrgName(String userName,String password,String orgName);
+	UserMaster findUserByUserNamePasswordOrgName(String userName, String password, String orgName);
+
+	UserMaster findOneByUserNameAndOrgId(String userName, String orgId);
 
 	UserMaster save(UserMaster userMaster);
 

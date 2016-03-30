@@ -10,27 +10,39 @@
     function getStates() {
         return [
             {
-                state: 'addUser',
+                state: 'app.addUser',
                 config: {
                     url: '/addUser',
-                    templateUrl: 'app/modules/user/UserDetail.html',
-                    controller: 'ControllerAddUser as vm'
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/user/UserDetail.html',
+                            controller: 'ControllerAddUser as vm'
+                        }
+                    }
                 }
             },
             {
-                state: 'listUser',
+                state: 'app.listUser',
                 config: {
                     url: '/listUser',
-                    templateUrl: 'app/modules/user/ListUser.html',
-                    controller: 'ControllerListUser as vm'
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/user/ListUser.html',
+                            controller: 'ControllerListUser as vm'
+                        }
+                    }
                 }
             },
             {
-                state: 'viewUser',
+                state: 'app.viewUser',
                 config: {
                     url: '/viewUser',
-                    templateUrl: 'app/modules/user/UserDetail.html',
-                    controller: 'ControllerViewUser as vm',
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/user/UserDetail.html',
+                            controller: 'ControllerViewUser as vm',
+                        }
+                    },
                     params: {
                         rid: true
                     },
@@ -40,11 +52,15 @@
                 }
             },
             {
-                state: 'editUser',
+                state: 'app.editUser',
                 config: {
                     url: '/editUser',
-                    templateUrl: 'app/modules/user/UserDetail.html',
-                    controller: 'ControllerEditUser as vm',
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/user/UserDetail.html',
+                            controller: 'ControllerEditUser as vm',
+                        }
+                    },
                     params: {
                         rid: true
                     },
@@ -53,7 +69,6 @@
                     }
                 }
             }
-            
         ];
     }
     

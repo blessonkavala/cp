@@ -13,6 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.svcet.cashportal.domain.UserMaster;
 import com.svcet.cashportal.service.UserService;
 
 /**
@@ -33,11 +34,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		final String userName = authenticationToken.getName();
 		final String password = authenticationToken.getCredentials().toString();
 		final String orgName = authenticationToken.getOrganization();
-		if (userService.findUserByUserNamePasswordOrgName(userName, password, orgName) != null) {
+		UserMaster userMaster = userService.findUserByUserNamePasswordOrgName(userName, password, orgName);
+		if (userMaster != null) {
 			final List<GrantedAuthority> grantedAuths = new ArrayList<>();
 			grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
 			final UserDetails principal = new CustomPrincipal(userName, password, grantedAuths);
-			final Authentication auth = new UsernamePasswordAuthenticationToken(principal, password, grantedAuths);
+			final Authentication auth = new UserNamePasswordOrganizationAuthenticationToken(principal, password,
+					grantedAuths, orgName);
 			return auth;
 		} else {
 			return null;

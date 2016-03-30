@@ -115,4 +115,13 @@ public class UserServiceImpl implements UserService {
 		}
 		return userResponseList;
 	}
+
+	@Override
+	public UserMaster findOneByUserNameAndOrgId(String userName, String orgId) {
+		try {
+			return userRepository.findOneByUserNameAndOrgId(userName, orgId);
+		} catch (IndexOutOfBoundsException e) {
+			throw new UserNotFoundException();
+		}
+	}
 }
