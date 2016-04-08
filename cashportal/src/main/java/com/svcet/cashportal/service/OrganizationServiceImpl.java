@@ -54,6 +54,7 @@ public class OrganizationServiceImpl implements OraganizationService {
 			BeanUtils.copyProperties(organizationMaster, organizationReponse);
 			organizationReponse.setCountryCode(organizationMaster.getCountryId().getCountryCode());
 			organizationReponse.setLegalCountryCode(organizationMaster.getLegalCountryId().getCountryCode());
+			organizationReponse.setParentOrgId(organizationMaster.getParentOrgId().getRid());
 			return organizationReponse;
 		} catch (IndexOutOfBoundsException e) {
 			throw new OrganizationNotFoundException();
@@ -84,9 +85,9 @@ public class OrganizationServiceImpl implements OraganizationService {
 	}
 
 	@Override
-	public List<OrganizationReponse> findAll() {
+	public List<OrganizationReponse> findAll(String orgType) {
 		List<OrganizationReponse> organizationReponseList = new ArrayList<OrganizationReponse>();
-		List<OrganizationMaster> organizationMasterList = organizationRepository.findAll();
+		List<OrganizationMaster> organizationMasterList = organizationRepository.findByOrgType(orgType);
 		for (OrganizationMaster organizationMaster : organizationMasterList) {
 			OrganizationReponse organizationReponse = new OrganizationReponse();
 			BeanUtils.copyProperties(organizationMaster, organizationReponse);

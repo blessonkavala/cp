@@ -10,8 +10,10 @@
          */
         'app.dashboard',
         'app.login',
+        'app.user',
         'app.organization',
-        'app.user'
+        'app.bankmaintenance'
+        
 
     ]);
 

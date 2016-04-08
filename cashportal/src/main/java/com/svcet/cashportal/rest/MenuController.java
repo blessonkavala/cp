@@ -29,7 +29,7 @@ public class MenuController {
 	@Autowired
 	private OraganizationService oraganizationService;
 
-	@RequestMapping(method = RequestMethod.GET, value = "/usermenus/")
+	@RequestMapping(method = RequestMethod.GET, value = "/usermenus")
 	@ResponseBody
 	public MenuResponse[] findAll() {
 		UserNamePasswordOrganizationAuthenticationToken authenticationToken = (UserNamePasswordOrganizationAuthenticationToken) SecurityContextHolder

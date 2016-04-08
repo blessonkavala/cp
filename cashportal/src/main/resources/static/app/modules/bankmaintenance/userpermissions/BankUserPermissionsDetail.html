@@ -1,0 +1,83 @@
+<form class="form-horizontal" novalidate>
+<fieldset>
+
+<!-- Form Name -->
+<legend>New Organization</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Organization ID</label>  
+  <div class="col-md-5
+  <input id="textinput" name="textinput" type="text" placeholder="Organization ID" class="form-control input-md" required="" ng-model="vm.userRoles.user.orgId" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">User ID</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="User ID" class="form-control input-md" ng-model="vm.userRoles.user.rid" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">User Name</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="User Name" class="form-control input-md" required="" ng-model="vm.userRoles.user.userName" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">First Name</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="First Name" class="form-control input-md" required="" ng-model="vm.userRoles.user.firstName" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Last Name</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Last Name" class="form-control input-md" required="" ng-model="vm.userRoles.user.lastName" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Select Multiple -->
+<div class="form-group" ng-if="!vm.isView">
+  <label class="col-md-4 control-label" for="selectmultiple">Available Roles</label>
+  <div class="col-md-5">
+    <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple" ng-if="!vm.isView" ng-model="vm.availableRoles" ng-options="role.roleDescription for role in vm.userRoles.availableRoles">
+    </select>
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id"></label>
+  <div class="col-md-8">
+    <button id="button1id" name="button1id" class="btn btn-info" ng-if="!vm.isView" ng-click="vm.assignRole()">Add</button>
+    <button id="button1id" name="button1id" class="btn btn-info" ng-if="!vm.isView" ng-click="vm.removeRole()">Remove</button>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectmultiple">Assigned Roles</label>
+  <div class="col-md-5">
+    <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple" ng-if="!vm.isView" ng-model="vm.assignedRoles" ng-options="role.roleDescription for role in vm.userRoles.assignedRoles">
+    </select>
+    <label ng-if="vm.isView" ng-repeat="role in vm.userRoles.assignedRoles" >{{role.roleDescription}}</label>
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id"></label>
+  <div class="col-md-8">
+     <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateBankUserRoles()">Update</button>
+     <button id="button3id" name="button3id" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+  </div>
+</div>
+</fieldset>
+</form>

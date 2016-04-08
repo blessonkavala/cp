@@ -16,6 +16,6 @@ public interface OraganizationService {
 
 	OrganizationReponse update(OrganizationRequest organizationRequest);
 
-	List<OrganizationReponse> findAll();
+	List<OrganizationReponse> findAll(String orgType);
 
 }

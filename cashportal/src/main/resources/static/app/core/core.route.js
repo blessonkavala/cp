@@ -19,9 +19,17 @@
                     url: "/app",
                     abstract: true,
                     templateUrl: "app/modules/menu/menu.html",
-                    controller: 'MenuController as vm'
+                    controller: 'MenuController as vm',
+                    resolve: {
+                        userMenu: userMenuResolve
+                    }
                 }
             }
         ];
+    }
+    
+    function userMenuResolve(MenuService, $stateParams) {
+    'ngInject';
+    return MenuService.getUserMenu();
     }
 })();

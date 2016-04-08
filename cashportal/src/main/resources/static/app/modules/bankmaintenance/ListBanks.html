@@ -1,0 +1,36 @@
+<div class="page-header">
+    <h1>Organization List</h1>
+</div>
+<div class="container-fluid">
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Organization Name</th>
+                    <th>Last Modification Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <button class="btn btn-default" ng-show1="vm.hasCreateAuthority === true" ui-sref="app.addBank">Create New Organization</button>
+                    </td>
+                </tr>
+            </tfoot>
+
+            <tbody>
+                <tr ng-repeat="organization in vm.organizations track by organization.rid">
+                    <td>{{organization.orgName}}</td>
+                    <td>{{organization.contactName}}</td>
+                    <td>{{(vm.statusCodes | filter: organization.status)[0].value}}</td>
+                    <td>
+                        <button class="btn btn-info" ng-click="vm.viewBank(organization.rid)">View</button>
+                        <button class="btn btn-info" ng-click="vm.editBank(organization.rid)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,9 +1,9 @@
 package com.svcet.cashportal.web.beans;
 
 public class OrganizationReponse {
-	
+
 	private String rid;
-	
+
 	private String orgName;
 	private String addressLine1;
 	private String addressLine2;
@@ -26,6 +26,10 @@ public class OrganizationReponse {
 	private String email;
 	private String webAddress;
 	private String customerReference;
+
+	private String orgType;
+
+	private String parentOrgId;
 
 	public String getOrgName() {
 		return orgName;
@@ -177,5 +181,21 @@ public class OrganizationReponse {
 
 	public void setRid(String rid) {
 		this.rid = rid;
+	}
+
+	public String getOrgType() {
+		return orgType;
+	}
+
+	public void setOrgType(String orgType) {
+		this.orgType = orgType;
+	}
+
+	public String getParentOrgId() {
+		return parentOrgId;
+	}
+
+	public void setParentOrgId(String parentOrgId) {
+		this.parentOrgId = parentOrgId;
 	}
 }

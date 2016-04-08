@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>Organization List</h1>
+    <h1>List of Bank Permissions</h1>
 </div>
 <div class="container-fluid">
     <div>
@@ -12,22 +12,14 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <td colspan="5">
-                        <button class="btn btn-default" ng-show="vm.hasCreateAuthority === true" ui-sref="main.partymanagement-addparty">Create New Party</button>
-                    </td>
-                </tr>
-            </tfoot>
-
             <tbody>
                 <tr ng-repeat="organization in vm.organizations track by organization.rid">
                     <td>{{organization.orgName}}</td>
                     <td>{{organization.contactName}}</td>
                     <td>{{(vm.statusCodes | filter: organization.status)[0].value}}</td>
                     <td>
-                        <button class="btn btn-info" ng-click="vm.viewOrganization(organization.rid)">View</button>
-                        <button class="btn btn-info" ng-click="vm.editOrganization(organization.rid)">Edit</button>
+                        <button class="btn btn-info" ng-click="vm.viewBankPermissions(organization.rid)">View</button>
+                        <button class="btn btn-info" ng-click="vm.editBankPermissions(organization.rid)">Edit</button>
                     </td>
                 </tr>
             </tbody>

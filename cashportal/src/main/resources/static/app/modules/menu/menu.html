@@ -226,17 +226,13 @@
                         <li>
                             <a ui-sref="app.dashboard"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a><i class="fa fa-bar-chart-o fa-fw"></i>Organization Maintainance<span class="fa arrow"></span></a>
+                        <li ng-repeat="menu in vm.userMenu">
+                            <a><i class="fa fa-bar-chart-o fa-fw"></i>{{menu.menuCode}}<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a  ui-sref="app.listOrganization">List Organization</a>
-                                </li>
-                                <li>
-                                    <a  ui-sref="app.listUser">List User</a>
+                                 <li ng-repeat="submenuItem in menu.subMenu">
+                                    <a  ui-sref="{{submenuItem.action}}">{{submenuItem.menuCode}}</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                     </ul>
                 </div>

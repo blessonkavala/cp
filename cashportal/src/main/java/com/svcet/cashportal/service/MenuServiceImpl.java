@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.svcet.cashportal.domain.MenuMaster;
 import com.svcet.cashportal.domain.UserMaster;
 import com.svcet.cashportal.domain.acl.RolePermissionMaster;
 import com.svcet.cashportal.domain.acl.UserRoles;
+import com.svcet.cashportal.repository.acl.MenuItemRepository;
 import com.svcet.cashportal.repository.acl.MenuRepository;
 import com.svcet.cashportal.repository.acl.RolePermissionMasterRepository;
 import com.svcet.cashportal.repository.acl.UserRolesRepository;
@@ -43,22 +45,25 @@ public class MenuServiceImpl implements MenuService {
 				userPermissions.add(rolePermissionMaster.getPermissionId().getPermissionCode());
 			}
 		}
-		List<MenuMaster> menuList = menuRepository.findAll();
-		for (MenuMaster menuMaster : menuList) {
-			if (userPermissions.contains(menuMaster.getPermissionId().getPermissionCode())) {
-				MenuResponse rootMenuResponse = new MenuResponse();
-				BeanUtils.copyProperties(menuMaster, rootMenuResponse);
-				menuResponseList.add(rootMenuResponse);
-				for (MenuItems menuItems : menuMaster.getMenuItems()) {
-					if (userPermissions.contains(menuItems.getPermissionId().getPermissionCode())) {
-						MenuResponse childMenuResponse = new MenuResponse();
-						childMenuResponse.setMenuCode(menuItems.getItemCode());
-						childMenuResponse.setMenuDesc(menuItems.getItemDesc());
-						rootMenuResponse.getSubMenu().add(childMenuResponse);
+		menuRepository.findAll().forEach(new Consumer<MenuMaster>() {
+			@Override
+			public void accept(MenuMaster menuMaster) {
+				if (userPermissions.contains(menuMaster.getPermissionId().getPermissionCode())) {
+					MenuResponse rootMenuResponse = new MenuResponse();
+					BeanUtils.copyProperties(menuMaster, rootMenuResponse);
+					menuResponseList.add(rootMenuResponse);
+					for (MenuItems menuItems : menuMaster.getMenuItems()) {
+						if (userPermissions.contains(menuItems.getPermissionId().getPermissionCode())) {
+							MenuResponse childMenuResponse = new MenuResponse();
+							childMenuResponse.setMenuCode(menuItems.getItemCode());
+							childMenuResponse.setMenuDesc(menuItems.getItemDesc());
+							childMenuResponse.setAction(menuItems.getAction());
+							rootMenuResponse.getSubMenu().add(childMenuResponse);
+						}
 					}
 				}
 			}
-		}
+		});
 		return menuResponseList;
 	}
 }

@@ -9,6 +9,8 @@ public class MenuResponse {
 
 	private String menuDesc;
 
+	private String action;
+
 	List<MenuResponse> subMenu = new ArrayList<MenuResponse>();
 
 	public String getMenuCode() {
@@ -33,5 +35,13 @@ public class MenuResponse {
 
 	public void setSubMenu(List<MenuResponse> subMenu) {
 		this.subMenu = subMenu;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
 	}
 }

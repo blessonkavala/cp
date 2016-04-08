@@ -3,10 +3,12 @@ package com.svcet.cashportal.domain;
 import com.svcet.cashportal.domain.acl.PermissionMaster;
 
 public class MenuItems extends BaseEntity {
-	
-	private String ItemCode;
-	
-	private String ItemDesc;
+
+	private String itemCode;
+
+	private String itemDesc;
+
+	private String action;
 
 	private PermissionMaster permissionId;
 
@@ -19,18 +21,26 @@ public class MenuItems extends BaseEntity {
 	}
 
 	public String getItemCode() {
-		return ItemCode;
+		return itemCode;
 	}
 
 	public void setItemCode(String itemCode) {
-		ItemCode = itemCode;
+		this.itemCode = itemCode;
 	}
 
 	public String getItemDesc() {
-		return ItemDesc;
+		return itemDesc;
 	}
 
 	public void setItemDesc(String itemDesc) {
-		ItemDesc = itemDesc;
+		this.itemDesc = itemDesc;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
 	}
 }

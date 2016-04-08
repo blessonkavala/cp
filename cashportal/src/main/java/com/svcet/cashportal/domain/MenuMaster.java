@@ -12,7 +12,9 @@ public class MenuMaster extends BaseEntity {
 
 	private String menuDesc;
 
-	@OneToMany
+	private String action;
+
+	@OneToMany(orphanRemoval = true)
 	private List<MenuItems> menuItems;
 
 	private PermissionMaster permissionId;
@@ -47,6 +49,14 @@ public class MenuMaster extends BaseEntity {
 
 	public void setMenuItems(List<MenuItems> menuItems) {
 		this.menuItems = menuItems;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
 	}
 
 }

@@ -26,6 +26,10 @@ public class OrganizationRequest {
 	private String webAddress;
 	private String customerReference;
 
+	private String orgType;
+
+	private String parentOrgId;
+
 	public String getOrgName() {
 		return orgName;
 	}
@@ -176,5 +180,21 @@ public class OrganizationRequest {
 
 	public void setRid(String rid) {
 		this.rid = rid;
+	}
+
+	public String getOrgType() {
+		return orgType;
+	}
+
+	public void setOrgType(String orgType) {
+		this.orgType = orgType;
+	}
+
+	public String getParentOrgId() {
+		return parentOrgId;
+	}
+
+	public void setParentOrgId(String parentOrgId) {
+		this.parentOrgId = parentOrgId;
 	}
 }

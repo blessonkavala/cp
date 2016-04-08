@@ -6,9 +6,17 @@
 
 <!-- Text input-->
 <div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Parent ID</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Organization ID" class="form-control input-md" ng-model="vm.org.parentOrgId" ng-readonly="vm.isView">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Organization ID</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="Organization ID" class="form-control input-md" required="" ng-model="vm.org.rid" ng-readonly="vm.isView">
+  <input id="textinput" name="textinput" type="text" placeholder="Organization ID" class="form-control input-md" ng-model="vm.org.rid" ng-readonly="vm.isView">
   </div>
 </div>
 
@@ -157,12 +165,12 @@
 </div>
 
 <!-- Button (Double) -->
-<div class="form-group" ng-if="!vm.isView">
+<div class="form-group">
   <label class="col-md-4 control-label" for="button1id"></label>
   <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-success" ng-if="!vm.isEdit" ng-click="vm.saveOrganization(vm.org)">Save</button>
-    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateOrganization(vm.org)">Update</button>
-    <button id="button2id" name="button2id" class="btn btn-warning">Cancel</button>
+    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isNew" ng-click="vm.saveBank(vm.org)">Save</button>
+    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateBank(vm.org)">Update</button>
+     <button id="button3id" name="button3id" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
   </div>
 </div>
 </fieldset>

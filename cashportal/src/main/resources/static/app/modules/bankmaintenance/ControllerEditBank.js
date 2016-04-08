@@ -1,30 +1,32 @@
 (function () {
     'use strict';
-    angular.module('app.organization').controller('EditOrganizationController', EditOrganizationController);
+    angular.module('app.bankmaintenance').controller('ControllerEditBank', ControllerEditBank);
     /* @ngInject */
-    function EditOrganizationController(OrganizationService,organizationDetails,$state, $rootScope, $http) {
+    function ControllerEditBank(OrganizationService,organizationDetails,$state, $rootScope, $http) {
         /* jshint validthis: true */
 
         var vm = this;
-        vm.formHeader = 'Edit Party';
+        vm.formHeader = 'Edit Bank';
         vm.isView = false;
         vm.isEdit = true;
+        vm.isNew  = false;
+        
         vm.org = organizationDetails;
         vm.statusCodes = OrganizationService.getStatusList();
         vm.legalTypeCodes = OrganizationService.getLegalIDTypes();
         
-        vm.updateOrganization = function (org) {
+        vm.updateBank = function (org) {
        
         	$http.put('/organization/update',org).then(function(response){
-        		$state.go('app.listOrganization');
+        		$state.go('app.listBanks');
         		console.log(response);
         	});
         	
         };
         
-         function cancel() {
-        	$state.go('main.partymanagement-dashboard');
-        }
+       vm.cancel  = function() {
+        	$state.go('app.listBanks');
+        };
       
     }
 })();

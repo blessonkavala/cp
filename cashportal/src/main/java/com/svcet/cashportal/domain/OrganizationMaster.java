@@ -24,6 +24,10 @@ public class OrganizationMaster extends BaseEntity {
 	private String email;
 	private String webAddress;
 	private String customerReference;
+	
+	private String orgType;
+	
+	private OrganizationMaster parentOrgId;
 
 	public String getOrgName() {
 		return orgName;
@@ -167,5 +171,21 @@ public class OrganizationMaster extends BaseEntity {
 
 	public void setLegalCountryId(CountryMaster legalCountryId) {
 		this.legalCountryId = legalCountryId;
+	}
+
+	public String getOrgType() {
+		return orgType;
+	}
+
+	public void setOrgType(String orgType) {
+		this.orgType = orgType;
+	}
+
+	public OrganizationMaster getParentOrgId() {
+		return parentOrgId;
+	}
+
+	public void setParentOrgId(OrganizationMaster parentOrgId) {
+		this.parentOrgId = parentOrgId;
 	}
 }

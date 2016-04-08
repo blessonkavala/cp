@@ -1,0 +1,91 @@
+<form class="form-horizontal" novalidate>
+<fieldset>
+
+<!-- Form Name -->
+<legend>New Organization</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Organization ID</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Organization ID" class="form-control input-md" ng-model="vm.organizationRoles.organization.rid" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Bank Name</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Organization Name" class="form-control input-md" required="" ng-model="vm.organizationRoles.organization.orgName" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="addressLine1">Address</label>  
+  <div class="col-md-5">
+  <input id="addressLine1" name="addressLine1" type="text" placeholder="Address Line 1" class="form-control input-md" required=""  ng-model="vm.organizationRoles.organization.addressLine1" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput"></label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Address Line 2" class="form-control input-md" required="" ng-model="vm.organizationRoles.organization.addressLine2" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput"></label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Street" class="form-control input-md" required="" ng-model="vm.organizationRoles.organization.street" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput"></label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="dom" class="form-control input-md" required="" ng-model="vm.organizationRoles.organization.dom" ng-readonly="true">
+  </div>
+</div>
+
+<!-- Select Multiple -->
+<div class="form-group" ng-if="!vm.isView">
+  <label class="col-md-4 control-label" for="selectmultiple">Available Roles for Bank Users</label>
+  <div class="col-md-5">
+    <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple" ng-if="!vm.isView" ng-model="vm.availableRoles" ng-options="role.roleDescription for role in vm.organizationRoles.availableRoles">
+    </select>
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id"></label>
+  <div class="col-md-8">
+    <button id="button1id" name="button1id" class="btn btn-info" ng-if="!vm.isView" ng-click="vm.assignRole()">Add</button>
+    <button id="button1id" name="button1id" class="btn btn-info" ng-if="!vm.isView" ng-click="vm.removeRole()">Remove</button>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectmultiple">Assigned Roles for Bank Users</label>
+  <div class="col-md-5">
+    <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple" ng-if="!vm.isView" ng-model="vm.assignedRoles" ng-options="role.roleDescription for role in vm.organizationRoles.assignedRoles">
+    </select>
+    <label ng-if="vm.isView" ng-repeat="role in vm.organizationRoles.assignedRoles" >{{role.roleDescription}}</label>
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id"></label>
+  <div class="col-md-8">
+     <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateBankRoles()">Update</button>
+     <button id="button3id" name="button3id" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+  </div>
+</div>
+</fieldset>
+</form>
