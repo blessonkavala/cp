@@ -15,7 +15,7 @@
                     url: '/listBanks',
                     views: {
                     'mainContent': {
-                        templateUrl: 'app/modules/bankmaintenance/ListBanks.html',
+                        templateUrl: 'app/modules/bankmaintenance/profiles/ListBanks.html',
                         controller: 'ControllerListBanks as vm'
                         }
                     }
@@ -27,7 +27,7 @@
                     url: '/addBank',
                     views: {
                         'mainContent': {
-                            templateUrl: 'app/modules/bankmaintenance/BankDetail.html',
+                            templateUrl: 'app/modules/bankmaintenance/profiles/BankDetail.html',
                             controller: 'ControllerAddBank as vm'
                         }
                     }
@@ -39,7 +39,7 @@
                     url: '/viewBank',
                     views: {
                     'mainContent': {
-                    templateUrl: 'app/modules/bankmaintenance/BankDetail.html',
+                    templateUrl: 'app/modules/bankmaintenance/profiles/BankDetail.html',
                     controller: 'ControllerViewBank as vm',
                         }
                     },
@@ -57,7 +57,7 @@
                     url: '/editBank',
                      views: {
                     'mainContent': {
-                    templateUrl: 'app/modules/bankmaintenance/BankDetail.html',
+                    templateUrl: 'app/modules/bankmaintenance/profiles/BankDetail.html',
                     controller: 'ControllerEditBank as vm',
                    
                         }
@@ -91,7 +91,7 @@
                     url: '/listBankUsers',
                     views: {
                     'mainContent': {
-                        templateUrl: 'app/modules/bankmaintenance/listBankUsers.html',
+                        templateUrl: 'app/modules/bankmaintenance/userprofiles/listBankUsers.html',
                         controller: 'ControllerListBankUsers as vm'
                         }
                     },
@@ -106,7 +106,7 @@
                     url: '/addBankUser',
                     views: {
                         'mainContent': {
-                            templateUrl: 'app/modules/bankmaintenance/BankUserDetail.html',
+                            templateUrl: 'app/modules/bankmaintenance/userprofiles/BankUserDetail.html',
                             controller: 'ControllerAddBankUser as vm'
                         }
                     },
@@ -121,7 +121,7 @@
                     url: '/viewBankUser',
                     views: {
                         'mainContent': {
-                            templateUrl: 'app/modules/bankmaintenance/BankUserDetail.html',
+                            templateUrl: 'app/modules/bankmaintenance/userprofiles/BankUserDetail.html',
                             controller: 'ControllerViewBankUser as vm',
                         }
                     },
@@ -139,7 +139,7 @@
                     url: '/editBankUser',
                     views: {
                         'mainContent': {
-                            templateUrl: 'app/modules/bankmaintenance/BankUserDetail.html',
+                            templateUrl: 'app/modules/bankmaintenance/userprofiles/BankUserDetail.html',
                             controller: 'ControllerEditBankUser as vm',
                         }
                     },
