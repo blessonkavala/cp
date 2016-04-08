@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-public class CustomPrincipal extends User {
+public class CashPortalExtendedPrincipal extends User {
 
 	private String organization;
 
@@ -17,7 +17,7 @@ public class CustomPrincipal extends User {
 		this.organization = organization;
 	}
 
-	public CustomPrincipal(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+	public CashPortalExtendedPrincipal(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
 	}
 

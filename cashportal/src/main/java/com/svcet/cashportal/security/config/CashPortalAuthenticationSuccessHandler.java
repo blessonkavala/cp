@@ -14,18 +14,13 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * This class gets invoked upon the successful Authentication, and returns the
- * list of Tenants associated for the selected user as a payload
  * 
- * @author Sam Sundar k
+ * @author Blesson
  *
  */
-public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class CashPortalAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-	@Autowired
-	private LoginSuccessResponse loginSuccessResponse;
-
-	public CustomAuthenticationSuccessHandler() {
+	public CashPortalAuthenticationSuccessHandler() {
 		super();
 		setRedirectStrategy(new NoRedirectStrategy());
 	}
@@ -33,12 +28,8 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-
 		super.onAuthenticationSuccess(request, response, authentication);
-		ObjectMapper mapper = new ObjectMapper();
-
 		response.setContentType("application/json;charset=UTF-8");
-		//response.getWriter().print(mapper.writeValueAsString(loginSuccessResponse.getTenants()));
 		response.getWriter().flush();
 	}
 

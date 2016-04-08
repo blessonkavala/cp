@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,13 +16,13 @@ import com.svcet.cashportal.domain.UserMaster;
 import com.svcet.cashportal.service.UserService;
 
 /**
- * Custom Authentication Provider Non DAO based. Temporary Solution to support
- * Custom {@link UsernamePasswordAuthenticationFilter}
+ * DAO based Authenticcation Provider Custom
+ * {@link UsernamePasswordAuthenticationFilter}
  * 
- * @author Sam Sundar k
+ * @author Blesson
  *
  */
-public class CustomAuthenticationProvider implements AuthenticationProvider {
+public class CashPortalAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
 	private UserService userService;
@@ -38,7 +37,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		if (userMaster != null) {
 			final List<GrantedAuthority> grantedAuths = new ArrayList<>();
 			grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-			final UserDetails principal = new CustomPrincipal(userName, password, grantedAuths);
+			final UserDetails principal = new CashPortalExtendedPrincipal(userName, password, grantedAuths);
 			final Authentication auth = new UserNamePasswordOrganizationAuthenticationToken(principal, password,
 					grantedAuths, orgName);
 			return auth;

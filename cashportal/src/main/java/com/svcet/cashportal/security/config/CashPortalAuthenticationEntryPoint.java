@@ -10,18 +10,16 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
 /**
- * Gets Invoked on an Authentication Exception. and sends the
- * {@link HttpServletResponse.SC_UNAUTHORIZED} code as response.
  * 
- * @author sam Sundar k
+ * @author Blesson
  *
  */
-public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class CashPortalAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {
-		response.setHeader("url", "/login.html"); //FIXME config server
+		response.setHeader("url", "/login.html"); // FIXME config server
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
 	}
 

@@ -10,10 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.savedrequest.NullRequestCache;
 
 /**
- * This class currently configures the implementation of BasicAuthentication.
- * TODO:Will be enhanced to DAO based authentication in future sprints
  * 
- * @author Sam Sundar K
+ * @author Blesson
  *
  */
 @EnableWebSecurity
@@ -23,41 +21,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		// TODO:CHECK LATER
-		http.formLogin()
-			.loginPage("/login.html")
-			.failureUrl("/login.html?error")
-			.permitAll()
-		.and()
-			.logout()
-			.logoutSuccessHandler(customLogoutSuccessHandler())
-			.logoutUrl("/login.html?logout")
-			.permitAll()
-		.and()
-			.headers()
-			.contentTypeOptions()
-			.disable()
-		.and()
-			.authorizeRequests()
-			.antMatchers("/*.js", "/*.css", "/*.html", "/fonts/**", "/img/**","/css/**","/bower_components/**","/app/**")
-			.permitAll()
-		.and()
-			.authorizeRequests()
-			.anyRequest()
-			.authenticated()
-		.and()
-			.requestCache()
-			.requestCache(new NullRequestCache())
-		.and()
-			.exceptionHandling()
-			.authenticationEntryPoint(customAuthenticationEntryPoint())
-		.and()
-			.httpBasic()
-			.disable()
-			.addFilter(customUsernamePasswordAuthenticationFilter());
-		
-		http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint());		
-		
-//		http.authorizeRequests().anyRequest().permitAll();
+		http.formLogin().loginPage("/login.html").failureUrl("/login.html?error").permitAll().and().logout()
+				.logoutSuccessHandler(customLogoutSuccessHandler()).logoutUrl("/login.html?logout").permitAll().and()
+				.headers().contentTypeOptions().disable().and().authorizeRequests()
+				.antMatchers("/*.js", "/*.css", "/*.html", "/fonts/**", "/img/**", "/css/**", "/bower_components/**",
+						"/app/**")
+				.permitAll().and().authorizeRequests().anyRequest().authenticated().and().requestCache()
+				.requestCache(new NullRequestCache()).and().exceptionHandling()
+				.authenticationEntryPoint(customAuthenticationEntryPoint()).and().httpBasic().disable()
+				.addFilter(customUsernamePasswordAuthenticationFilter());
+
+		http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint());
+
+		// http.authorizeRequests().anyRequest().permitAll();
 	}
 
 	@Autowired
@@ -68,15 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public AuthenticationProvider customAuthenticationProvider() {
-		CustomAuthenticationProvider impl = new CustomAuthenticationProvider();
-		// impl.setUserDetailsService(customUserDetailsService());
-		/* other properties etc */
+		CashPortalAuthenticationProvider impl = new CashPortalAuthenticationProvider();
 		return impl;
 	}
 
 	@Bean
-	public CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter() throws Exception {
-		CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
+	public CashPortalUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter()
+			throws Exception {
+		CashPortalUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CashPortalUsernamePasswordAuthenticationFilter();
 		customUsernamePasswordAuthenticationFilter.setAuthenticationManager(super.authenticationManagerBean());
 		customUsernamePasswordAuthenticationFilter
 				.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler());
@@ -86,29 +61,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler() {
-		return new CustomAuthenticationSuccessHandler();
+	public CashPortalAuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+		return new CashPortalAuthenticationSuccessHandler();
 	}
 
 	@Bean
-	public CustomAuthenticationFailureHandler customAuthenticationFailureHandler() {
-		return new CustomAuthenticationFailureHandler();
+	public CashPortalAuthenticationFailureHandler customAuthenticationFailureHandler() {
+		return new CashPortalAuthenticationFailureHandler();
 	}
 
 	@Bean
-	public CustomLogoutSuccessHandler customLogoutSuccessHandler() {
-		return new CustomLogoutSuccessHandler();
+	public CashPortalLogoutSuccessHandler customLogoutSuccessHandler() {
+		return new CashPortalLogoutSuccessHandler();
 	}
 
+
 	@Bean
-	public LoginSuccessResponse loginSuccessResponse() {
-		return new LoginSuccessResponse();
-	}
-	
-	@Bean
-	public CustomAuthenticationEntryPoint customAuthenticationEntryPoint()
-	{
-		return new CustomAuthenticationEntryPoint();
+	public CashPortalAuthenticationEntryPoint customAuthenticationEntryPoint() {
+		return new CashPortalAuthenticationEntryPoint();
 	}
 
 }

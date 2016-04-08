@@ -12,21 +12,16 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * This class is invoked on a successful StellarUser Logout and sends the login page
- * URL as a response payload read from Application configuration for the client
- * to redirect
  * 
- * @author Sam Sundar K
+ * @author Blesson
  *
  */
-public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
+public class CashPortalLogoutSuccessHandler implements LogoutSuccessHandler {
 
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		ObjectMapper mapper = new ObjectMapper();
 		response.setContentType("application/json;charset=UTF-8");
-		//response.getWriter().print(mapper.writeValueAsString(tenantSelectionResponse));
 		response.getWriter().flush();
 	}
 }

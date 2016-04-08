@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -17,18 +16,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
- * @author Sam Sundar K
+ * @author Blesson
  *
  */
-public class CustomUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class CashPortalUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	public static final String SECURITY_FROM_ORGANIZATION_NAME_KEY = "tenantid";
 
-	public static final Logger LOGGER = LoggerFactory.getLogger(CustomUsernamePasswordAuthenticationFilter.class);
+	public static final Logger LOGGER = LoggerFactory.getLogger(CashPortalUsernamePasswordAuthenticationFilter.class);
 	
 	private boolean postOnly = true;
 
-	public CustomUsernamePasswordAuthenticationFilter() {
+	public CashPortalUsernamePasswordAuthenticationFilter() {
 		setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/security/login", "POST"));
 	}
 
@@ -82,8 +81,7 @@ public class CustomUsernamePasswordAuthenticationFilter extends UsernamePassword
 			
 
 		} catch (Exception e) {
-			LOGGER.error("---->", e);
-			// LOG.error("Error while transforming login request", e);
+			LOGGER.error("Error while transforming login request", e);
 		}
 		return super.attemptAuthentication(request, response);
 	}

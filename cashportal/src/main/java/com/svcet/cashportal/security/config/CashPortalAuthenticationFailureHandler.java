@@ -11,14 +11,14 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 
 /**
  * 
- * @author Sam Sundar K
+ * @author Blesson
  * 
  *         This class invoked on a Authentication Failure and sends
  *         {@link HttpServletResponse.SC_UNAUTHORIZED} as Http response status
  *         code
  *
  */
-public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class CashPortalAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
