@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.svcet.cashportal.domain.OrganizationMaster;
 import com.svcet.cashportal.security.config.UserNamePasswordOrganizationAuthenticationToken;
 import com.svcet.cashportal.service.OraganizationService;
+import com.svcet.cashportal.utils.OrganizationUtils;
 import com.svcet.cashportal.web.beans.OrganizationReponse;
 import com.svcet.cashportal.web.beans.OrganizationRequest;
 
@@ -25,7 +26,9 @@ public class OrganizationController {
 	@RequestMapping(method = RequestMethod.POST, value = "/organization/save")
 	@ResponseBody
 	public OrganizationMaster save(@RequestBody OrganizationRequest organizationRequest) {
-		organizationRequest.setOrgType(getSubOrgType(getLoggedInUserOrgType()));
+		organizationRequest.setOrgType(OrganizationUtils.getSubOrgType(getLoggedInUserOrgType()));
+		OrganizationMaster organizationMaster = getLoggedInUserOrg();
+		organizationRequest.setParentOrgId(organizationMaster.getRid());
 		return oraganizationService.save(organizationRequest);
 	}
 
@@ -36,7 +39,7 @@ public class OrganizationController {
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/organization/update")
 	public OrganizationReponse update(@RequestBody OrganizationRequest organizationRequest) {
-		organizationRequest.setOrgType(getSubOrgType(getLoggedInUserOrgType()));
+		organizationRequest.setOrgType(OrganizationUtils.getSubOrgType(getLoggedInUserOrgType()));
 		return oraganizationService.update(organizationRequest);
 	}
 
@@ -44,7 +47,7 @@ public class OrganizationController {
 	@ResponseBody
 	public OrganizationReponse[] findAll() {
 		List<OrganizationReponse> organizationReponseList = oraganizationService
-				.findAll(getSubOrgType(getLoggedInUserOrgType()));
+				.findAll(OrganizationUtils.getSubOrgType(getLoggedInUserOrgType()));
 		return organizationReponseList.toArray(new OrganizationReponse[organizationReponseList.size()]);
 	}
 
@@ -56,16 +59,12 @@ public class OrganizationController {
 		return organizationMaster.getOrgType();
 	}
 
-	public String getSubOrgType(String superOrgType) {
-		String subOrgType = null;
-		switch (superOrgType) {
-		case "BANK_GROUP":
-			subOrgType = "BANK";
-			break;
-		case "BANK":
-			subOrgType = "CUSTOMER";
-		}
-		return subOrgType;
+	public OrganizationMaster getLoggedInUserOrg() {
+		UserNamePasswordOrganizationAuthenticationToken authenticationToken = (UserNamePasswordOrganizationAuthenticationToken) SecurityContextHolder
+				.getContext().getAuthentication();
+		final String orgName = authenticationToken.getOrganization();
+		OrganizationMaster organizationMaster = oraganizationService.findByOrgName(orgName);
+		return organizationMaster;
 	}
 
 }

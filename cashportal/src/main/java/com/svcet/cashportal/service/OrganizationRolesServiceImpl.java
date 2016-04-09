@@ -12,6 +12,7 @@ import com.svcet.cashportal.domain.acl.OrganizationRoles;
 import com.svcet.cashportal.repository.OrganizationRepository;
 import com.svcet.cashportal.repository.OrganizationRoleRepository;
 import com.svcet.cashportal.repository.RoleMasterRepository;
+import com.svcet.cashportal.utils.OrganizationUtils;
 import com.svcet.cashportal.web.beans.OrganizationReponse;
 import com.svcet.cashportal.web.beans.OrganizationRequest;
 import com.svcet.cashportal.web.beans.OrganizationRoleVO;
@@ -58,12 +59,13 @@ public class OrganizationRolesServiceImpl implements OrganizationRolesService {
 
 		// FETCH ORGANIZATION DETAILS
 		OrganizationReponse organizationReponse = oraganizationService.findById(organizationRequest.getRid());
+		String selectedOrgType = organizationReponse.getOrgType();
 
 		organizationRolesScreenResponse.setOrganization(organizationReponse);
 
-		// FETCH Asigned ROLES
+		// FETCH Assigned ROLES
 		List<OrganizationRoles> assignedOrganizationRolesList = organizationRoleRepository
-				.findByOrgId(organizationReponse.getRid());
+				.findByOrgIdAndRoleDest(organizationReponse.getRid(), selectedOrgType);
 		List<String> assignedRoleIdList = new ArrayList<String>();
 
 		List<RoleResponse> assignedRoleResponseList = new ArrayList<RoleResponse>();
@@ -76,7 +78,7 @@ public class OrganizationRolesServiceImpl implements OrganizationRolesService {
 
 		// Fetch Available Roles
 		List<OrganizationRoles> availableOrganizationRolesList = organizationRoleRepository
-				.findByOrgIdAndRoleDest(organizationReponse.getParentOrgId(), organizationReponse.getOrgType());
+				.findByOrgIdAndRoleDest(organizationReponse.getParentOrgId(), selectedOrgType);
 		List<RoleResponse> availableRoleResponseList = new ArrayList<RoleResponse>();
 		for (OrganizationRoles organizationRoles : availableOrganizationRolesList) {
 			if (!assignedRoleIdList.contains(organizationRoles.getRoleId().getRoleCode())) {
@@ -87,6 +89,34 @@ public class OrganizationRolesServiceImpl implements OrganizationRolesService {
 		}
 		organizationRolesScreenResponse.setAssignedRoles(assignedRoleResponseList);
 		organizationRolesScreenResponse.setAvailableRoles(availableRoleResponseList);
+
+		// FETCH Assigned Roles to Grant
+		List<OrganizationRoles> assignedOrganizationRolesToGrantList = organizationRoleRepository
+				.findByOrgIdAndRoleDest(organizationReponse.getRid(), OrganizationUtils.getSubOrgType(selectedOrgType));
+		List<String> assignedRoleIdToGrantList = new ArrayList<String>();
+
+		List<RoleResponse> assignedRoleResponseToGrantList = new ArrayList<RoleResponse>();
+		for (OrganizationRoles organizationRoles : assignedOrganizationRolesToGrantList) {
+			assignedRoleIdToGrantList.add(organizationRoles.getRoleId().getRoleCode());
+			RoleResponse roleResponse = new RoleResponse();
+			BeanUtils.copyProperties(organizationRoles.getRoleId(), roleResponse);
+			assignedRoleResponseToGrantList.add(roleResponse);
+		}
+
+		// Fetch Available Roles to Grant
+		List<OrganizationRoles> availableOrganizationRolesToGrantList = organizationRoleRepository
+				.findByOrgIdAndRoleDest(organizationReponse.getParentOrgId(), OrganizationUtils.getSubOrgType(selectedOrgType));
+		List<RoleResponse> availableRoleResponseToGrantList = new ArrayList<RoleResponse>();
+		for (OrganizationRoles organizationRoles : availableOrganizationRolesToGrantList) {
+			if (!assignedRoleIdToGrantList.contains(organizationRoles.getRoleId().getRoleCode())) {
+				RoleResponse roleResponse = new RoleResponse();
+				BeanUtils.copyProperties(organizationRoles.getRoleId(), roleResponse);
+				availableRoleResponseToGrantList.add(roleResponse);
+			}
+		}
+		organizationRolesScreenResponse.setAssignedRolesToGrant(assignedRoleResponseToGrantList);
+		organizationRolesScreenResponse.setAvailableRolesToGrant(availableRoleResponseToGrantList);
+
 		return organizationRolesScreenResponse;
 	}
 
@@ -98,10 +128,26 @@ public class OrganizationRolesServiceImpl implements OrganizationRolesService {
 				organizationRolesScreenRequest.getOrganization().getRid(),
 				organizationRolesScreenRequest.getOrganization().getOrgType());
 		organizationRoleRepository.delete(existsingOrganizationRolesList);
-		List<RoleRequest> assignedRolesList = organizationRolesScreenRequest.getAssignedRoles();
+		
+		List<OrganizationRoles> existsingOrganizationRolesToGrantList = organizationRoleRepository.findByOrgIdAndRoleDest(
+				organizationRolesScreenRequest.getOrganization().getRid(),
+				OrganizationUtils.getSubOrgType(organizationRolesScreenRequest.getOrganization().getOrgType()));
+		organizationRoleRepository.delete(existsingOrganizationRolesToGrantList);
+		
+		//ASSIGNED ROLES
 		OrganizationMaster organizationMaster = OrganizationRepository
 				.findByRid(organizationRolesScreenRequest.getOrganization().getRid());
+		List<RoleRequest> assignedRolesList = organizationRolesScreenRequest.getAssignedRoles();
 		for (RoleRequest roleRequest : assignedRolesList) {
+			OrganizationRoles organizationRoles = new OrganizationRoles();
+			organizationRoles.setOrgId(organizationMaster);
+			organizationRoles.setRoleId(roleMasterRepository.findByRoleCode(roleRequest.getRoleCode()));
+			organizationRoleRepository.save(organizationRoles);
+		}
+		
+		//ASSIGNED ROLES TO GRANT
+		List<RoleRequest> assignedRolesToGrantList = organizationRolesScreenRequest.getAssignedRolesToGrant();
+		for (RoleRequest roleRequest : assignedRolesToGrantList) {
 			OrganizationRoles organizationRoles = new OrganizationRoles();
 			organizationRoles.setOrgId(organizationMaster);
 			organizationRoles.setRoleId(roleMasterRepository.findByRoleCode(roleRequest.getRoleCode()));

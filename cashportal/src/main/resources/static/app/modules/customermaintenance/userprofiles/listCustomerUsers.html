@@ -1,0 +1,36 @@
+<div class="page-header">
+    <h1>Users List</h1>
+</div>
+<div class="container-fluid">
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Last Modification Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <button class="btn btn-default" ng-show1="vm.hasCreateAuthority === true" ng-click="vm.addCustomerUser()">Create New User</button>
+                    </td>
+                </tr>
+            </tfoot>
+
+            <tbody>
+                <tr ng-repeat="user in vm.users track by user.rid">
+                    <td>{{user.userName}}</td>
+                    <td>{{user.modifiedDttm}}</td>
+                    <td>{{(vm.statusCodes | filter: user.status)[0].value}}</td>
+                    <td>
+                        <button class="btn btn-info" ng-click="vm.viewUser(user.rid)">View</button>
+                        <button class="btn btn-info" ng-click="vm.editUser(user.rid)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

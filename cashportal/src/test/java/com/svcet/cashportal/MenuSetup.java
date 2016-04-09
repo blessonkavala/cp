@@ -32,10 +32,53 @@ public class MenuSetup {
 		menuRepository.deleteAll();
 		setupBankMaintenanceMenus();
 		setupCustomerMaintenanceMenus();
+		setupCashInternalFundTransferMenus();
+	}
+
+	private void setupCashInternalFundTransferMenus() {
+
+		MenuMaster menuMaster = new MenuMaster();
+		menuMaster.setMenuCode("Internal Fundtransfer");
+		menuMaster.setMenuDesc("Internal Fundtransfer");
+		PermissionMaster rootPermissionMaster = permissionMasterRepository.findByPermissionCode("cash_ft_int_access");
+		menuMaster.setPermissionId(rootPermissionMaster);
+
+		MenuItems menuItemsInitiateFT = new MenuItems();
+		menuItemsInitiateFT.setItemCode("Initiate");
+		menuItemsInitiateFT.setItemDesc("Initiate");
+		menuItemsInitiateFT.setAction("app.listCustomers");
+		PermissionMaster permissionMasterProfiles = permissionMasterRepository
+				.findByPermissionCode("cash_ft_int_create");
+		menuItemsInitiateFT.setPermissionId(permissionMasterProfiles);
+
+		MenuItems menuItemsPendingFts = new MenuItems();
+		menuItemsPendingFts.setItemCode("Pending Fundtransfer");
+		menuItemsPendingFts.setItemDesc("Pending Fundtransfer");
+		menuItemsPendingFts.setAction("app.listCustomerPermissions");
+		PermissionMaster permissionMasterPermission = permissionMasterRepository
+				.findByPermissionCode("cash_ft_int_pending_list_access");
+		menuItemsPendingFts.setPermissionId(permissionMasterPermission);
+
+		MenuItems menuItemsFTInquiry = new MenuItems();
+		menuItemsFTInquiry.setItemCode("Inquiry Fundtransfer");
+		menuItemsFTInquiry.setItemDesc("User Profile");
+		menuItemsFTInquiry.setAction("app.listCustomersForSelection({ targetUIState: \"app.listCustomerUsers\"})");
+		PermissionMaster permissionUserProfile = permissionMasterRepository
+				.findByPermissionCode("cash_ft_int_inquiry_list_access");
+		menuItemsFTInquiry.setPermissionId(permissionUserProfile);
+
+		List<MenuItems> menuItemsList = new ArrayList<MenuItems>();
+		menuItemsList.add(menuItemsInitiateFT);
+		menuItemsList.add(menuItemsPendingFts);
+		menuItemsList.add(menuItemsFTInquiry);
+		menuMaster.setMenuItems(menuItemsList);
+
+		menuRepository.save(menuMaster);
+
 	}
 
 	private void setupCustomerMaintenanceMenus() {
-		
+
 		MenuMaster menuMaster = new MenuMaster();
 		menuMaster.setMenuCode("Customer Maintenace");
 		menuMaster.setMenuDesc("Customer Maintenace");
@@ -46,7 +89,7 @@ public class MenuSetup {
 		MenuItems menuItemsProfile = new MenuItems();
 		menuItemsProfile.setItemCode("Profiles");
 		menuItemsProfile.setItemDesc("Profiles");
-		menuItemsProfile.setAction("app.listBanks");
+		menuItemsProfile.setAction("app.listCustomers");
 		PermissionMaster permissionMasterProfiles = permissionMasterRepository
 				.findByPermissionCode("ba_customer_profile_access");
 		menuItemsProfile.setPermissionId(permissionMasterProfiles);
@@ -54,7 +97,7 @@ public class MenuSetup {
 		MenuItems menuItemsPermission = new MenuItems();
 		menuItemsPermission.setItemCode("Permissions");
 		menuItemsPermission.setItemDesc("Permissions Desc");
-		menuItemsPermission.setAction("app.listBankPermissions");
+		menuItemsPermission.setAction("app.listCustomerPermissions");
 		PermissionMaster permissionMasterPermission = permissionMasterRepository
 				.findByPermissionCode("ba_customer_profile_permissions_access");
 		menuItemsPermission.setPermissionId(permissionMasterPermission);
@@ -62,31 +105,73 @@ public class MenuSetup {
 		MenuItems menuItemsUserProfile = new MenuItems();
 		menuItemsUserProfile.setItemCode("User Profile");
 		menuItemsUserProfile.setItemDesc("User Profile");
-		menuItemsUserProfile.setAction("app.listBanksForSelection({ targetUIState: \"app.listBankUsers\"})");
+		menuItemsUserProfile.setAction("app.listCustomersForSelection({ targetUIState: \"app.listCustomerUsers\"})");
 		PermissionMaster permissionUserProfile = permissionMasterRepository
 				.findByPermissionCode("ba_customer_user_profile_access");
 		menuItemsUserProfile.setPermissionId(permissionUserProfile);
-		
+
 		MenuItems menuItemsUserProfilePermission = new MenuItems();
 		menuItemsUserProfilePermission.setItemCode("User Permissions");
 		menuItemsUserProfilePermission.setItemDesc("User Permissions");
-		menuItemsUserProfilePermission.setAction("app.listBanksForSelection({ targetUIState: \"app.listBankUsersPermissions\"})");
+		menuItemsUserProfilePermission
+				.setAction("app.listCustomersForSelection({ targetUIState: \"app.listCustomerUsersPermissions\"})");
 		PermissionMaster permissionUserProfilePermissions = permissionMasterRepository
 				.findByPermissionCode("ba_customer_user_profile_permissions_access");
 		menuItemsUserProfilePermission.setPermissionId(permissionUserProfilePermissions);
+
+		MenuItems menuItemsUserAuthentication = new MenuItems();
+		menuItemsUserAuthentication.setItemCode("User Authentication");
+		menuItemsUserAuthentication.setItemDesc("User Authentication");
+		menuItemsUserAuthentication
+				.setAction("app.listCustomersForSelection({ targetUIState: \"app.listCustomerUsersPermissions\"})");
+		PermissionMaster permissionUserAuthentication = permissionMasterRepository
+				.findByPermissionCode("ba_customer_user_authentication_access");
+		menuItemsUserAuthentication.setPermissionId(permissionUserAuthentication);
+
+		MenuItems menuItemsCompanyAccounts = new MenuItems();
+		menuItemsCompanyAccounts.setItemCode("Company Accounts");
+		menuItemsCompanyAccounts.setItemDesc("Company Accounts");
+		menuItemsCompanyAccounts
+				.setAction("app.listCustomersForSelection({ targetUIState: \"app.listCustomerAccounts\"})");
+		PermissionMaster permissionCompanyAccounts = permissionMasterRepository
+				.findByPermissionCode("ba_customer_accounts_access");
+		menuItemsCompanyAccounts.setPermissionId(permissionCompanyAccounts);
 		
+		MenuItems menuItemsUserAccounts = new MenuItems();
+		menuItemsUserAccounts.setItemCode("User Accounts");
+		menuItemsUserAccounts.setItemDesc("User Accounts");
+		menuItemsUserAccounts
+				.setAction("app.listCustomersForSelection({ targetUIState: \"app.listCustomerUsersPermissions\"})");
+		PermissionMaster permissionUserAccounts = permissionMasterRepository
+				.findByPermissionCode("ba_customer_user_accounts_access");
+		menuItemsUserAccounts.setPermissionId(permissionUserAccounts);
+
+		MenuItems menuItemsBeneficiaryMaster = new MenuItems();
+		menuItemsBeneficiaryMaster.setItemCode("Beneficiary Master");
+		menuItemsBeneficiaryMaster.setItemDesc("Beneficiary Master");
+		menuItemsBeneficiaryMaster
+				.setAction("app.listCustomersForSelection({ targetUIState: \"app.listCustomerUsersPermissions\"})");
+		PermissionMaster permissionBeneficiaryMaster = permissionMasterRepository
+				.findByPermissionCode("ba_customer_beneficiary_access");
+		menuItemsBeneficiaryMaster.setPermissionId(permissionBeneficiaryMaster);
+
 		List<MenuItems> menuItemsList = new ArrayList<MenuItems>();
 		menuItemsList.add(menuItemsProfile);
 		menuItemsList.add(menuItemsPermission);
 		menuItemsList.add(menuItemsUserProfile);
 		menuItemsList.add(menuItemsUserProfilePermission);
+		menuItemsList.add(menuItemsUserAuthentication);
+		menuItemsList.add(menuItemsCompanyAccounts);
+		menuItemsList.add(menuItemsUserAccounts);
+		menuItemsList.add(menuItemsBeneficiaryMaster);
+		
 		menuMaster.setMenuItems(menuItemsList);
 
 		menuRepository.save(menuMaster);
 	}
 
 	public void setupBankMaintenanceMenus() {
-		
+
 		MenuMaster menuMaster = new MenuMaster();
 		menuMaster.setMenuCode("Bank Maintenance");
 		menuMaster.setMenuDesc("Bank Maintenance");
@@ -117,15 +202,16 @@ public class MenuSetup {
 		PermissionMaster permissionUserProfile = permissionMasterRepository
 				.findByPermissionCode("bga_bank_user_profile_access");
 		menuItemsUserProfile.setPermissionId(permissionUserProfile);
-		
+
 		MenuItems menuItemsUserProfilePermission = new MenuItems();
 		menuItemsUserProfilePermission.setItemCode("User Permissions");
 		menuItemsUserProfilePermission.setItemDesc("User Permissions");
-		menuItemsUserProfilePermission.setAction("app.listBanksForSelection({ targetUIState: \"app.listBankUsersPermissions\"})");
+		menuItemsUserProfilePermission
+				.setAction("app.listBanksForSelection({ targetUIState: \"app.listBankUsersPermissions\"})");
 		PermissionMaster permissionUserProfilePermissions = permissionMasterRepository
 				.findByPermissionCode("bga_bank_user_profile_permissions_access");
 		menuItemsUserProfilePermission.setPermissionId(permissionUserProfilePermissions);
-		
+
 		List<MenuItems> menuItemsList = new ArrayList<MenuItems>();
 		menuItemsList.add(menuItemsProfile);
 		menuItemsList.add(menuItemsPermission);

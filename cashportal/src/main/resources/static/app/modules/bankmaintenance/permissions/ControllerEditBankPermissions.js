@@ -14,6 +14,8 @@
         vm.organizationRoles = organizationRoles;
         vm.assignedRoles  =  [];
         vm.availableRoles =  [];
+        vm.assignedRolesToGrant  =  [];
+        vm.availableRolesToGrant =  [];
         
         vm.assignRole = function(){
             var tempAvailableRoles =  [];
@@ -38,6 +40,32 @@
             angular.forEach(tempAssignedRoles, function(role) {
                  var index=vm.organizationRoles.assignedRoles.indexOf(role);
                  vm.organizationRoles.assignedRoles.splice(index,1);   
+            });
+        };
+        
+        vm.assignRoleToGrant = function(){
+            var tempAvailableRolesToGrant =  [];
+            angular.forEach(vm.availableRolesToGrant, function(value) {
+                vm.organizationRoles.assignedRolesToGrant.push(value);
+                tempAvailableRolesToGrant.push(value)
+            });
+            vm.availableRolesToGrant = [];
+            angular.forEach(tempAvailableRolesToGrant, function(role) {
+                 var index=vm.organizationRoles.availableRolesToGrant.indexOf(role);
+                 vm.organizationRoles.availableRolesToGrant.splice(index,1);   
+            });
+        };
+        
+        vm.removeRoleToGrant = function(){
+            var tempAssignedRolesToGrant =  [];
+            angular.forEach(vm.assignedRolesToGrant, function(value) {
+                vm.organizationRoles.availableRolesToGrant.push(value);
+                tempAssignedRolesToGrant.push(value)
+            });
+            vm.assignedRolesToGrant  =  [];
+            angular.forEach(tempAssignedRolesToGrant, function(role) {
+                 var index=vm.organizationRoles.assignedRolesToGrant.indexOf(role);
+                 vm.organizationRoles.assignedRolesToGrant.splice(index,1);   
             });
         };
         

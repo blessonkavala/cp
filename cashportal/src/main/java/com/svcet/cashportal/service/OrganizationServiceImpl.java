@@ -36,6 +36,10 @@ public class OrganizationServiceImpl implements OraganizationService {
 			// TODO: VALIDATE BEAN
 			OrganizationMaster organizationMaster = new OrganizationMaster();
 			BeanUtils.copyProperties(organizationRequest, organizationMaster);
+			//SET PARENT ORG REFERENCE
+			OrganizationMaster parentOrganizationMaster = organizationRepository
+					.findByRid(organizationRequest.getParentOrgId());
+			organizationMaster.setParentOrgId(parentOrganizationMaster);
 			// FETCH COUNTRY CODE
 			CountryMaster countryId = countryMasterRepository.findByCountryCode(organizationRequest.getCountryCode());
 			organizationMaster.setCountryId(countryId);
@@ -66,6 +70,10 @@ public class OrganizationServiceImpl implements OraganizationService {
 		try {
 			OrganizationMaster organizationMaster = organizationRepository.findByRid(organizationRequest.getRid());
 			BeanUtils.copyProperties(organizationRequest, organizationMaster);
+			//SET PARENT ORG REFERENCE
+			OrganizationMaster parentOrganizationMaster = organizationRepository
+					.findByRid(organizationRequest.getParentOrgId());
+			organizationMaster.setParentOrgId(parentOrganizationMaster);
 			// FETCH COUNTRY CODE
 			CountryMaster countryId = countryMasterRepository.findByCountryCode(organizationRequest.getCountryCode());
 			organizationMaster.setCountryId(countryId);

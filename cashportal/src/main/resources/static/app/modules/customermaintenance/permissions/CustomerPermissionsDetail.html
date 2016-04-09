@@ -14,7 +14,7 @@
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Bank Name</label>  
+  <label class="col-md-4 control-label" for="textinput">Customer Name</label>  
   <div class="col-md-5">
   <input id="textinput" name="textinput" type="text" placeholder="Organization Name" class="form-control input-md" required="" ng-model="vm.organizationRoles.organization.orgName" ng-readonly="true">
   </div>
@@ -54,7 +54,7 @@
 
 <!-- Select Multiple -->
 <div class="form-group" ng-if="!vm.isView">
-  <label class="col-md-4 control-label" for="selectmultiple">Available Roles for Bank Users</label>
+  <label class="col-md-4 control-label" for="selectmultiple">Available Roles for Customer Users</label>
   <div class="col-md-5">
     <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple" ng-if="!vm.isView" ng-model="vm.availableRoles" ng-options="role.roleDescription for role in vm.organizationRoles.availableRoles">
     </select>
@@ -71,7 +71,7 @@
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="selectmultiple">Assigned Roles for Bank Users</label>
+  <label class="col-md-4 control-label" for="selectmultiple">Assigned Roles for Customer Users</label>
   <div class="col-md-5">
     <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple" ng-if="!vm.isView" ng-model="vm.assignedRoles" ng-options="role.roleDescription for role in vm.organizationRoles.assignedRoles">
     </select>
@@ -79,42 +79,11 @@
   </div>
 </div>
 
-
-<!-- Roles to Grant to Customer from Bank -->
-
-<!-- Select Multiple -->
-<div class="form-group" ng-if="!vm.isView">
-  <label class="col-md-4 control-label" for="selectmultiple">Available Roles for Customers</label>
-  <div class="col-md-5">
-    <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple" ng-if="!vm.isView" ng-model="vm.availableRolesToGrant" ng-options="role.roleDescription for role in vm.organizationRoles.availableRolesToGrant">
-    </select>
-  </div>
-</div>
-
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="button1id"></label>
   <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-info" ng-if="!vm.isView" ng-click="vm.assignRoleToGrant()">Add</button>
-    <button id="button1id" name="button1id" class="btn btn-info" ng-if="!vm.isView" ng-click="vm.removeRoleToGrant()">Remove</button>
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectmultiple">Assigned Roles for Customers</label>
-  <div class="col-md-5">
-    <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple" ng-if="!vm.isView" ng-model="vm.assignedRolesToGrant" ng-options="role.roleDescription for role in vm.organizationRoles.assignedRolesToGrant">
-    </select>
-    <label ng-if="vm.isView" ng-repeat="role in vm.organizationRoles.assignedRolesToGrant" >{{role.roleDescription}}</label>
-  </div>
-</div>
-
-
-<!-- Button (Double) -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="button1id"></label>
-  <div class="col-md-8">
-     <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateBankRoles()">Update</button>
+     <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateCustomerRoles()">Update</button>
      <button id="button3id" name="button3id" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
   </div>
 </div>

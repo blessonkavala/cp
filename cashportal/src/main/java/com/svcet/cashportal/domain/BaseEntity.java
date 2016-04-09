@@ -5,10 +5,8 @@ import com.orientechnologies.orient.core.annotation.OId;
 import com.orientechnologies.orient.core.annotation.OVersion;
 
 /**
- * Base entity for OrientDB Hornbill data transfer object Contains id and
- * version
  * 
- * @author gekaczur
+ * @author Blesson
  *
  */
 @JsonIgnoreProperties("handler")

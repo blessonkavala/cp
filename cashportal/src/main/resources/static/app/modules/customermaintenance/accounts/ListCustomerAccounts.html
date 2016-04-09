@@ -1,0 +1,39 @@
+<div class="page-header">
+    <h1>List of Customer Accounts</h1>
+</div>
+<div class="container-fluid">
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Account Number</th>
+                    <th>Description</th>
+                    <th>Account Type</th>
+                    <th>Currency Code</th>
+                    <th>Active</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <button class="btn btn-default" ng-show1="vm.hasCreateAuthority === true" ng-click="vm.addCustomerAccount()">Create New Account</button>
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr ng-repeat="customerAccount in vm.customerAccounts track by account.rid">
+                    <td>{{customerAccount.accountNo}}</td>
+                    <td>{{customerAccount.description}}</td>
+                    <td>{{customerAccount.accountType}}</td>
+                    <td>{{customerAccount.curCode}}</td>
+                    <td>{{customerAccount.active}}</td>
+                    <td>
+                        <button class="btn btn-info" ng-click="vm.viewCustomerAccount(account.rid)">View</button>
+                        <button class="btn btn-info" ng-click="vm.editCustomerAccount(account.rid)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -12,7 +12,9 @@
         'app.login',
         'app.user',
         'app.organization',
-        'app.bankmaintenance'
+        'app.bankmaintenance',
+        'app.customermaintenance',
+        'app.accounts'
         
 
     ]);
