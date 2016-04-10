@@ -14,7 +14,6 @@ import com.svcet.cashportal.exception.DuplicateAccountException;
 import com.svcet.cashportal.repository.AccountRepository;
 import com.svcet.cashportal.repository.CustomerAccountRepository;
 import com.svcet.cashportal.repository.OrganizationRepository;
-import com.svcet.cashportal.web.beans.AccountRequest;
 import com.svcet.cashportal.web.beans.AccountResponse;
 import com.svcet.cashportal.web.beans.CustomerAccountRequest;
 import com.svcet.cashportal.web.beans.CustomerAccountResponse;
@@ -32,26 +31,39 @@ public class AccountServiceImpl implements AccountService {
 	private OrganizationRepository organizationRepository;
 
 	@Override
-	public AccountResponse save(AccountRequest accountRequest) {
-		// CHECK IF THIS ACCOUNT NUMBER ALREADY EXISTS FOR THIS BANK
-		String accountNumber = accountRequest.getAccountNo();
-		String bankOrgId = accountRequest.getBankOrgId();
+	public CustomerAccountResponse save(CustomerAccountRequest customerAccountRequest) {
+		String accountNumber = customerAccountRequest.getAccount().getAccountNo();
+		String customerOrgId = customerAccountRequest.getCustomerOrgId();
+		OrganizationMaster customerOrgMaster = organizationRepository.findByRid(customerOrgId);
 		try {
-			accountRepository.findByAccountNoAndBankOrgId(accountNumber, bankOrgId);
-			throw new DuplicateAccountException();
+			// CHECK IF THIS ACCOUNT NUMBER ALREADY EXISTS FOR THE CUSTOMER BANK
+			Account account = accountRepository.findByAccountNoAndBankOrgId(accountNumber,
+					customerOrgMaster.getParentOrgId().getRid());
+			if (!account.getRid().equals(customerAccountRequest.getAccount().getRid())) {
+				throw new DuplicateAccountException();
+			}
+			throw new IndexOutOfBoundsException();
 		} catch (IndexOutOfBoundsException e) {
+			// Convert CustomerAccountRequest Object to domain model bean
+			CustomerAccount customerAccount = new CustomerAccount();
+			customerAccount.setRid(customerAccountRequest.getRid());
+			customerAccount.setCustomerOrgId(customerOrgMaster);
 			// CONVERT AccountRequest object to domain model bean Account
 			Account account = new Account();
-			BeanUtils.copyProperties(accountRequest, account, "bankOrgId");
+			BeanUtils.copyProperties(customerAccountRequest.getAccount(), account, "bankOrgId");
 			// Fetch bankOrgId OrganizationMaster reference
-			OrganizationMaster bank = organizationRepository.findByRid(bankOrgId);
-			account.setBankOrgId(bank);
-			account = accountRepository.save(account);
+			account.setBankOrgId(customerOrgMaster.getParentOrgId());
+			customerAccount.setAccount(account);
+			customerAccount = customerAccountRepository.save(customerAccount);
 			//
+			CustomerAccountResponse customerAccountResponse = new CustomerAccountResponse();
+			customerAccountResponse.setRid(customerAccount.getRid());
+			customerAccountResponse.setCustomerOrgId(customerOrgId);
 			AccountResponse accountResponse = new AccountResponse();
-			BeanUtils.copyProperties(account, accountResponse, "bankOrgId");
-			accountResponse.setBankOrgId(bank.getRid());
-			return accountResponse;
+			BeanUtils.copyProperties(customerAccount.getAccount(), accountResponse, "bankOrgId");
+			accountResponse.setBankOrgId(customerOrgMaster.getParentOrgId().getRid());
+			customerAccountResponse.setAccount(accountResponse);
+			return customerAccountResponse;
 		}
 	}
 
@@ -62,12 +74,25 @@ public class AccountServiceImpl implements AccountService {
 				.findByCustomerOrgId(customerAccountRequest.getCustomerOrgId());
 		for (CustomerAccount customerAccount : customerAccountList) {
 			CustomerAccountResponse customerAccountResponse = new CustomerAccountResponse();
+			customerAccountResponse.setRid(customerAccount.getRid());
 			AccountResponse accountResponse = new AccountResponse();
 			BeanUtils.copyProperties(customerAccount.getAccount(), accountResponse);
-			customerAccountResponse.setAccountResponse(accountResponse);
+			customerAccountResponse.setAccount(accountResponse);
 			customerAccountResponse.setCustomerOrgId(customerAccount.getCustomerOrgId().getRid());
 			customerAccountResponseList.add(customerAccountResponse);
 		}
 		return customerAccountResponseList;
+	}
+
+	@Override
+	public CustomerAccountResponse findById(String rid) {
+		CustomerAccount customerAccount = customerAccountRepository.findByRid(rid);
+		CustomerAccountResponse customerAccountResponse = new CustomerAccountResponse();
+		customerAccountResponse.setRid(customerAccount.getRid());
+		AccountResponse accountResponse = new AccountResponse();
+		BeanUtils.copyProperties(customerAccount.getAccount(), accountResponse);
+		customerAccountResponse.setAccount(accountResponse);
+		customerAccountResponse.setCustomerOrgId(customerAccount.getCustomerOrgId().getRid());
+		return customerAccountResponse;
 	}
 }

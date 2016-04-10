@@ -268,6 +268,57 @@
                          selectedOrgId: null
                     }
                 }
+            },
+             {
+                state: 'app.addCustomerAccount',
+                config: {
+                    url: '/addCustomerAccount',
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/customermaintenance/accounts/CustomerAccountDetail.html',
+                            controller: 'ControllerAddCustomerAccount as vm'
+                        }
+                    },
+                    params : {
+                         selectedOrgId: null
+                    }
+                }
+            },
+            {
+                state: 'app.editCustomerAccount',
+                config: {
+                    url: '/editCustomerAccount',
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/customermaintenance/accounts/CustomerAccountDetail.html',
+                            controller: 'ControllerEditCustomerAccount as vm',
+                        }
+                    },
+                    params: {
+                        customerAccountId: true
+                    },
+                    resolve: {
+                        customerAccount: getCustomerAccountDetailsResolve
+                    }
+                }
+            },
+             {
+                state: 'app.viewCustomerAccount',
+                config: {
+                    url: '/viewCustomerAccount',
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/customermaintenance/accounts/CustomerAccountDetail.html',
+                            controller: 'ControllerViewCustomerAccount as vm',
+                        }
+                    },
+                    params: {
+                        customerAccountId: true
+                    },
+                    resolve: {
+                        customerAccount: getCustomerAccountDetailsResolve
+                    }
+                }
             }
         ];
     }
@@ -291,4 +342,11 @@
     'ngInject';
     return UserRoleService.getUserRoles($stateParams.userId);
     }
+    
+    function getCustomerAccountDetailsResolve(AccountService, $stateParams) {
+    'ngInject';
+    return AccountService.getCustomerAccountDetails($stateParams.customerAccountId);
+    }
+    
+    
 })();

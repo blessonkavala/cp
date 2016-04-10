@@ -13,12 +13,16 @@
             vm.customerAccounts = customerAccounts;
         }
         
-        vm.viewCustomerAccount = function (accountId){
-            $state.go('app.viewCustomerAccount', {accountId: accountId});
+        vm.addCustomerAccount = function(){
+             $state.go('app.addCustomerAccount', {selectedOrgId: $stateParams.selectedOrgId});
         };
         
-        vm.editCustomerAccount = function (orgId){
-            $state.go('app.editCustomerAccount', {accountId: accountId});
+        vm.viewCustomerAccount = function (customerAccountId){
+            $state.go('app.viewCustomerAccount', {customerAccountId: customerAccountId});
+        };
+        
+        vm.editCustomerAccount = function (customerAccountId){
+            $state.go('app.editCustomerAccount', {customerAccountId: customerAccountId});
         };
     }
 })();

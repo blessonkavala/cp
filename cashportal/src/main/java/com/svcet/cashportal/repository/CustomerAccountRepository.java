@@ -9,6 +9,9 @@ import com.svcet.cashportal.domain.CustomerAccount;
 
 public interface CustomerAccountRepository extends OrientObjectRepository<CustomerAccount> {
 
+	@Query("select from CustomerAccount where @rid = ?")
+	CustomerAccount findByRid(String rid);
+
 	@Query("select from CustomerAccount where customerOrgId= ?")
 	List<CustomerAccount> findByCustomerOrgId(String customerOrgid);
 

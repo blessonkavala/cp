@@ -7,7 +7,8 @@
     /* @ngInject */
     function AccountService($http) {
     var service = {
-        getCustomerAccounts: getCustomerAccounts
+        getCustomerAccounts: getCustomerAccounts,
+        getCustomerAccountDetails: getCustomerAccountDetails
     };
     return service;
     
@@ -19,6 +20,14 @@
             return response.data;
         }
        
+    }
+    
+    function getCustomerAccountDetails(customerAccountId){
+       return $http.post('/customeraccount/query', {rid:customerAccountId}).then(getCompleteHandler);
+        function getCompleteHandler(response) {
+            console.log(response);
+            return response.data;
+        }
     }
     
 }

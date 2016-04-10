@@ -1,6 +1,7 @@
 package com.svcet.cashportal.web.beans;
 
 public class AccountRequest {
+	private String rid;
 	private String accountNo;
 	private String description;
 	private String accountType;
@@ -100,5 +101,13 @@ public class AccountRequest {
 
 	public void setBankOrgId(String bankOrgId) {
 		this.bankOrgId = bankOrgId;
+	}
+
+	public String getRid() {
+		return rid;
+	}
+
+	public void setRid(String rid) {
+		this.rid = rid;
 	}
 }

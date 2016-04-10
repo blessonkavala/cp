@@ -22,15 +22,15 @@
                 </tr>
             </tfoot>
             <tbody>
-                <tr ng-repeat="customerAccount in vm.customerAccounts track by account.rid">
-                    <td>{{customerAccount.accountNo}}</td>
-                    <td>{{customerAccount.description}}</td>
-                    <td>{{customerAccount.accountType}}</td>
-                    <td>{{customerAccount.curCode}}</td>
-                    <td>{{customerAccount.active}}</td>
+                <tr ng-repeat="customerAccount in vm.customerAccounts track by customerAccount.rid">
+                    <td>{{customerAccount.account.accountNo}}</td>
+                    <td>{{customerAccount.account.description}}</td>
+                    <td>{{customerAccount.account.accountType}}</td>
+                    <td>{{customerAccount.account.curCode}}</td>
+                    <td>{{customerAccount.account.active}}</td>
                     <td>
-                        <button class="btn btn-info" ng-click="vm.viewCustomerAccount(account.rid)">View</button>
-                        <button class="btn btn-info" ng-click="vm.editCustomerAccount(account.rid)">Edit</button>
+                        <button class="btn btn-info" ng-click="vm.viewCustomerAccount(customerAccount.rid)">View</button>
+                        <button class="btn btn-info" ng-click="vm.editCustomerAccount(customerAccount.rid)">Edit</button>
                     </td>
                 </tr>
             </tbody>

@@ -2,17 +2,11 @@ package com.svcet.cashportal.web.beans;
 
 public class CustomerAccountResponse {
 
-	private AccountResponse accountResponse;
+	private String rid;
+
+	private AccountResponse account;
 
 	private String customerOrgId;
-
-	public AccountResponse getAccountResponse() {
-		return accountResponse;
-	}
-
-	public void setAccountResponse(AccountResponse accountResponse) {
-		this.accountResponse = accountResponse;
-	}
 
 	public String getCustomerOrgId() {
 		return customerOrgId;
@@ -20,5 +14,21 @@ public class CustomerAccountResponse {
 
 	public void setCustomerOrgId(String customerOrgId) {
 		this.customerOrgId = customerOrgId;
+	}
+
+	public AccountResponse getAccount() {
+		return account;
+	}
+
+	public void setAccount(AccountResponse account) {
+		this.account = account;
+	}
+
+	public String getRid() {
+		return rid;
+	}
+
+	public void setRid(String rid) {
+		this.rid = rid;
 	}
 }
