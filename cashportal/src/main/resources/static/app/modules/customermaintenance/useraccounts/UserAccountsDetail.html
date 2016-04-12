@@ -1,0 +1,38 @@
+<div class="page-header">
+    <h1>User Account Details</h1>
+</div>
+<div class="container-fluid">
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Last Modification Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <div class="form-group">
+                        <label class="col-md-4 control-label" for="button1id"></label>
+                        <div class="col-md-8">
+                            <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateUserAccounts()">Update</button>
+                            <button id="button3id" name="button3id" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr ng-repeat="userAccount in vm.userAccountsDetails.userAccounts">
+                    <td><input type="checkbox" name="checkboxes" id="checkboxes-0" ng-model="userAccount.selected"></td>
+                    <td>{{userAccount.userAccount.account.accountNo}}</td>
+                    <td>{{userAccount.userAccount.account.description}}</td>
+                    <td>{{userAccount.userAccount.account.accountType}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

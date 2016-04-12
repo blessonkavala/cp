@@ -10,4 +10,7 @@ public interface AccountRepository extends OrientObjectRepository<Account> {
 	@Query("select from Account where accountNo  =  ? and bankOrgId.rid = ?")
 	Account findByAccountNoAndBankOrgId(String accountNo, String bankOrgId);
 
+	@Query("select from Account where @rid =  ?")
+	Account findByRid(String rid);
+
 }

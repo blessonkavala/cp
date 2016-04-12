@@ -302,7 +302,7 @@
                     }
                 }
             },
-             {
+            {
                 state: 'app.viewCustomerAccount',
                 config: {
                     url: '/viewCustomerAccount',
@@ -317,6 +317,58 @@
                     },
                     resolve: {
                         customerAccount: getCustomerAccountDetailsResolve
+                    }
+                }
+            },
+            //Customer USER Accounts ROUTING
+            {
+                state: 'app.listUserAccounts',
+                config: {
+                    url: '/listUserAccounts',
+                    views: {
+                    'mainContent': {
+                        templateUrl: 'app/modules/customermaintenance/useraccounts/ListUserAccounts.html',
+                        controller: 'ControllerListUserAccounts as vm'
+                        }
+                    },
+                    params : {
+                         selectedOrgId: null
+                    }
+                }
+            },
+            {
+                state: 'app.editUserAccounts',
+                config: {
+                    url: '/editUserAccounts',
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/customermaintenance/useraccounts/UserAccountsDetail.html',
+                            controller: 'ControllerEditUserAccounts as vm',
+                        }
+                    },
+                    params: {
+                        userId: true
+                    },
+                    resolve: {
+                        userAccountsDetails: getUserAccountsResolve
+                    }
+                }
+            },
+            {
+                state: 'app.viewUserAccounts',
+                config: {
+                    url: '/viewUserAccounts',
+                    views: {
+                        'mainContent': {
+                            templateUrl: 'app/modules/customermaintenance/useraccounts/UserAccountsDetail.html',
+                            controller: 'ControllerViewUserAccounts as vm',
+                        }
+                    },
+                    params: {
+                        userId: true
+                    },
+                    resolve: {
+                        userAccountsDetails: getUserAccountsResolve
                     }
                 }
             }
@@ -348,5 +400,9 @@
     return AccountService.getCustomerAccountDetails($stateParams.customerAccountId);
     }
     
+    function getUserAccountsResolve(AccountService, $stateParams) {
+    'ngInject';
+    return AccountService.getUserAccountDetails($stateParams.userId);
+    }
     
 })();

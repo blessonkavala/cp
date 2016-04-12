@@ -141,7 +141,7 @@ public class MenuSetup {
 		menuItemsUserAccounts.setItemCode("User Accounts");
 		menuItemsUserAccounts.setItemDesc("User Accounts");
 		menuItemsUserAccounts
-				.setAction("app.listCustomersForSelection({ targetUIState: \"app.listCustomerUsersPermissions\"})");
+				.setAction("app.listCustomersForSelection({ targetUIState: \"app.listUserAccounts\"})");
 		PermissionMaster permissionUserAccounts = permissionMasterRepository
 				.findByPermissionCode("ba_customer_user_accounts_access");
 		menuItemsUserAccounts.setPermissionId(permissionUserAccounts);
