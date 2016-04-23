@@ -11,7 +11,10 @@ public interface CustomerAccountRepository extends OrientObjectRepository<Custom
 
 	@Query("select from CustomerAccount where @rid = ?")
 	CustomerAccount findByRid(String rid);
-
+	
+	@Query("select from CustomerAccount where customerOrgId = ? and account.accountNo = ?")
+	CustomerAccount findByCustomerAndAccountNo(String customerId,String accountNo);
+	
 	@Query("select from CustomerAccount where customerOrgId= ?")
 	List<CustomerAccount> findByCustomerOrgId(String customerOrgid);
 

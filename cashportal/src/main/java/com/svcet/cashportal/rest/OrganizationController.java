@@ -3,7 +3,6 @@ package com.svcet.cashportal.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.svcet.cashportal.domain.OrganizationMaster;
-import com.svcet.cashportal.security.config.UserNamePasswordOrganizationAuthenticationToken;
 import com.svcet.cashportal.service.OraganizationService;
 import com.svcet.cashportal.utils.OrganizationUtils;
 import com.svcet.cashportal.web.beans.OrganizationReponse;
@@ -23,11 +21,14 @@ public class OrganizationController {
 	@Autowired
 	private OraganizationService oraganizationService;
 
+	@Autowired
+	private OrganizationUtils organizationUtils;
+
 	@RequestMapping(method = RequestMethod.POST, value = "/organization/save")
 	@ResponseBody
 	public OrganizationMaster save(@RequestBody OrganizationRequest organizationRequest) {
-		organizationRequest.setOrgType(OrganizationUtils.getSubOrgType(getLoggedInUserOrgType()));
-		OrganizationMaster organizationMaster = getLoggedInUserOrg();
+		organizationRequest.setOrgType(OrganizationUtils.getSubOrgType(organizationUtils.getLoggedInUserOrgType()));
+		OrganizationMaster organizationMaster = organizationUtils.getLoggedInUserOrg();
 		organizationRequest.setParentOrgId(organizationMaster.getRid());
 		return oraganizationService.save(organizationRequest);
 	}
@@ -39,7 +40,7 @@ public class OrganizationController {
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/organization/update")
 	public OrganizationReponse update(@RequestBody OrganizationRequest organizationRequest) {
-		organizationRequest.setOrgType(OrganizationUtils.getSubOrgType(getLoggedInUserOrgType()));
+		organizationRequest.setOrgType(OrganizationUtils.getSubOrgType(organizationUtils.getLoggedInUserOrgType()));
 		return oraganizationService.update(organizationRequest);
 	}
 
@@ -47,24 +48,8 @@ public class OrganizationController {
 	@ResponseBody
 	public OrganizationReponse[] findAll() {
 		List<OrganizationReponse> organizationReponseList = oraganizationService
-				.findAll(OrganizationUtils.getSubOrgType(getLoggedInUserOrgType()));
+				.findAll(OrganizationUtils.getSubOrgType(organizationUtils.getLoggedInUserOrgType()));
 		return organizationReponseList.toArray(new OrganizationReponse[organizationReponseList.size()]);
-	}
-
-	public String getLoggedInUserOrgType() {
-		UserNamePasswordOrganizationAuthenticationToken authenticationToken = (UserNamePasswordOrganizationAuthenticationToken) SecurityContextHolder
-				.getContext().getAuthentication();
-		final String orgName = authenticationToken.getOrganization();
-		OrganizationMaster organizationMaster = oraganizationService.findByOrgName(orgName);
-		return organizationMaster.getOrgType();
-	}
-
-	public OrganizationMaster getLoggedInUserOrg() {
-		UserNamePasswordOrganizationAuthenticationToken authenticationToken = (UserNamePasswordOrganizationAuthenticationToken) SecurityContextHolder
-				.getContext().getAuthentication();
-		final String orgName = authenticationToken.getOrganization();
-		OrganizationMaster organizationMaster = oraganizationService.findByOrgName(orgName);
-		return organizationMaster;
 	}
 
 }

@@ -46,7 +46,7 @@ public class MenuSetup {
 		MenuItems menuItemsInitiateFT = new MenuItems();
 		menuItemsInitiateFT.setItemCode("Initiate");
 		menuItemsInitiateFT.setItemDesc("Initiate");
-		menuItemsInitiateFT.setAction("app.listCustomers");
+		menuItemsInitiateFT.setAction("app.initInternalFT");
 		PermissionMaster permissionMasterProfiles = permissionMasterRepository
 				.findByPermissionCode("cash_ft_int_create");
 		menuItemsInitiateFT.setPermissionId(permissionMasterProfiles);
@@ -54,7 +54,7 @@ public class MenuSetup {
 		MenuItems menuItemsPendingFts = new MenuItems();
 		menuItemsPendingFts.setItemCode("Pending Fundtransfer");
 		menuItemsPendingFts.setItemDesc("Pending Fundtransfer");
-		menuItemsPendingFts.setAction("app.listCustomerPermissions");
+		menuItemsPendingFts.setAction("app.listPendingFTs");
 		PermissionMaster permissionMasterPermission = permissionMasterRepository
 				.findByPermissionCode("cash_ft_int_pending_list_access");
 		menuItemsPendingFts.setPermissionId(permissionMasterPermission);

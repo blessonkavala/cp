@@ -68,7 +68,7 @@ CREATE CLASS OrganizationRoles;
 CREATE LINK roleId TYPE link FROM OrganizationRoles.roleId To RoleMaster.rid INVERSE
 CREATE LINK orgId TYPE  link FROM OrganizationRoles.orgId To OrganizationMaster.rid INVERSE
 
-CREATE LINK UserRoles;
+CREATE CLASS UserRoles;
 CREATE LINK roleId TYPE link FROM UserRoles.roleId To RoleMaster.rid INVERSE
 CREATE LINK userId TYPE link FROM UserRoles.userId To UserMaster.rid INVERSE
 
@@ -83,6 +83,59 @@ CREATE PROPERTY MenuItems.ItemCode STRING
 CREATE PROPERTY MenuItems.ItemDesc STRING
 CREATE PROPERTY MenuItems.order INTEGER
 CREATE LINK menuId TYPE link FROM MenuItems.menuId To MenuMaster.rid INVERSE
-CREATE LINK permissionId TYPE link FROM MenuMaster.permissionId To PermissionMaster.rid INVERSE
+CREATE LINK permissionId TYPE link FROM MenuItems.permissionId To PermissionMaster.rid INVERSE
+
+CREATE LINK menuItems TYPE LINKSET FROM MenuItems.menuId TO MenuMaster.rid INVERSE
+
+CREATE CLASS OrganizationRoles;
+CREATE LINK roleId TYPE link FROM OrganizationRoles.roleId To RoleMaster.rid INVERSE
+CREATE LINK orgId TYPE link FROM OrganizationRoles.orgId To OrganizationMaster.rid INVERSE
+
+CREATE CLASS Account;
+CREATE PROPERTY Account.accountNo STRING;
+CREATE PROPERTY Account.description STRING;
+CREATE PROPERTY Account.accountType STRING;
+CREATE PROPERTY Account.curCode STRING;
+CREATE PROPERTY Account.branchNo STRING;
+CREATE PROPERTY Account.overdraftLimit STRING;
+CREATE PROPERTY Account.interestRate STRING;
+CREATE PROPERTY Account.interestRateCredit STRING;
+CREATE PROPERTY Account.interestRateDebit STRING;
+CREATE PROPERTY Account.active STRING;
+
+CREATE CLASS FundTransfer;
+CREATE PROPERTY FundTransfer.refId	STRING;
+CREATE PROPERTY FundTransfer.applicationDate DATETIME;
+CREATE PROPERTY FundTransfer.applicantAbbvName STRING;
+CREATE PROPERTY FundTransfer.applicantActName STRING;
+CREATE PROPERTY FundTransfer.applicantActNo STRING;
+CREATE PROPERTY FundTransfer.applicantActCurCode STRING;
+CREATE PROPERTY FundTransfer.applicantActDescription STRING;
+CREATE PROPERTY FundTransfer.applicantAddressLine1 STRING;
+CREATE PROPERTY FundTransfer.applicantAddressLine2 STRING;
+CREATE PROPERTY FundTransfer.applicantCountry STRING;
+CREATE PROPERTY FundTransfer.applicantDom STRING;
+CREATE PROPERTY FundTransfer.applicantName STRING;
+CREATE PROPERTY FundTransfer.applicantReference STRING;
+CREATE PROPERTY FundTransfer.boRefId STRING;
+CREATE PROPERTY FundTransfer.boReleaseDttm STRING;
+
+CREATE PROPERTY FundTransfer.ftAmt STRING;
+CREATE PROPERTY FundTransfer.ftCurCode STRING;
+CREATE PROPERTY FundTransfer.ftType STRING;
+CREATE PROPERTY FundTransfer.inpDttm DATETIME;
+
+CREATE PROPERTY FundTransfer.issDate DATETIME;
+CREATE PROPERTY FundTransfer.productCode STRING;
+CREATE PROPERTY FundTransfer.tnxStatCode STRING;
 
 
+CREATE PROPERTY FundTransfer.inpUserId STRING;
+CREATE PROPERTY FundTransfer.boReleaseUserId STRING;
+
+CREATE CLASS Counterparty;
+CREATE PROPERTY Counterparty.RefId STRING;
+CREATE PROPERTY Counterparty.counterpartyActNo STRING;
+CREATE PROPERTY Counterparty.counterpartyCurCode STRING;
+CREATE PROPERTY Counterparty.counterpartyType STRING;
+CREATE PROPERTY Counterparty.counterpartyName STRING;

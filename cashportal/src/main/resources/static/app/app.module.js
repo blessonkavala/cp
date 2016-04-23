@@ -14,7 +14,8 @@
         'app.organization',
         'app.bankmaintenance',
         'app.customermaintenance',
-        'app.accounts'
+        'app.accounts',
+        'app.fundtransfer'
         
 
     ]);

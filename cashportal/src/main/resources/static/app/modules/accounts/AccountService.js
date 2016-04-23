@@ -9,7 +9,8 @@
     var service = {
         getCustomerAccounts: getCustomerAccounts,
         getCustomerAccountDetails: getCustomerAccountDetails,
-        getUserAccountDetails: getUserAccountDetails
+        getUserAccountDetails: getUserAccountDetails,
+        getUserAccounts: getUserAccounts
     };
     return service;
     
@@ -33,6 +34,14 @@
     
     function getUserAccountDetails(userId){
        return $http.post('/useraccounts/query', {rid:userId}).then(getCompleteHandler);
+        function getCompleteHandler(response) {
+            console.log(response);
+            return response.data;
+        }
+    }
+    
+    function getUserAccounts(){
+        return $http.get('/loggeduseraccounts/list').then(getCompleteHandler);
         function getCompleteHandler(response) {
             console.log(response);
             return response.data;
