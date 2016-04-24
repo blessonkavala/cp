@@ -6,7 +6,7 @@
         /* jshint validthis: true */
 
         var vm = this;
-        vm.formHeader = 'View Bank';
+        vm.pageTitle="Display Bank Account";
         vm.isView = true;
         vm.isEdit = false;
         vm.isNew  = false;

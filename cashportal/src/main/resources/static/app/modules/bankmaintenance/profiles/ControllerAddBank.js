@@ -6,6 +6,7 @@
         /* jshint validthis: true */
 
         var vm = this;
+        vm.pageTitle="Add Bank Account";
         vm.statusCodes = OrganizationService.getStatusList();
         vm.legalTypeCodes = OrganizationService.getLegalIDTypes();
         vm.isView = false;

@@ -6,7 +6,7 @@
         /* jshint validthis: true */
 
         var vm = this;
-        vm.formHeader = 'Add Bank User';
+        vm.pageTitle="Add Bank User Account";
         vm.isNew =  true;
         vm.isView = false;
         vm.isEdit = false;

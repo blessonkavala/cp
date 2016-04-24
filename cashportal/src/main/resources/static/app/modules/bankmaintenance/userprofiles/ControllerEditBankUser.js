@@ -6,7 +6,7 @@
         /* jshint validthis: true */
 
         var vm = this;
-        vm.formHeader = 'Edit User';
+        vm.pageTitle="Modify Bank User Account";
         vm.isNew =  false;
         vm.isView = false;
         vm.isEdit = true;
