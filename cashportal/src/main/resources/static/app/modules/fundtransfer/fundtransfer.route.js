@@ -38,7 +38,25 @@
                          tnxStatCode: "03"
                     },
                     resolve: {
-                        pendingFTs: pendingFTsResolve
+                        pendingFTResponse: pendingFTsResolve
+                    }
+                }
+            },
+            {
+                state: 'app.viewInternalFT',
+                config: {
+                    url: '/viewInternalFT',
+                    views: {
+                    'mainContent': {
+                        templateUrl: 'app/modules/fundtransfer/internal/InternalFundtransferDetails.html',
+                        controller: 'ControllerViewInternalFT as vm'
+                        }
+                    },
+                    params : {
+                         rid: null
+                    },
+                    resolve: {
+                        fundTransferDetails: getFundTransferDetailsResolve
                     }
                 }
             }
@@ -54,4 +72,10 @@
      'ngInject';
      return FundTransferService.getPendingFundTransfers($stateParams.tnxStatCode);    
     }
+    
+    function getFundTransferDetailsResolve(FundTransferService,$stateParams){
+     'ngInject';
+     return FundTransferService.getFundTransferDetails($stateParams.rid);    
+    }
+    
 })();

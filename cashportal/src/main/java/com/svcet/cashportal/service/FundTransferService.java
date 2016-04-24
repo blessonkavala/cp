@@ -10,4 +10,6 @@ public interface FundTransferService {
 	FundTransferResponse save(FundTransferRequest fundTransferRequest);
 
 	FundTransferInquiryResponse list(FundTransferInquiryRequest fundTransferInquiryRequest);
+
+	FundTransferResponse findById(String rid);
 }

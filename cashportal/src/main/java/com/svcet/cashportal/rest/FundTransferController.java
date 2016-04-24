@@ -21,6 +21,8 @@ import com.svcet.cashportal.web.beans.FundTransferInquiryRequest;
 import com.svcet.cashportal.web.beans.FundTransferInquiryResponse;
 import com.svcet.cashportal.web.beans.FundTransferRequest;
 import com.svcet.cashportal.web.beans.FundTransferResponse;
+import com.svcet.cashportal.web.beans.OrganizationReponse;
+import com.svcet.cashportal.web.beans.OrganizationRequest;
 
 @RestController
 public class FundTransferController {
@@ -91,9 +93,15 @@ public class FundTransferController {
 		return fundTransferService.save(fundTransferRequest);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/ft/list")
+	@RequestMapping(method = RequestMethod.POST, value = "/ft/list")
 	@ResponseBody
-	public FundTransferInquiryResponse inquiry(FundTransferInquiryRequest fundTransferInquiryRequest) {
+	public FundTransferInquiryResponse inquiry(@RequestBody FundTransferInquiryRequest fundTransferInquiryRequest) {
 		return fundTransferService.list(fundTransferInquiryRequest);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/ft/query")
+	public FundTransferResponse findOne(@RequestBody FundTransferInquiryRequest fundTransferInquiryRequest) {
+		return fundTransferService.findById(fundTransferInquiryRequest.getRid());
+	}
+
 }

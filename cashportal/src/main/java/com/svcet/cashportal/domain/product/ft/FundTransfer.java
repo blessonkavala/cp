@@ -42,6 +42,8 @@ public class FundTransfer extends BaseEntity {
 	private String tnxStatCode;
 	private String prodStatCode;
 
+	private String remarks;
+
 	private Counterparty counterparty;
 
 	private OrganizationMaster issuingBank;
@@ -276,6 +278,14 @@ public class FundTransfer extends BaseEntity {
 
 	public void setIssuingBank(OrganizationMaster issuingBank) {
 		this.issuingBank = issuingBank;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 }

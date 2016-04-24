@@ -15,7 +15,7 @@
         vm.submitFT = function () {
             //TODO:
            $http.post('/ft/save',vm.screenFT).then(function(response){
-        		$state.go('app.listBankUsers',{selectedOrgId: $stateParams.selectedOrgId});
+        		$state.go('app.viewInternalFT',{rid: response.data.fundTransfer.rid});
         		console.log(response);
         	});
         	

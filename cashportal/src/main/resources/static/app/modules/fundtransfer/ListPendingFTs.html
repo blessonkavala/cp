@@ -32,10 +32,9 @@
                     <td>{{fundTransfer.issDate}}</td>
                     <td>{{fundTransfer.counterparty.counterpartyName}}</td>
                     <td>{{fundTransfer.applicantActNo}}</td>
-                    <td>{{fundTransfer.tnxStatCode}}</td>
+                    <td>{{(vm.tnxStatusCodes | filter: fundTransfer.tnxStatCode)[0].value}}</td>
                     <td>
-                        <button class="btn btn-info" ng-click="vm.viewCustomerAccount(customerAccount.rid)">View</button>
-                        <button class="btn btn-info" ng-click="vm.editCustomerAccount(customerAccount.rid)">Edit</button>
+                        <button class="btn btn-info" ng-click="vm.viewFundTransfer(fundTransfer.rid)">View</button>             
                     </td>
                 </tr>
             </tbody>

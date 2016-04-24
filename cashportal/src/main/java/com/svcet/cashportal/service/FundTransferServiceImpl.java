@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.svcet.cashportal.domain.product.ft.FundTransfer;
 import com.svcet.cashportal.repository.CustomerAccountRepository;
 import com.svcet.cashportal.repository.FundTransferRepository;
-import com.svcet.cashportal.repository.UserAccountRepository;
 import com.svcet.cashportal.web.beans.FundTransferInquiryRequest;
 import com.svcet.cashportal.web.beans.FundTransferInquiryResponse;
 import com.svcet.cashportal.web.beans.FundTransferRequest;
@@ -21,10 +20,7 @@ public class FundTransferServiceImpl implements FundTransferService {
 	@Autowired
 	private FundTransferRepository fundTransferRepository;
 
-	@Autowired
-	private CustomerAccountRepository customerAccountRepository;
-
-	String[] ignoreProperties = { "boInpUserId", "boReleaseUserId", "inpUserId" };
+	private  String[] ignoreProperties = { "boInpUserId", "boReleaseUserId", "inpUserId" };
 
 	@Override
 	public FundTransferResponse save(FundTransferRequest fundTransferRequest) {
@@ -48,6 +44,14 @@ public class FundTransferServiceImpl implements FundTransferService {
 				.findByTnxStatCode(fundTransferInquiryRequest.getTnxStatCode());
 		fundTransferInquiryResponse.setFundTransferList(fundTransferList);
 		return fundTransferInquiryResponse;
+	}
+
+	@Override
+	public FundTransferResponse findById(String rid) {
+		FundTransferResponse fundTransferResponse = new FundTransferResponse();
+		FundTransfer fundTransfer = fundTransferRepository.findByRid(rid);
+		fundTransferResponse.setFundTransfer(fundTransfer);
+		return fundTransferResponse;
 	}
 
 }

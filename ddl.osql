@@ -128,6 +128,7 @@ CREATE PROPERTY FundTransfer.inpDttm DATETIME;
 CREATE PROPERTY FundTransfer.issDate DATETIME;
 CREATE PROPERTY FundTransfer.productCode STRING;
 CREATE PROPERTY FundTransfer.tnxStatCode STRING;
+CREATE PROPERTY FundTransfer.remarks STRING;
 
 
 CREATE PROPERTY FundTransfer.inpUserId STRING;

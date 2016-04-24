@@ -8,7 +8,9 @@
     function FundTransferService($http) {
     var service = {
         getNewInternalFundtransfer: getNewInternalFundtransfer,
-        getPendingFundTransfers: getPendingFundTransfers
+        getPendingFundTransfers: getPendingFundTransfers,
+        getFundTransferDetails: getFundTransferDetails,
+        getTransactionStatusCodes: getTransactionStatusCodes
     };
     return service;
     
@@ -21,10 +23,26 @@
     }
     
     function getPendingFundTransfers(tnxStatCode) {
-        return $http.get('/ft/list', {tnxStatCode:tnxStatCode}).then(getCompleteHandler);
+        return $http.post('/ft/list', {tnxStatCode:tnxStatCode}).then(getCompleteHandler);
             function getCompleteHandler(response) {
                 return response.data;
             }
+    }
+    
+    function getFundTransferDetails(rid) {
+        return $http.post('/ft/query', {rid:rid}).then(getCompleteHandler);
+            function getCompleteHandler(response) {
+                return response.data;
+            }
+    }
+    
+    function getTransactionStatusCodes() {
+        var statusCodes = [
+            {'code': '03', 'value': 'Submitted (Pending for Approval)'},
+            {'code': '04', 'value': 'Approved'},
+            {'code': '01', 'value': 'Rejected'}
+        ];
+        return statusCodes;
     }
 }
 })();
