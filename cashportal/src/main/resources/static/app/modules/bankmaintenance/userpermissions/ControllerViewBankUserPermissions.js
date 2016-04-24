@@ -6,7 +6,7 @@
         /* jshint validthis: true */
 
         var vm = this;
-        vm.formHeader = 'Edit Bank User Permissions';
+        vm.pageTitle="Display Bank User Permissions";
         vm.isView = true;
         vm.isEdit = false;
         vm.isNew  = false;
