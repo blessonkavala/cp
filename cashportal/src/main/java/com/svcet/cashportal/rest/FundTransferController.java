@@ -21,8 +21,6 @@ import com.svcet.cashportal.web.beans.FundTransferInquiryRequest;
 import com.svcet.cashportal.web.beans.FundTransferInquiryResponse;
 import com.svcet.cashportal.web.beans.FundTransferRequest;
 import com.svcet.cashportal.web.beans.FundTransferResponse;
-import com.svcet.cashportal.web.beans.OrganizationReponse;
-import com.svcet.cashportal.web.beans.OrganizationRequest;
 
 @RestController
 public class FundTransferController {
@@ -71,6 +69,8 @@ public class FundTransferController {
 		fundTransferRequest.getFundTransfer().setApplicantDom(customerOrg.getDom());
 		fundTransferRequest.getFundTransfer().setApplicantName(customerOrg.getOrgName());
 		fundTransferRequest.getFundTransfer().setApplicantReference(customerOrg.getCustomerReference());
+		
+		fundTransferRequest.getFundTransfer().setCompany(customerOrg);
 
 		// Applicant Account
 		CustomerAccount applicantCustomerAccount = customerAccountRepository.findByCustomerAndAccountNo(

@@ -46,7 +46,7 @@ public class MenuSetup {
 		MenuItems menuItemsMOPendingRecords = new MenuItems();
 		menuItemsMOPendingRecords.setItemCode("Pending Records");
 		menuItemsMOPendingRecords.setItemDesc("Pending Records");
-		menuItemsMOPendingRecords.setAction("app.initInternalFT");
+		menuItemsMOPendingRecords.setAction("app.listMOPendingRecords");
 		PermissionMaster permissionMasterProfiles = permissionMasterRepository
 				.findByPermissionCode("mo_pending_record_access");
 		menuItemsMOPendingRecords.setPermissionId(permissionMasterProfiles);
@@ -54,7 +54,7 @@ public class MenuSetup {
 		MenuItems menuItemsMOExistingRecords = new MenuItems();
 		menuItemsMOExistingRecords.setItemCode("Existing Records");
 		menuItemsMOExistingRecords.setItemDesc("Existing Records");
-		menuItemsMOExistingRecords.setAction("app.listPendingFTs");
+		menuItemsMOExistingRecords.setAction("app.listMOExistingRecords");
 		PermissionMaster permissionMasterPermission = permissionMasterRepository
 				.findByPermissionCode("mo_existing_record_access");
 		menuItemsMOExistingRecords.setPermissionId(permissionMasterPermission);

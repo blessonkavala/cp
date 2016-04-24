@@ -14,15 +14,9 @@
                     <th>Counterparty</th>
                     <th>Account Number</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <td colspan="5">
-                        <button class="btn btn-default" ng-show1="vm.hasCreateAuthority === true" ng-click="vm.addCustomerAccount()">Create New Account</button>
-                    </td>
-                </tr>
-            </tfoot>
             <tbody>
                 <tr ng-repeat="fundTransfer in vm.pendingFTs track by fundTransfer.rid">
                     <td>{{fundTransfer.refId}}</td>

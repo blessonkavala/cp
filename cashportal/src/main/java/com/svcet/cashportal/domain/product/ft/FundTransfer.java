@@ -31,6 +31,8 @@ public class FundTransfer extends BaseEntity {
 	private Date boReleaseDttm;
 	private UserMaster boReleaseUserId;
 	// COMPANY_NAME
+	private OrganizationMaster company;
+
 	private String ftAmt;
 	private String ftCurCode;
 	private String ftType;
@@ -286,6 +288,14 @@ public class FundTransfer extends BaseEntity {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public OrganizationMaster getCompany() {
+		return company;
+	}
+
+	public void setCompany(OrganizationMaster company) {
+		this.company = company;
 	}
 
 }

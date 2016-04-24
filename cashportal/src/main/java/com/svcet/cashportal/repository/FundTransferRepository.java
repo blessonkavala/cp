@@ -13,4 +13,7 @@ public interface FundTransferRepository extends OrientObjectRepository<FundTrans
 	
 	@Query("select from FundTransfer where @rid = ?")
 	FundTransfer findByRid(String rid);
+
+	@Query("select from FundTransfer where issuingBank = ? and tnxStatCode = ?")
+	List<FundTransfer> findByIssuingBankAndTnxStatCode(String rid, String tnxStatCode);
 }

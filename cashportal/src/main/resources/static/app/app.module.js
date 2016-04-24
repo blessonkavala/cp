@@ -15,7 +15,8 @@
         'app.bankmaintenance',
         'app.customermaintenance',
         'app.accounts',
-        'app.fundtransfer'
+        'app.fundtransfer',
+        'app.middleoffice'
         
 
     ]);

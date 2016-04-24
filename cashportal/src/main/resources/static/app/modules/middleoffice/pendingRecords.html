@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>List of Pending Internal Fund Transfer Transactions</h1>
+    <h1>List of Pending Fund Transfer Transactions</h1>
 </div>
 <div class="container-fluid">
     <div>
@@ -8,32 +8,21 @@
                 <tr>
                     <th>System ID</th>
                     <th>Company</th>
-                    <th>Product Type</th>
+                    <th>FundTransfer Type</th>
                     <th>Ccy</th>
                     <th>Amount</th>
-                    <th>Value Date</th>
-                    <th>Counterparty</th>
-                    <th>Account Number</th>
-                    <th>Status</th>
+                    <th>Release Date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <td colspan="5">
-                        <button class="btn btn-default" ng-show1="vm.hasCreateAuthority === true" ng-click="vm.addCustomerAccount()">Create New Account</button>
-                    </td>
-                </tr>
-            </tfoot>
             <tbody>
                 <tr ng-repeat="fundTransfer in vm.pendingFTs track by fundTransfer.rid">
                     <td>{{fundTransfer.refId}}</td>
+                    <td>{{fundTransfer.company.orgName}}</td>
                     <td>{{fundTransfer.ftType}}</td>
                     <td>{{fundTransfer.ftCurCode}}</td>
                     <td>{{fundTransfer.ftAmt}}</td>
                     <td>{{fundTransfer.issDate}}</td>
-                    <td>{{fundTransfer.counterparty.counterpartyName}}</td>
-                    <td>{{fundTransfer.applicantActNo}}</td>
-                    <td>{{(vm.tnxStatusCodes | filter: fundTransfer.tnxStatCode)[0].value}}</td>
                     <td>
                         <button class="btn btn-info" ng-click="vm.viewFundTransfer(fundTransfer.rid)">View</button>             
                     </td>
