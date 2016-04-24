@@ -6,6 +6,7 @@
         /* jshint validthis: true */
 
         var vm = this;
+        vm.pageTitle  = "Modify Existing Customer Account";
         vm.formHeader = 'Edit Customer';
         vm.isView = false;
         vm.isEdit = true;

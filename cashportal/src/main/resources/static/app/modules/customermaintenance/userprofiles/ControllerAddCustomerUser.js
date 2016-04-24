@@ -6,7 +6,7 @@
         /* jshint validthis: true */
 
         var vm = this;
-        vm.formHeader = 'Add Customer User';
+        vm.pageTitle =  "Add Customer User Account";
         vm.isNew =  true;
         vm.isView = false;
         vm.isEdit = false;

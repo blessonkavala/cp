@@ -6,7 +6,7 @@
         /* jshint validthis: true */
 
         var vm = this;
-        vm.formHeader = 'View Customer User';
+        vm.pageTitle =  "Display Customer User Account";
         vm.isNew  =  false;
         vm.isEdit =  false
         vm.isView = true;

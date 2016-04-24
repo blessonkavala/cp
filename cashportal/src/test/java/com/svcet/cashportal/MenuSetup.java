@@ -32,7 +32,39 @@ public class MenuSetup {
 		menuRepository.deleteAll();
 		setupBankMaintenanceMenus();
 		setupCustomerMaintenanceMenus();
+		setupMiddleOfficeMenus();
 		setupCashInternalFundTransferMenus();
+	}
+
+	private void setupMiddleOfficeMenus() {
+		MenuMaster menuMiddleOffice = new MenuMaster();
+		menuMiddleOffice.setMenuCode("Middle Office");
+		menuMiddleOffice.setMenuDesc("Middle Office");
+		PermissionMaster permissionMOAccess = permissionMasterRepository.findByPermissionCode("mo_access");
+		menuMiddleOffice.setPermissionId(permissionMOAccess);
+
+		MenuItems menuItemsMOPendingRecords = new MenuItems();
+		menuItemsMOPendingRecords.setItemCode("Pending Records");
+		menuItemsMOPendingRecords.setItemDesc("Pending Records");
+		menuItemsMOPendingRecords.setAction("app.initInternalFT");
+		PermissionMaster permissionMasterProfiles = permissionMasterRepository
+				.findByPermissionCode("mo_pending_record_access");
+		menuItemsMOPendingRecords.setPermissionId(permissionMasterProfiles);
+
+		MenuItems menuItemsMOExistingRecords = new MenuItems();
+		menuItemsMOExistingRecords.setItemCode("Existing Records");
+		menuItemsMOExistingRecords.setItemDesc("Existing Records");
+		menuItemsMOExistingRecords.setAction("app.listPendingFTs");
+		PermissionMaster permissionMasterPermission = permissionMasterRepository
+				.findByPermissionCode("mo_existing_record_access");
+		menuItemsMOExistingRecords.setPermissionId(permissionMasterPermission);
+		
+		List<MenuItems> menuItemsList = new ArrayList<MenuItems>();
+		menuItemsList.add(menuItemsMOPendingRecords);
+		menuItemsList.add(menuItemsMOExistingRecords);
+		menuMiddleOffice.setMenuItems(menuItemsList);
+
+		menuRepository.save(menuMiddleOffice);
 	}
 
 	private void setupCashInternalFundTransferMenus() {
