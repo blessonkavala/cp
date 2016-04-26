@@ -1,4 +1,4 @@
-<form class="form-horizontal">
+<form class="form-horizontal" name="bankform" novalidate>
 <fieldset>
 
 <!-- Form Name -->
@@ -21,73 +21,97 @@
 </div>
 
 <!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Organization Name</label>  
+<div class="form-group {{bankform.orgName.$invalid === true ? 'has-error'  : 'has-success'}}">
+  <label class="col-md-4 control-label" for="textinput">Bank Name</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="Organization Name" class="form-control input-md" required="" ng-model="vm.org.orgName" ng-readonly="vm.isView">
+  <input id="textinput" name="orgName" type="text" placeholder="Organization Name" class="form-control input-md" required ng-model="vm.org.orgName" ng-readonly="vm.isView">
+  </div>
+  <div ng-show="bankform.orgName.$invalid" ng-messages="bankform.orgName.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Bank Name required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group {{bankform.addressLine1.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="addressLine1">Address</label>  
   <div class="col-md-5">
-  <input id="addressLine1" name="addressLine1" type="text" placeholder="Address Line 1" class="form-control input-md" required=""  ng-model="vm.org.addressLine1" ng-readonly="vm.isView">
+  <input id="addressLine1" name="addressLine1" type="text" placeholder="Address Line 1" class="form-control input-md" required  ng-model="vm.org.addressLine1" ng-readonly="vm.isView">
+  </div>
+   <div ng-show="bankform.addressLine1.$invalid" ng-messages="bankform.addressLine1.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Address Line 1 required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group {{bankform.addressLine2.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput"></label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="Address Line 2" class="form-control input-md" required="" ng-model="vm.org.addressLine2" ng-readonly="vm.isView">
+  <input id="textinput" name="addressLine2" type="text" placeholder="Address Line 2" class="form-control input-md" required="" ng-model="vm.org.addressLine2" ng-readonly="vm.isView">
+  </div>
+   <div ng-show="bankform.addressLine2.$invalid" ng-messages="bankform.addressLine2.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Address Line 2 required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group {{bankform.street.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput"></label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="Street" class="form-control input-md" required="" ng-model="vm.org.street" ng-readonly="vm.isView">
+  <input id="textinput" name="street" type="text" placeholder="Street" class="form-control input-md" required="" ng-model="vm.org.street" ng-readonly="vm.isView">
+  </div>
+   <div ng-show="bankform.street.$invalid" ng-messages="bankform.street.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Street required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group {{bankform.dom.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput"></label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="dom" class="form-control input-md" required="" ng-model="vm.org.dom" ng-readonly="vm.isView">
+  <input id="textinput" name="dom" type="text" placeholder="dom" class="form-control input-md" required="" ng-model="vm.org.dom" ng-readonly="vm.isView">
+  </div>
+   <div ng-show="bankform.dom.$invalid" ng-messages="bankform.dom.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Dominion required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group {{bankform.countryCode.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Country Code</label>  
   <div class="col-md-1">
-  <input id="textinput" name="textinput" type="text" placeholder="Country Code" class="form-control input-md"  ng-model="vm.org.countryCode" ng-readonly="vm.isView">
+  <input id="textinput" name="countryCode" type="text" placeholder="Country Code" class="form-control input-md" required ng-model="vm.org.countryCode" ng-readonly="vm.isView">
   <span class="help-block">help</span>  
+  </div>
+   <div ng-show="bankform.countryCode.$invalid" ng-messages="bankform.countryCode.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Country Code required</div>
   </div>
 </div>
 
 <!-- Select Basic -->
-<div class="form-group">
+<div class="form-group {{bankform.status.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="selectbasic">Status</label>
   <div class="col-md-2">
-    <select id="selectbasic" name="selectbasic" class="form-control" ng-if="!vm.isView" ng-model="vm.org.status" ng-options="status.code as status.value for status in vm.statusCodes">
+    <select id="selectbasic" name="status" required class="form-control" ng-if="!vm.isView" ng-model="vm.org.status" ng-options="status.code as status.value for status in vm.statusCodes">
     </select>
     <input class="form-control" ng-if="vm.isView" ng-readonly="true" ng-model="(vm.statusCodes | filter: vm.org.status)[0].value">
   </div>
+   <div ng-show="bankform.status.$invalid" ng-messages="bankform.status.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Select Status</div>
+  </div>
 </div>
 
 <!-- Select Basic -->
-<div class="form-group">
+<div class="form-group {{bankform.legalIdType.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="selectbasic">Legal ID Type</label>
   <div class="col-md-2">
-    <select id="selectbasic" name="selectbasic" class="form-control" ng-if="!vm.isView" ng-model="vm.org.legalIdType" ng-options="legalType.code as legalType.value for legalType in vm.legalTypeCodes">
+    <select id="selectbasic" name="legalIdType" required class="form-control" ng-if="!vm.isView" ng-model="vm.org.legalIdType" ng-options="legalType.code as legalType.value for legalType in vm.legalTypeCodes">
       <option value="1">Passport</option>
       <option value="2">Adhaar Card</option>
     </select>
     <input class="form-control" ng-if="vm.isView" ng-readonly="true" ng-model="(vm.legalTypeCodes | filter: vm.org.legalIdType)[0].value">
+  </div>
+   <div ng-show="bankform.legalIdType.$invalid" ng-messages="bankform.legalIdType.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Select Legal Id Type</div>
   </div>
 </div>
 
@@ -168,7 +192,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="button1id"></label>
   <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isNew" ng-click="vm.saveBank(vm.org)">Save</button>
+    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isNew" ng-click="bankform.$valid && vm.saveBank(vm.org)">Save</button>
     <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateBank(vm.org)">Update</button>
      <button id="button3id" name="button3id" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
   </div>
