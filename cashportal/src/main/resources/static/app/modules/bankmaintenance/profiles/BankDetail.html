@@ -116,33 +116,45 @@
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group {{bankform.legalIdNumber.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Legal ID Number</label>  
   <div class="col-md-1">
-  <input id="textinput" name="textinput" type="text" placeholder="Legal ID Number" class="form-control input-md" ng-model="vm.org.legalIdNumber" ng-readonly="vm.isView">
+  <input id="textinput" name="legalIdNumber" type="text" placeholder="Legal ID Number" required class="form-control input-md" ng-model="vm.org.legalIdNumber" ng-readonly="vm.isView">
+  </div>
+  <div ng-show="bankform.legalIdNumber.$invalid" ng-messages="bankform.legalIdNumber.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Legal Id Number required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group {{bankform.legalCountryCode.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Legal Country Code</label>  
   <div class="col-md-1">
-  <input id="textinput" name="textinput" type="text" placeholder="Legal  Country Code" class="form-control input-md" ng-model="vm.org.legalCountryCode" ng-readonly="vm.isView">
+  <input id="textinput" name="legalCountryCode" type="text" placeholder="Legal  Country Code" required class="form-control input-md" ng-model="vm.org.legalCountryCode" ng-readonly="vm.isView">
+  </div>
+  <div ng-show="bankform.legalCountryCode.$invalid" ng-messages="bankform.legalCountryCode.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Legal Country Code required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group {{bankform.contactName.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Contact Name</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="Contact Name" class="form-control input-md" ng-model="vm.org.contactName" ng-readonly="vm.isView">
+  <input id="textinput" name="contactName" type="text" placeholder="Contact Name" required class="form-control input-md" ng-model="vm.org.contactName" ng-readonly="vm.isView">
+  </div>
+  <div ng-show="bankform.contactName.$invalid" ng-messages="bankform.contactName.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Contact Name required</div>
   </div>
 </div>
 
-<div class="form-group">
+<div class="form-group {{bankform.contactNumber.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Contact Number</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="Contact Number" class="form-control input-md" ng-model="vm.org.contactNumber" ng-readonly="vm.isView">
+  <input id="textinput" name="contactNumber" type="text" placeholder="Contact Number" required class="form-control input-md" ng-model="vm.org.contactNumber" ng-readonly="vm.isView">
+  </div>
+    <div ng-show="bankform.contactNumber.$invalid" ng-messages="bankform.contactNumber.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Contact Number required</div>
   </div>
 </div>
 
@@ -167,10 +179,13 @@
   </div>
 </div>
 
-<div class="form-group">
+<div class="form-group {{bankform.emailId.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Email</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="Email" class="form-control input-md" ng-model="vm.org.email" ng-readonly="vm.isView">
+  <input id="textinput" name="emailId" type="text" placeholder="Email" required class="form-control input-md" ng-model="vm.org.email" ng-readonly="vm.isView">
+  </div>
+    <div ng-show="bankform.emailId.$invalid" ng-messages="bankform.emailId.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Email Id required</div>
   </div>
 </div>
 
