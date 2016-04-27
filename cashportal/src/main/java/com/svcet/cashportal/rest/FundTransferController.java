@@ -14,6 +14,7 @@ import com.svcet.cashportal.domain.OrganizationMaster;
 import com.svcet.cashportal.domain.UserMaster;
 import com.svcet.cashportal.domain.product.ft.FundTransfer;
 import com.svcet.cashportal.repository.CustomerAccountRepository;
+import com.svcet.cashportal.repository.FundTransferRepository;
 import com.svcet.cashportal.repository.UserAccountRepository;
 import com.svcet.cashportal.service.FundTransferService;
 import com.svcet.cashportal.utils.OrganizationUtils;
@@ -33,6 +34,9 @@ public class FundTransferController {
 
 	@Autowired
 	private UserAccountRepository userAccountRepository;
+
+	@Autowired
+	private FundTransferRepository fundTransferRepository;
 
 	@Autowired
 	private CustomerAccountRepository customerAccountRepository;
@@ -69,7 +73,7 @@ public class FundTransferController {
 		fundTransferRequest.getFundTransfer().setApplicantDom(customerOrg.getDom());
 		fundTransferRequest.getFundTransfer().setApplicantName(customerOrg.getOrgName());
 		fundTransferRequest.getFundTransfer().setApplicantReference(customerOrg.getCustomerReference());
-		
+
 		fundTransferRequest.getFundTransfer().setCompany(customerOrg);
 
 		// Applicant Account
@@ -93,12 +97,22 @@ public class FundTransferController {
 		return fundTransferService.save(fundTransferRequest);
 	}
 
+	@RequestMapping(method = RequestMethod.POST, value = "/ft/update")
+	@ResponseBody
+	public FundTransferResponse update(@RequestBody FundTransferRequest fundTransferRequest) {
+		FundTransfer fundTransfer = fundTransferRepository.findByRid(fundTransferRequest.getFundTransfer().getRid());
+		fundTransfer.setBoReleaseUserId(organizationUtils.getLoggedInUser());
+		fundTransfer.setBoReleaseDttm(new Date());
+		fundTransfer.setProdStatCode(fundTransferRequest.getFundTransfer().getProdStatCode());
+		return fundTransferService.update(fundTransfer);
+	}
+
 	@RequestMapping(method = RequestMethod.POST, value = "/ft/list")
 	@ResponseBody
 	public FundTransferInquiryResponse inquiry(@RequestBody FundTransferInquiryRequest fundTransferInquiryRequest) {
 		return fundTransferService.list(fundTransferInquiryRequest);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/ft/query")
 	public FundTransferResponse findOne(@RequestBody FundTransferInquiryRequest fundTransferInquiryRequest) {
 		return fundTransferService.findById(fundTransferInquiryRequest.getRid());

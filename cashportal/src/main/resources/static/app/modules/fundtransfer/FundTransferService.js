@@ -10,7 +10,8 @@
         getNewInternalFundtransfer: getNewInternalFundtransfer,
         getPendingFundTransfers: getPendingFundTransfers,
         getFundTransferDetails: getFundTransferDetails,
-        getTransactionStatusCodes: getTransactionStatusCodes
+        getTransactionStatusCodes: getTransactionStatusCodes,
+        getProductStatusCodes: getProductStatusCodes
     };
     return service;
     
@@ -41,6 +42,14 @@
             {'code': '03', 'value': 'Submitted (Pending for Approval)'},
             {'code': '04', 'value': 'Approved'},
             {'code': '01', 'value': 'Rejected'}
+        ];
+        return statusCodes;
+    }
+    
+    function getProductStatusCodes() {
+        var statusCodes = [
+            {'code': '03', 'value': 'Approved'},
+            {'code': '01', 'value': 'Not Processed'},
         ];
         return statusCodes;
     }

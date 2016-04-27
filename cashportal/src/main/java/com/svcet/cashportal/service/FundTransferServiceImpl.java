@@ -36,6 +36,15 @@ public class FundTransferServiceImpl implements FundTransferService {
 		fundTransferResponse.setFundTransfer(fundTransfer);
 		return fundTransferResponse;
 	}
+	
+	@Override
+	public FundTransferResponse update(FundTransfer fundTransfer) {
+		fundTransfer.setTnxStatCode("04");
+		fundTransfer = fundTransferRepository.save(fundTransfer);
+		FundTransferResponse fundTransferResponse = new FundTransferResponse();
+		fundTransferResponse.setFundTransfer(fundTransfer);
+		return fundTransferResponse;
+	}
 
 	@Override
 	public FundTransferInquiryResponse list(FundTransferInquiryRequest fundTransferInquiryRequest) {
