@@ -1,4 +1,4 @@
-<form class="form-horizontal" name="bankform" novalidate>
+<form class="form-horizontal" name="customerprofileform" novalidate>
 <fieldset>
 
 <!-- Form Name -->
@@ -21,87 +21,87 @@
 </div>
 
 <!-- Text input-->
-<div class="form-group {{bankform.customerName.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.customerName.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Customer Name</label>  
   <div class="col-md-5">
   <input id="textinput" name="customerName" type="text" placeholder="Organization Name" required class="form-control input-md" required="" ng-model="vm.org.orgName" ng-readonly="vm.isView">
   </div>
-   <div ng-show="bankform.customerName.$invalid" ng-messages="bankform.customerName.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Enter Customer Name</div>
+   <div ng-show="customerprofileform.customerName.$invalid" ng-messages="customerprofileform.customerName.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Customer Name Required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group {{bankform.addressLine1.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.addressLine1.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="addressLine1">Address</label>  
   <div class="col-md-5">
   <input id="addressLine1" name="addressLine1" type="text" placeholder="Address Line 1" required class="form-control input-md" required=""  ng-model="vm.org.addressLine1" ng-readonly="vm.isView">
   </div>
-  <div ng-show="bankform.addressLine1.$invalid" ng-messages="bankform.addressLine1.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Enter Address Line 1</div>
+  <div ng-show="customerprofileform.addressLine1.$invalid" ng-messages="customerprofileform.addressLine1.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Address Line 1 Required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group {{bankform.addressLine2.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.addressLine2.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput"></label>  
   <div class="col-md-5">
   <input id="textinput" name="addressLine2" type="text" placeholder="Address Line 2" required class="form-control input-md" required="" ng-model="vm.org.addressLine2" ng-readonly="vm.isView">
   </div>
-  <div ng-show="bankform.addressLine2.$invalid" ng-messages="bankform.addressLine2.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Enter Address Line 2</div>
+  <div ng-show="customerprofileform.addressLine2.$invalid" ng-messages="customerprofileform.addressLine2.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Address Line 2 Required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group {{bankform.street.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.street.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput"></label>  
   <div class="col-md-5">
   <input id="textinput" name="street" type="text" placeholder="Street" required class="form-control input-md" required="" ng-model="vm.org.street" ng-readonly="vm.isView">
   </div>
-  <div ng-show="bankform.street.$invalid" ng-messages="bankform.street.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Enter Street</div>
+  <div ng-show="customerprofileform.street.$invalid" ng-messages="customerprofileform.street.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Street Required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group {{bankform.dom.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.dom.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput"></label>  
   <div class="col-md-5">
   <input id="textinput" name="dom" type="text" placeholder="dom" required class="form-control input-md" required="" ng-model="vm.org.dom" ng-readonly="vm.isView">
   </div>
-  <div ng-show="bankform.dom.$invalid" ng-messages="bankform.dom.$error" style="color:maroon" role="alert">
+  <div ng-show="customerprofileform.dom.$invalid" ng-messages="customerprofileform.dom.$error" style="color:maroon" role="alert">
     <div ng-message="required">Dominion Required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group {{bankform.countryCode.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.countryCode.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Country Code</label>  
   <div class="col-md-1">
   <input id="textinput" name="countryCode" type="text" placeholder="Country Code" required class="form-control input-md"  ng-model="vm.org.countryCode" ng-readonly="vm.isView">
   <span class="help-block"></span>  
   </div>
-  <div ng-show="bankform.countryCode.$invalid" ng-messages="bankform.countryCode.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Enter Country Code</div>
+  <div ng-show="customerprofileform.countryCode.$invalid" ng-messages="customerprofileform.countryCode.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Country Code Required</div>
   </div>
 </div>
 
 <!-- Select Basic -->
-<div class="form-group {{bankform.status.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.status.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="selectbasic">Status</label>
   <div class="col-md-2">
     <select id="selectbasic" name="status" required class="form-control" ng-if="!vm.isView" ng-model="vm.org.status" ng-options="status.code as status.value for status in vm.statusCodes">
     </select>
     <input class="form-control" ng-if="vm.isView" ng-readonly="true" ng-model="(vm.statusCodes | filter: vm.org.status)[0].value">
   </div>
-  <div ng-show="bankform.status.$invalid" ng-messages="bankform.status.$error" style="color:maroon" role="alert">
+  <div ng-show="customerprofileform.status.$invalid" ng-messages="customerprofileform.status.$error" style="color:maroon" role="alert">
     <div ng-message="required">Select Status</div>
   </div>
 </div>
 
 <!-- Select Basic -->
-<div class="form-group {{bankform.legalIdType.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.legalIdType.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="selectbasic">Legal ID Type</label>
   <div class="col-md-2">
     <select id="selectbasic" name="legalIdType" required class="form-control" ng-if="!vm.isView" ng-model="vm.org.legalIdType" ng-options="legalType.code as legalType.value for legalType in vm.legalTypeCodes">
@@ -110,51 +110,51 @@
     </select>
     <input class="form-control" ng-if="vm.isView" ng-readonly="true" ng-model="(vm.legalTypeCodes | filter: vm.org.legalIdType)[0].value">
   </div>
-  <div ng-show="bankform.legalIdType.$invalid" ng-messages="bankform.legalIdType.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Select Legal Id Type</div>
+  <div ng-show="customerprofileform.legalIdType.$invalid" ng-messages="customerprofileform.legalIdType.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Select Legal Id Type Required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group {{bankform.legalIdNumber.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.legalIdNumber.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Legal ID Number</label>  
   <div class="col-md-1">
   <input id="textinput" name="legalIdNumber" type="text" placeholder="Legal ID Number" required class="form-control input-md" ng-model="vm.org.legalIdNumber" ng-readonly="vm.isView">
   </div>
-  <div ng-show="bankform.legalIdNumber.$invalid" ng-messages="bankform.legalIdNumber.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Select Legal Id Number</div>
+  <div ng-show="customerprofileform.legalIdNumber.$invalid" ng-messages="customerprofileform.legalIdNumber.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Select Legal Id Number Required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group {{bankform.legalCountryCode.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.legalCountryCode.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Legal Country Code</label>  
   <div class="col-md-1">
   <input id="textinput" name="legalCountryCode" type="text" placeholder="Legal  Country Code" required class="form-control input-md" ng-model="vm.org.legalCountryCode" ng-readonly="vm.isView">
   </div>
-  <div ng-show="bankform.legalCountryCode.$invalid" ng-messages="bankform.legalCountryCode.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Enter Legal Country Code</div>
+  <div ng-show="customerprofileform.legalCountryCode.$invalid" ng-messages="customerprofileform.legalCountryCode.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Enter Legal Country Code Required</div>
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group {{bankform.contactName.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.contactName.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Contact Name</label>  
   <div class="col-md-5">
   <input id="textinput" name="contactName" type="text" placeholder="Contact Name" required class="form-control input-md" ng-model="vm.org.contactName" ng-readonly="vm.isView">
   </div>
-  <div ng-show="bankform.contactName.$invalid" ng-messages="bankform.contactName.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Enter Contact Name</div>
+  <div ng-show="customerprofileform.contactName.$invalid" ng-messages="customerprofileform.contactName.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Contact Name Required</div>
   </div>
 </div>
 
-<div class="form-group {{bankform.contactNumber.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.contactNumber.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Contact Number</label>  
   <div class="col-md-5">
   <input id="textinput" name="contactNumber" type="text" placeholder="Contact Number" required class="form-control input-md" ng-model="vm.org.contactNumber" ng-readonly="vm.isView">
   </div>
-  <div ng-show="bankform.contactNumber.$invalid" ng-messages="bankform.contactNumber.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Enter Contact Number</div>
+  <div ng-show="customerprofileform.contactNumber.$invalid" ng-messages="customerprofileform.contactNumber.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Contact Number Required</div>
   </div>
 </div>
 
@@ -179,13 +179,13 @@
   </div>
 </div>
 
-<div class="form-group {{bankform.emailId.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group {{customerprofileform.emailId.$invalid === true ? 'has-error'  : 'has-success'}}">
   <label class="col-md-4 control-label" for="textinput">Email</label>  
   <div class="col-md-5">
   <input id="textinput" name="emailId" type="text" placeholder="Email" required class="form-control input-md" ng-model="vm.org.email" ng-readonly="vm.isView">
   </div>
-  <div ng-show="bankform.emailId.$invalid" ng-messages="bankform.emailId.$error" style="color:maroon" role="alert">
-    <div ng-message="required">Enter Email Id</div>
+  <div ng-show="customerprofileform.emailId.$invalid" ng-messages="customerprofileform.emailId.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Email Id Required</div>
   </div>
 </div>
 

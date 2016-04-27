@@ -6,17 +6,27 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+                    <form name="loginform" novalidate role="form" >
                         <fieldset>
-                        	<div class="form-group">
-                                <input class="form-control" placeholder="Org Name" name="orgName" type="text" autofocus ng-model="user.organization">
+                        	<div class="form-group {{loginform.orgName.$invalid === true ? 'has-error'  : 'has-success'}}">
+                                <input required class="form-control" placeholder="Org Name" name="orgName" type="text" autofocus ng-model="user.organization">
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="User Name" name="userName" type="text" autofocus ng-model="user.username">
+                            <div ng-show="loginform.orgName.$invalid" ng-messages="loginform.orgName.$error" style="color:maroon" role="alert">
+                             <div ng-message="required"> Org Name Required</div>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="user.password">
+                            <div class="form-group {{loginform.userName.$invalid === true ? 'has-error'  : 'has-success'}}">
+                                <input required class="form-control" placeholder="User Name" name="userName" type="text" autofocus ng-model="user.username">
                             </div>
+                            <div ng-show="loginform.userName.$invalid" ng-messages="loginform.userName.$error" style="color:maroon" role="alert">
+                             <div ng-message="required"> User Name Required</div>
+                            </div>
+                            <div class="form-group {{loginform.password.$invalid === true ? 'has-error'  : 'has-success'}}">
+                                <input required class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="user.password">
+                            </div>
+                            <div ng-show="loginform.password.$invalid" ng-messages="loginform.password.$error" style="color:maroon" role="alert">
+                             <div ng-message="required">Password Required</div>
+                            </div>
+                            
                             <!-- Change this to a button or input when using this as a form -->
                             <button class="btn btn-lg btn-success btn-block" ng-click="vm.login(user)">Login</button>
                         </fieldset>
