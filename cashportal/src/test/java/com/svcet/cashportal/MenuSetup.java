@@ -93,8 +93,8 @@ public class MenuSetup {
 
 		MenuItems menuItemsFTInquiry = new MenuItems();
 		menuItemsFTInquiry.setItemCode("Inquiry Fundtransfer");
-		menuItemsFTInquiry.setItemDesc("User Profile");
-		menuItemsFTInquiry.setAction("app.listCustomersForSelection({ targetUIState: \"app.listCustomerUsers\"})");
+		menuItemsFTInquiry.setItemDesc("Inquiry Fundtransfer");
+		menuItemsFTInquiry.setAction("app.listInquiryFTs");
 		PermissionMaster permissionUserProfile = permissionMasterRepository
 				.findByPermissionCode("cash_ft_int_inquiry_list_access");
 		menuItemsFTInquiry.setPermissionId(permissionUserProfile);

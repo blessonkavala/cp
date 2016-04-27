@@ -12,6 +12,8 @@
         vm.isEdit = false;
         
         vm.screenFT  = screenFT;
+        vm.isBankUser = screenFT.bankUser;
+        vm.isCustomerUser = screenFT.customerUser;
         vm.submitFT = function () {
             //TODO:
            $http.post('/ft/save',vm.screenFT).then(function(response){

@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>List of Pending Fund Transfer Transactions</h1>
+    <h1>List of existing Fund Transfer Transactions</h1>
 </div>
 <div class="container-fluid">
     <div>
@@ -7,26 +7,22 @@
             <thead>
                 <tr>
                     <th>System ID</th>
-                    <th>Product Type</th>
+                    <th>Company</th>
+                    <th>FundTransfer Type</th>
                     <th>Ccy</th>
                     <th>Amount</th>
-                    <th>Value Date</th>
-                    <th>Counterparty</th>
-                    <th>Account Number</th>
-                    <th>Status</th>
+                    <th>Release Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="fundTransfer in vm.pendingFTs track by fundTransfer.rid">
+                <tr ng-repeat="fundTransfer in vm.existingFTs track by fundTransfer.rid">
                     <td>{{fundTransfer.refId}}</td>
+                    <td>{{fundTransfer.company.orgName}}</td>
                     <td>{{fundTransfer.ftType}}</td>
                     <td>{{fundTransfer.ftCurCode}}</td>
                     <td>{{fundTransfer.ftAmt}}</td>
                     <td>{{fundTransfer.issDate}}</td>
-                    <td>{{fundTransfer.counterparty.counterpartyType === '01'? fundTransfer.counterparty.counterpartyActNo : fundTransfer.counterparty.counterpartyName}}</td>
-                    <td>{{fundTransfer.applicantActNo}}</td>
-                    <td>{{(vm.tnxStatusCodes | filter: fundTransfer.tnxStatCode)[0].value}}</td>
                     <td>
                         <button class="btn btn-info" ng-click="vm.viewFundTransfer(fundTransfer.rid)">View</button>             
                     </td>

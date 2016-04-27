@@ -7,12 +7,20 @@
     /* @ngInject */
     function MiddleOfficeService($http) {
     var service = {
-        getPendingRecords: getPendingRecords
+        getPendingRecords: getPendingRecords,
+        getExistingRecords: getExistingRecords
         
     };
     return service;
     
     function getPendingRecords(tnxStatCode) {
+        return $http.post('/middleoffice/list', {tnxStatCode:tnxStatCode}).then(getCompleteHandler);
+            function getCompleteHandler(response) {
+                return response.data;
+            }
+    }
+    
+    function getExistingRecords(tnxStatCode) {
         return $http.post('/middleoffice/list', {tnxStatCode:tnxStatCode}).then(getCompleteHandler);
             function getCompleteHandler(response) {
                 return response.data;

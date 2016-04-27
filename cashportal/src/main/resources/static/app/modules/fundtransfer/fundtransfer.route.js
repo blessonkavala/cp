@@ -43,6 +43,24 @@
                 }
             },
             {
+                state: 'app.listInquiryFTs',
+                config: {
+                    url: '/listInquiryFTs',
+                    views: {
+                    'mainContent': {
+                        templateUrl: 'app/modules/fundtransfer/ListInquiryFTs.html',
+                        controller: 'ControllerListInquiryFTs as vm'
+                        }
+                    },
+                    params : {
+                         tnxStatCode: "04"
+                    },
+                    resolve: {
+                        pendingFTResponse: pendingFTsResolve
+                    }
+                }
+            },
+            {
                 state: 'app.viewInternalFT',
                 config: {
                     url: '/viewInternalFT',

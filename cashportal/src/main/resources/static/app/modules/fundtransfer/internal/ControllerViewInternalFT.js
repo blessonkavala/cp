@@ -14,6 +14,9 @@
         vm.prodStatusCodes = FundTransferService.getProductStatusCodes();
         
         vm.screenFT  = fundTransferDetails;
+        vm.isBankUser = fundTransferDetails.bankUser;
+        vm.isCustomerUser = fundTransferDetails.customerUser;
+        
         vm.cancel = function () {
           $state.go('app.listPendingFTs',{tnxStatCode: "03"});	
         };
@@ -23,6 +26,16 @@
         		$state.go('app.listPendingFTs');
         		console.log(response);
         	});
+        }
+        
+        vm.canRenderReportingMessageSection = function (){
+            if(vm.isBankUser){
+                return true;
+            }
+            else
+            {
+                 return  vm.screenFT.fundTransfer.tnxStatCode === '04';       
+            }
         }
     }
 })();

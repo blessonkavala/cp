@@ -40,8 +40,7 @@
     function getTransactionStatusCodes() {
         var statusCodes = [
             {'code': '03', 'value': 'Submitted (Pending for Approval)'},
-            {'code': '04', 'value': 'Approved'},
-            {'code': '01', 'value': 'Rejected'}
+            {'code': '04', 'value': 'Released'}
         ];
         return statusCodes;
     }

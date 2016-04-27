@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.svcet.cashportal.domain.product.BusinessCodesProvider;
 import com.svcet.cashportal.domain.product.ft.FundTransfer;
 import com.svcet.cashportal.repository.CustomerAccountRepository;
 import com.svcet.cashportal.repository.FundTransferRepository;
@@ -20,16 +21,14 @@ public class FundTransferServiceImpl implements FundTransferService {
 	@Autowired
 	private FundTransferRepository fundTransferRepository;
 
-	private  String[] ignoreProperties = { "boInpUserId", "boReleaseUserId", "inpUserId" };
-
 	@Override
 	public FundTransferResponse save(FundTransferRequest fundTransferRequest) {
 
 		FundTransfer fundTransfer = new FundTransfer();
-		BeanUtils.copyProperties(fundTransferRequest.getFundTransfer(), fundTransfer, ignoreProperties);
+		BeanUtils.copyProperties(fundTransferRequest.getFundTransfer(), fundTransfer);
 
-		fundTransfer.setProductCode("FT");
-		fundTransfer.setTnxStatCode("03");
+		fundTransfer.setProductCode(BusinessCodesProvider.PRODUCT_FUNDTRANSFER_CODE);
+		fundTransfer.setTnxStatCode(BusinessCodesProvider.TRANSACTION_STATUS_PENDING_APPROVAL);
 		fundTransfer = fundTransferRepository.save(fundTransfer);
 
 		FundTransferResponse fundTransferResponse = new FundTransferResponse();
@@ -39,7 +38,7 @@ public class FundTransferServiceImpl implements FundTransferService {
 	
 	@Override
 	public FundTransferResponse update(FundTransfer fundTransfer) {
-		fundTransfer.setTnxStatCode("04");
+		fundTransfer.setTnxStatCode(BusinessCodesProvider.TRANSACTION_STATUS_RELEASED);
 		fundTransfer = fundTransferRepository.save(fundTransfer);
 		FundTransferResponse fundTransferResponse = new FundTransferResponse();
 		fundTransferResponse.setFundTransfer(fundTransfer);
