@@ -26,13 +26,37 @@
                         pendingMORecordsResponse: pendingMORecordsResolve
                     }
                 }
-            }
+            },
+            {
+                state: 'app.listMOExistingRecords',
+                config: {
+                    url: '/listMOExistingRecords',
+                    views: {
+                    'mainContent': {
+                        templateUrl: 'app/modules/middleoffice/ListExistingRecrods.html',
+                        controller: 'ControllerListMOExistingRecords as vm'
+                        }
+                    },
+                    params : {
+                         tnxStatCode: "04"
+                    },
+                    resolve: {
+                        existingMORecordsResponse: existingMORecordsResolve
+                    }
+                }
+            },
+            
          ];
     }
     
     function pendingMORecordsResolve(MiddleOfficeService,$stateParams){
      'ngInject';
      return MiddleOfficeService.getPendingRecords($stateParams.tnxStatCode);    
+    }
+    
+     function existingMORecordsResolve(MiddleOfficeService,$stateParams){
+     'ngInject';
+     return MiddleOfficeService.getExistingRecords($stateParams.tnxStatCode);    
     }
     
     function getFundTransferDetailsResolve(FundTransferService,$stateParams){

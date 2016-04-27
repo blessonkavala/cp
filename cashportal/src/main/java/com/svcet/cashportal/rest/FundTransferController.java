@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.svcet.cashportal.domain.CustomerAccount;
 import com.svcet.cashportal.domain.OrganizationMaster;
 import com.svcet.cashportal.domain.UserMaster;
+import com.svcet.cashportal.domain.product.BusinessCodesProvider;
 import com.svcet.cashportal.domain.product.ft.FundTransfer;
 import com.svcet.cashportal.repository.CustomerAccountRepository;
 import com.svcet.cashportal.repository.FundTransferRepository;
@@ -45,6 +46,7 @@ public class FundTransferController {
 	@ResponseBody
 	public FundTransferResponse newFundTransfer() {
 		FundTransferResponse fundTransferResponse = new FundTransferResponse();
+		fundTransferResponse.setCustomerUser(true);
 		FundTransfer fundTransfer = new FundTransfer();
 		// SET APPLICATION DATE AS CURRENT ATE
 		fundTransfer.setApplicationDate(new Date());
@@ -92,7 +94,8 @@ public class FundTransferController {
 		fundTransferRequest.getFundTransfer().getCounterparty()
 				.setCounterpartyCurCode(beneficiaryCustomerAccount.getAccount().getCurCode());
 		// TODO:
-		fundTransferRequest.getFundTransfer().getCounterparty().setCounterpartyType("01");
+		fundTransferRequest.getFundTransfer().getCounterparty()
+				.setCounterpartyType(BusinessCodesProvider.COUNTERPARTY_TYPE_ACCOUNT);
 
 		return fundTransferService.save(fundTransferRequest);
 	}
@@ -115,7 +118,12 @@ public class FundTransferController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/ft/query")
 	public FundTransferResponse findOne(@RequestBody FundTransferInquiryRequest fundTransferInquiryRequest) {
-		return fundTransferService.findById(fundTransferInquiryRequest.getRid());
+		FundTransferResponse fundTransferResponse = fundTransferService.findById(fundTransferInquiryRequest.getRid());
+		if (BusinessCodesProvider.ORGANIZATION_TYPE_BANK.equals(organizationUtils.getLoggedInUserOrgType())) {
+			fundTransferResponse.setBankUser(true);
+		} else if (BusinessCodesProvider.ORGANIZATION_TYPE_CUSTOMER.equals(organizationUtils.getLoggedInUserOrgType()))
+			fundTransferResponse.setCustomerUser(true);
+		return fundTransferResponse;
 	}
 
 }
