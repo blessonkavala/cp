@@ -1,6 +1,13 @@
 package com.svcet.cashportal.web.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrganizationReponse {
+
+	private ResponseState responseState;
+
+	private List<ErrorModel> errors = new ArrayList<ErrorModel>();
 
 	private String rid;
 
@@ -197,5 +204,21 @@ public class OrganizationReponse {
 
 	public void setParentOrgId(String parentOrgId) {
 		this.parentOrgId = parentOrgId;
+	}
+
+	public ResponseState getResponseState() {
+		return responseState;
+	}
+
+	public void setResponseState(ResponseState responseState) {
+		this.responseState = responseState;
+	}
+
+	public List<ErrorModel> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(List<ErrorModel> errors) {
+		this.errors = errors;
 	}
 }

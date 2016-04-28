@@ -12,14 +12,19 @@
         vm.isView = false;
         vm.isEdit = false;
         vm.isNew  = true;
+        vm.errorMessages  = [];
         
         vm.saveBank = function (org) {
        
         	$http.post('/organization/save',org).then(function(response){
-        		$state.go('app.listBanks');
-        		console.log(response);
+                console.log(response);
+                if(response.data.responseState ==='SUCCESS'){
+                    $state.go('app.listBanks');
+                }
+        		else{
+                  vm.errorMessages =  response.data.errors;     
+                }
         	});
-        	
         };
         
          vm.cancel  = function() {

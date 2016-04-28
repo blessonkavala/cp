@@ -13,13 +13,23 @@
         vm.user = {};
         vm.user.orgId = $stateParams.selectedOrgId;
         vm.statusCodes = UserService.getStatusList();
+        vm.errorMessages  = [];
         vm.saveUser = function (user) {
             //TODO:
            $http.post('/user/save',user).then(function(response){
-        		$state.go('app.listBankUsers',{selectedOrgId: $stateParams.selectedOrgId});
-        		console.log(response);
+                console.log(response);
+                if(response.data.responseState ==='SUCCESS'){
+                    $state.go('app.listBankUsers',{selectedOrgId: $stateParams.selectedOrgId});    
+                }
+        		else{
+                  vm.errorMessages =  response.data.errors;     
+                }
         	});
         	
+        };
+        
+        vm.cancel = function(){
+          $state.go('app.listBankUsers',{selectedOrgId: $stateParams.selectedOrgId});  
         };
     }
 })();

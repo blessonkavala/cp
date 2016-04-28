@@ -1,36 +1,47 @@
-<div class="page-header">
-    <h1>List Of Bank Accounts</h1>
+<div class="row">&nbsp;
 </div>
-<div class="container-fluid">
-    <div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Organization Name</th>
-                    <th>Last Modification Time</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <td colspan="5">
-                        <button class="btn btn-default" ng-show1="vm.hasCreateAuthority === true" ui-sref="app.addBank">Add New Bank</button>
-                    </td>
-                </tr>
-            </tfoot>
-
-            <tbody>
-                <tr ng-repeat="organization in vm.organizations track by organization.rid">
-                    <td>{{organization.orgName}}</td>
-                    <td>{{organization.contactName}}</td>
-                    <td>{{(vm.statusCodes | filter: organization.status)[0].value}}</td>
-                    <td>
-                        <button class="btn btn-info" ng-click="vm.viewBank(organization.rid)">View</button>
-                        <button class="btn btn-info" ng-click="vm.editBank(organization.rid)">Edit</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>List Of Bank Accounts</h2>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Organization Name</th>
+                                <th>Last Modification Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <button class="btn btn-outline btn-info" ng-show1="vm.hasCreateAuthority === true" ui-sref="app.addBank">Add New Bank</button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr ng-repeat="organization in vm.organizations track by organization.rid">
+                                <td>{{organization.orgName}}</td>
+                                <td>{{organization.contactName}}</td>
+                                <td>{{(vm.statusCodes | filter: organization.status)[0].value}}</td>
+                                <td>
+                                    <button class="btn btn-outline btn-info" ng-click="vm.viewBank(organization.rid)">View</button>
+                                    <button class="btn btn-outline btn-info" ng-click="vm.editBank(organization.rid)">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
     </div>
-</div>

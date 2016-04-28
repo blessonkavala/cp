@@ -26,27 +26,37 @@ public class OrganizationServiceImpl implements OraganizationService {
 	private CountryMasterRepository countryMasterRepository;
 
 	@Override
-	public OrganizationMaster save(OrganizationRequest organizationRequest) {
+	public OrganizationReponse save(OrganizationRequest organizationRequest) {
 		try {
 			// CHECK IF ANY ORGANIZATION EXISTS ALREADY WITH THE SAME NAME
 			organizationRepository.findByOrgName(organizationRequest.getOrgName());
-			throw new DuplicateOrganizationException();
+			throw new DuplicateOrganizationException(organizationRequest);
 		} catch (IndexOutOfBoundsException e) {
 			// NO ORGANIZATION EXISTS WITH THIS NAME
 			// TODO: VALIDATE BEAN
 			OrganizationMaster organizationMaster = new OrganizationMaster();
 			BeanUtils.copyProperties(organizationRequest, organizationMaster);
-			//SET PARENT ORG REFERENCE
+			// SET PARENT ORG REFERENCE
 			OrganizationMaster parentOrganizationMaster = organizationRepository
 					.findByRid(organizationRequest.getParentOrgId());
 			organizationMaster.setParentOrgId(parentOrganizationMaster);
 			// FETCH COUNTRY CODE
 			CountryMaster countryId = countryMasterRepository.findByCountryCode(organizationRequest.getCountryCode());
 			organizationMaster.setCountryId(countryId);
-			CountryMaster legalCountryId = countryMasterRepository
-					.findByCountryCode(organizationRequest.getLegalCountryCode());
-			organizationMaster.setLegalCountryId(legalCountryId);
-			return organizationRepository.save(organizationMaster);
+			if (organizationRequest.getLegalCountryCode() != null) {
+				CountryMaster legalCountryId = countryMasterRepository
+						.findByCountryCode(organizationRequest.getLegalCountryCode());
+				organizationMaster.setLegalCountryId(legalCountryId);
+			}
+			
+			organizationMaster = organizationRepository.save(organizationMaster);
+			OrganizationReponse organizationReponse = new OrganizationReponse();
+			BeanUtils.copyProperties(organizationMaster, organizationReponse);
+			organizationReponse.setCountryCode(organizationMaster.getCountryId().getCountryCode());
+			if (organizationMaster.getLegalCountryId() != null) {
+				organizationReponse.setLegalCountryCode(organizationMaster.getLegalCountryId().getCountryCode());
+			}
+			return organizationReponse;
 		}
 	}
 
@@ -57,7 +67,9 @@ public class OrganizationServiceImpl implements OraganizationService {
 			OrganizationReponse organizationReponse = new OrganizationReponse();
 			BeanUtils.copyProperties(organizationMaster, organizationReponse);
 			organizationReponse.setCountryCode(organizationMaster.getCountryId().getCountryCode());
-			organizationReponse.setLegalCountryCode(organizationMaster.getLegalCountryId().getCountryCode());
+			if (organizationMaster.getLegalCountryId() != null) {
+				organizationReponse.setLegalCountryCode(organizationMaster.getLegalCountryId().getCountryCode());
+			}
 			organizationReponse.setParentOrgId(organizationMaster.getParentOrgId().getRid());
 			return organizationReponse;
 		} catch (IndexOutOfBoundsException e) {
@@ -70,22 +82,26 @@ public class OrganizationServiceImpl implements OraganizationService {
 		try {
 			OrganizationMaster organizationMaster = organizationRepository.findByRid(organizationRequest.getRid());
 			BeanUtils.copyProperties(organizationRequest, organizationMaster);
-			//SET PARENT ORG REFERENCE
+			// SET PARENT ORG REFERENCE
 			OrganizationMaster parentOrganizationMaster = organizationRepository
 					.findByRid(organizationRequest.getParentOrgId());
 			organizationMaster.setParentOrgId(parentOrganizationMaster);
 			// FETCH COUNTRY CODE
 			CountryMaster countryId = countryMasterRepository.findByCountryCode(organizationRequest.getCountryCode());
 			organizationMaster.setCountryId(countryId);
-			CountryMaster legalCountryId = countryMasterRepository
-					.findByCountryCode(organizationRequest.getLegalCountryCode());
-			organizationMaster.setLegalCountryId(legalCountryId);
+			if (organizationRequest.getLegalCountryCode() != null) {
+				CountryMaster legalCountryId = countryMasterRepository
+						.findByCountryCode(organizationRequest.getLegalCountryCode());
+				organizationMaster.setLegalCountryId(legalCountryId);
+			}
 			organizationMaster = organizationRepository.save(organizationMaster);
 
 			OrganizationReponse organizationReponse = new OrganizationReponse();
 			BeanUtils.copyProperties(organizationMaster, organizationReponse);
 			organizationReponse.setCountryCode(organizationMaster.getCountryId().getCountryCode());
-			organizationReponse.setLegalCountryCode(organizationMaster.getLegalCountryId().getCountryCode());
+			if (organizationMaster.getLegalCountryId() != null) {
+				organizationReponse.setLegalCountryCode(organizationMaster.getLegalCountryId().getCountryCode());
+			}
 			return organizationReponse;
 		} catch (IndexOutOfBoundsException e) {
 			throw new OrganizationNotFoundException();
@@ -100,7 +116,9 @@ public class OrganizationServiceImpl implements OraganizationService {
 			OrganizationReponse organizationReponse = new OrganizationReponse();
 			BeanUtils.copyProperties(organizationMaster, organizationReponse);
 			organizationReponse.setCountryCode(organizationMaster.getCountryId().getCountryCode());
-			organizationReponse.setLegalCountryCode(organizationMaster.getLegalCountryId().getCountryCode());
+			if (organizationMaster.getLegalCountryId() != null) {
+				organizationReponse.setLegalCountryCode(organizationMaster.getLegalCountryId().getCountryCode());
+			}
 			organizationReponseList.add(organizationReponse);
 		}
 		return organizationReponseList;

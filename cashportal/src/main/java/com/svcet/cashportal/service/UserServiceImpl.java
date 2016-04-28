@@ -9,11 +9,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.svcet.cashportal.domain.CountryMaster;
 import com.svcet.cashportal.domain.OrganizationMaster;
 import com.svcet.cashportal.domain.UserMaster;
 import com.svcet.cashportal.exception.DuplicateUserException;
 import com.svcet.cashportal.exception.OrganizationNotFoundException;
 import com.svcet.cashportal.exception.UserNotFoundException;
+import com.svcet.cashportal.repository.CountryMasterRepository;
 import com.svcet.cashportal.repository.OrganizationRepository;
 import com.svcet.cashportal.repository.UserRepository;
 import com.svcet.cashportal.web.beans.UserRequest;
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private OrganizationRepository organizationRepository;
+
+	@Autowired
+	private CountryMasterRepository countryMasterRepository;
 
 	@Override
 	public UserMaster findUserByUserNamePasswordOrgName(String userName, String password, String orgName) {
@@ -51,12 +56,15 @@ public class UserServiceImpl implements UserService {
 		try {
 			UserMaster userMaster = userRepository.findOneByUserNameAndOrgId(userRequest.getUserName(),
 					userRequest.getOrgId());
-			throw new DuplicateUserException();
+			throw new DuplicateUserException(userRequest);
 		} catch (IndexOutOfBoundsException e) {
 			UserMaster userMaster = new UserMaster();
-			BeanUtils.copyProperties(userRequest, userMaster, "orgId");
+			BeanUtils.copyProperties(userRequest, userMaster, "orgId", "countryId");
 			OrganizationMaster organizationMaster = organizationRepository.findByRid(userRequest.getOrgId());
 			userMaster.setOrgId(organizationMaster);
+
+			CountryMaster countryId = countryMasterRepository.findByCountryCode(userRequest.getCountryId());
+			userMaster.setCountryId(countryId);
 			userMaster = userRepository.save(userMaster);
 
 			UserResponse userResponse = new UserResponse();
@@ -74,6 +82,8 @@ public class UserServiceImpl implements UserService {
 			BeanUtils.copyProperties(userMaster, userResponse, "orgId", "countryId");
 			userResponse.setOrgId(userMaster.getOrgId().getRid());
 
+			userResponse.setCountryId(userMaster.getCountryId().getCountryCode());
+
 			return userResponse;
 		} catch (IndexOutOfBoundsException e) {
 			throw new UserNotFoundException();
@@ -84,15 +94,18 @@ public class UserServiceImpl implements UserService {
 	public UserResponse update(UserRequest userRequest) {
 		try {
 			UserMaster userMaster = userRepository.findByRid(userRequest.getRid());
-			BeanUtils.copyProperties(userRequest, userMaster, "orgId");
-
+			BeanUtils.copyProperties(userRequest, userMaster, "orgId", "countryId");
+			CountryMaster countryId = countryMasterRepository.findByCountryCode(userRequest.getCountryId());
+			userMaster.setCountryId(countryId);
 			OrganizationMaster organizationMaster = organizationRepository.findByRid(userRequest.getOrgId());
 			userMaster.setOrgId(organizationMaster);
+
 			userMaster = userRepository.save(userMaster);
 
 			UserResponse userResponse = new UserResponse();
-			BeanUtils.copyProperties(userMaster, userResponse, "orgId");
+			BeanUtils.copyProperties(userMaster, userResponse, "orgId", "countryId");
 			userResponse.setOrgId(userMaster.getOrgId().getRid());
+			userResponse.setCountryId(userMaster.getCountryId().getCountryCode());
 			return userResponse;
 		} catch (IndexOutOfBoundsException e) {
 			throw new UserNotFoundException();
@@ -106,8 +119,9 @@ public class UserServiceImpl implements UserService {
 			List<UserMaster> userMasterList = userRepository.findByOrgId(orgId);
 			for (UserMaster userMaster : userMasterList) {
 				UserResponse userResponse = new UserResponse();
-				BeanUtils.copyProperties(userMaster, userResponse, "orgId");
+				BeanUtils.copyProperties(userMaster, userResponse, "orgId", "countryId");
 				userResponse.setOrgId(userMaster.getOrgId().getRid());
+				userResponse.setCountryId(userMaster.getCountryId().getCountryCode());
 				userResponseList.add(userResponse);
 			}
 		} catch (IndexOutOfBoundsException e) {

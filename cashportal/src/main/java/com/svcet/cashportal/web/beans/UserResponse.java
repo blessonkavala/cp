@@ -1,10 +1,14 @@
 package com.svcet.cashportal.web.beans;
 
+import java.util.ArrayList;
 import java.util.Date;
-
-import com.svcet.cashportal.domain.CountryMaster;
+import java.util.List;
 
 public class UserResponse {
+
+	private ResponseState responseState;
+
+	private List<ErrorModel> errors = new ArrayList<ErrorModel>();
 
 	private String rid;
 
@@ -164,6 +168,30 @@ public class UserResponse {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public ResponseState getResopnseState() {
+		return responseState;
+	}
+
+	public void setResopnseState(ResponseState resopnseState) {
+		this.responseState = resopnseState;
+	}
+
+	public List<ErrorModel> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(List<ErrorModel> errors) {
+		this.errors = errors;
+	}
+
+	public ResponseState getResponseState() {
+		return responseState;
+	}
+
+	public void setResponseState(ResponseState responseState) {
+		this.responseState = responseState;
 	}
 
 }
