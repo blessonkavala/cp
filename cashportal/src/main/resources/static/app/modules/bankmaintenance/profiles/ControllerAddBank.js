@@ -21,7 +21,8 @@
                 if(response.data.responseState ==='SUCCESS'){
                     $state.go('app.listBanks');
                 }
-        		else{
+        		else
+                {
                   vm.errorMessages =  response.data.errors;     
                 }
         	});

@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.svcet.cashportal.domain.OrganizationMaster;
 import com.svcet.cashportal.exception.DuplicateOrganizationException;
-import com.svcet.cashportal.exception.DuplicateUserException;
 import com.svcet.cashportal.service.OraganizationService;
 import com.svcet.cashportal.utils.OrganizationUtils;
 import com.svcet.cashportal.web.beans.ErrorModel;
 import com.svcet.cashportal.web.beans.OrganizationReponse;
 import com.svcet.cashportal.web.beans.OrganizationRequest;
 import com.svcet.cashportal.web.beans.ResponseState;
-import com.svcet.cashportal.web.beans.UserResponse;
 
 @RestController
 public class OrganizationController {
