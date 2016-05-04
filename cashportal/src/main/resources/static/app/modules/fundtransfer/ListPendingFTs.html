@@ -23,12 +23,12 @@
                     <td>{{fundTransfer.ftType}}</td>
                     <td>{{fundTransfer.ftCurCode}}</td>
                     <td>{{fundTransfer.ftAmt}}</td>
-                    <td>{{fundTransfer.issDate}}</td>
+                    <td>{{fundTransfer.issDate | date:'dd-MMM-yyyy'}}</td>
                     <td>{{fundTransfer.counterparty.counterpartyType === '01'? fundTransfer.counterparty.counterpartyActNo : fundTransfer.counterparty.counterpartyName}}</td>
                     <td>{{fundTransfer.applicantActNo}}</td>
                     <td>{{(vm.tnxStatusCodes | filter: fundTransfer.tnxStatCode)[0].value}}</td>
                     <td>
-                        <button class="btn btn-info" ng-click="vm.viewFundTransfer(fundTransfer.rid)">View</button>             
+                        <button class="btn btn-outline btn-info" ng-click="vm.viewFundTransfer(fundTransfer.rid)">View</button>             
                     </td>
                 </tr>
             </tbody>

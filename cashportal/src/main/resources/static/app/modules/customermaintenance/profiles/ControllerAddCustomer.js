@@ -16,8 +16,14 @@
         vm.saveCustomer = function (org) {
        
         	$http.post('/organization/save',org).then(function(response){
-        		$state.go('app.listCustomers');
         		console.log(response);
+                if(response.data.responseState ==='SUCCESS'){
+                    $state.go('app.listCustomers');
+                }
+        		else
+                {
+                  vm.errorMessages =  response.data.errors;     
+                }
         	});
         	
         };

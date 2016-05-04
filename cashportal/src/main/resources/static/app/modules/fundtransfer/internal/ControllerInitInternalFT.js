@@ -10,7 +10,9 @@
         vm.isNew =  true;
         vm.isView = false;
         vm.isEdit = false;
-        
+        vm.transferDateCalendarPopup = {
+        		opened:false	
+        };
         vm.screenFT  = screenFT;
         vm.isBankUser = screenFT.bankUser;
         vm.isCustomerUser = screenFT.customerUser;
@@ -22,5 +24,9 @@
         	});
         	
         };
+        
+        vm.openTransferDateCalendar = function() {
+            vm.transferDateCalendarPopup.opened = true;
+         };
     }
 })();

@@ -2,7 +2,7 @@
     'use strict';
 
     var core = angular
-        .module('app.core', ['ui.router','blocks.router'
+        .module('app.core', ['ui.router','blocks.router','ui.bootstrap'
              
         ]);
 

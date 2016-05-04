@@ -17,7 +17,7 @@
             <tfoot>
                 <tr>
                     <td colspan="5">
-                        <button class="btn btn-default" ng-show1="vm.hasCreateAuthority === true" ng-click="vm.addCustomerAccount()">Create New Account</button>
+                        <button class="btn btn-outline btn-default" ng-show1="vm.hasCreateAuthority === true" ng-click="vm.addCustomerAccount()">Create New Account</button>
                     </td>
                 </tr>
             </tfoot>
@@ -29,8 +29,8 @@
                     <td>{{customerAccount.account.curCode}}</td>
                     <td>{{customerAccount.account.active}}</td>
                     <td>
-                        <button class="btn btn-info" ng-click="vm.viewCustomerAccount(customerAccount.rid)">View</button>
-                        <button class="btn btn-info" ng-click="vm.editCustomerAccount(customerAccount.rid)">Edit</button>
+                        <button class="btn btn-outline btn-info" ng-click="vm.viewCustomerAccount(customerAccount.rid)">View</button>
+                        <button class="btn btn-outline btn-info" ng-click="vm.editCustomerAccount(customerAccount.rid)">Edit</button>
                     </td>
                 </tr>
             </tbody>

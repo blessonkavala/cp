@@ -15,7 +15,7 @@
             <tfoot>
                 <tr>
                     <td colspan="5">
-                        <button class="btn btn-default" ng-show1="vm.hasCreateAuthority === true" ui-sref="app.addCustomer">Create Customer Account</button>
+                        <button class="btn btn-outline btn-default" ng-show1="vm.hasCreateAuthority === true" ui-sref="app.addCustomer">Create Customer Account</button>
                     </td>
                 </tr>
             </tfoot>
@@ -26,8 +26,8 @@
                     <td>{{organization.contactName}}</td>
                     <td>{{(vm.statusCodes | filter: organization.status)[0].value}}</td>
                     <td>
-                        <button class="btn btn-info" ng-click="vm.viewCustomer(organization.rid)">View</button>
-                        <button class="btn btn-info" ng-click="vm.editCustomer(organization.rid)">Edit</button>
+                        <button class="btn btn-outline btn-info" ng-click="vm.viewCustomer(organization.rid)">View</button>
+                        <button class="btn btn-outline btn-info" ng-click="vm.editCustomer(organization.rid)">Edit</button>
                     </td>
                 </tr>
             </tbody>

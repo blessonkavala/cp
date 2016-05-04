@@ -120,9 +120,9 @@
 <div class="form-group" ng-if="!vm.isView">
   <label class="col-md-4 control-label" for="button1id"></label>
   <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-success" ng-if="!vm.isEdit" ng-click="vm.saveUser(vm.user)">Save</button>
-    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateUser(vm.user)">Update</button>
-    <button id="button2id" name="button2id" class="btn btn-warning">Cancel</button>
+    <button id="button1id" name="button1id" class="btn btn-outline btn-success" ng-if="!vm.isEdit" ng-click="vm.saveUser(vm.user)">Save</button>
+    <button id="button1id" name="button1id" class="btn btn-outline btn-success" ng-if="vm.isEdit" ng-click="vm.updateUser(vm.user)">Update</button>
+    <button id="button2id" name="button2id" class="btn btn-outline btn-warning">Cancel</button>
   </div>
 </div>
 </fieldset>

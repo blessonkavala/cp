@@ -18,8 +18,8 @@
                     <td>{{user.modifiedDttm}}</td>
                     <td>{{(vm.statusCodes | filter: user.status)[0].value}}</td>
                     <td>
-                        <button class="btn btn-info" ng-click="vm.viewUserAccounts(user.rid)">View</button>
-                        <button class="btn btn-info" ng-click="vm.editUserAccounts(user.rid)">Edit</button>
+                        <button class="btn btn-outline btn-info" ng-click="vm.viewUserAccounts(user.rid)">View</button>
+                        <button class="btn btn-outline btn-info" ng-click="vm.editUserAccounts(user.rid)">Edit</button>
                     </td>
                 </tr>
             </tbody>

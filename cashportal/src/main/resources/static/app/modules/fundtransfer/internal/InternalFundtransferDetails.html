@@ -30,7 +30,7 @@
             <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Application Date</label>  
             <div class="col-md-5">
-            <input id="textinput" name="textinput" type="text" placeholder="Application Date" class="form-control input-md" required="" ng-model="vm.screenFT.fundTransfer.applicationDate" ng-readonly="vm.isView">
+            <input id="textinput" name="textinput" type="text" placeholder="Application Date" class="form-control input-md" required="" ng-model="vm.screenFT.fundTransfer.applicationDate | date:'dd-MMM-yyyy'" ng-readonly="vm.isView">
             </div>
             </div>
 
@@ -83,17 +83,6 @@
     </div>
 </div>
 
-<div class="row">
-      <div class="col-md-6">
-        <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="true" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-      </div>
- </div>
-
 <div class="col-lg-12">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -112,7 +101,13 @@
             <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Transfer Date</label>  
             <div class="col-md-5">
-            <input id="textinput" name="textinput" type="text" placeholder="Transfer Date" class="form-control input-md" required="" ng-model="vm.screenFT.fundTransfer.issDate" ng-readonly="vm.isView">
+                <p class="input-group" ng-hide="vm.view">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MMM-yyyy" ng-model="vm.screenFT.fundTransfer.issDate" is-open="vm.transferDateCalendarPopup.opened" datepicker-options="dateOptions" ng-required close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-outline btn-default" ng-click="vm.openTransferDateCalendar()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+                <input id="textinput" name="textinput" type="text" ng-show="vm.view" placeholder="Transfer Date" class="form-control input-md" required="" ng-model="vm.screenFT.fundTransfer.issDate" ng-readonly="true">
             </div>
             </div>
         </div>
@@ -140,9 +135,9 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="button1id"></label>
   <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isNew" ng-click="vm.submitFT()">Submit</button>
-    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isView && vm.isBankUser" ng-click="vm.ApproveOrReject()">Submit</button>
-    <button id="button3id" name="button3id" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+    <button id="button1id" name="button1id" class="btn btn-outline btn-success" ng-if="vm.isNew" ng-click="vm.submitFT()">Submit</button>
+    <button id="button1id" name="button1id" class="btn btn-outline btn-success" ng-if="vm.isView && vm.isBankUser" ng-click="vm.ApproveOrReject()">Submit</button>
+    <button id="button3id" name="button3id" class="btn btn-outline btn-warning" ng-click="vm.cancel()">Cancel</button>
   </div>
 </div>
 </fieldset>

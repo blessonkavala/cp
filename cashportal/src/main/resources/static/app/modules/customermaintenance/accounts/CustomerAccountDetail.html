@@ -5,7 +5,7 @@
 <legend>New Customer Account</legend>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group" ng-hide="true">
   <label class="col-md-4 control-label" for="textinput">Organization ID</label>  
   <div class="col-md-5">
   <input id="textinput" name="textinput" type="text" placeholder="Organization ID" class="form-control input-md" required="" ng-model="vm.customerAccount.customerOrgId" ng-readonly="vm.isView">
@@ -13,7 +13,7 @@
 </div>
 
 <!-- Text input-->
-<div class="form-group {{customeraccountform.accountId.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group" ng-hide="true">
   <label class="col-md-4 control-label" for="textinput">Account ID</label>  
   <div class="col-md-5">
   <input id="textinput" name="accountId" type="text" placeholder="Account ID" required class="form-control input-md" ng-model="vm.customerAccount.account.rid" ng-readonly="vm.isView">
@@ -134,9 +134,9 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="button1id"></label>
   <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isNew" ng-click="vm.saveCustomerAccount()">Save</button>
-    <button id="button2id" name="button2id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateCustomerAccount()">Update</button>
-    <button id="button3id" name="button3id" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+    <button id="button1id" name="button1id" class="btn btn-outline btn-success" ng-if="vm.isNew" ng-click="vm.saveCustomerAccount()">Save</button>
+    <button id="button2id" name="button2id" class="btn btn-outline btn-success" ng-if="vm.isEdit" ng-click="vm.updateCustomerAccount()">Update</button>
+    <button id="button3id" name="button3id" class="btn btn-outline btn-warning" ng-click="vm.cancel()">Cancel</button>
   </div>
 </div>
 </fieldset>

@@ -18,8 +18,8 @@
                     <td>{{organization.contactName}}</td>
                     <td>{{(vm.statusCodes | filter: organization.status)[0].value}}</td>
                     <td>
-                        <button class="btn btn-info" ng-click="vm.viewCustomerPermissions(organization.rid)">View</button>
-                        <button class="btn btn-info" ng-click="vm.editCustomerPermissions(organization.rid)">Edit</button>
+                        <button class="btn btn-outline btn-info" ng-click="vm.viewCustomerPermissions(organization.rid)">View</button>
+                        <button class="btn btn-outline btn-info" ng-click="vm.editCustomerPermissions(organization.rid)">Edit</button>
                     </td>
                 </tr>
             </tbody>

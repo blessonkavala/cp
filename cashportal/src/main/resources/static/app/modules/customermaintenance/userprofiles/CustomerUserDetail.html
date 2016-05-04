@@ -5,7 +5,7 @@
 <legend>{{vm.pageTitle}}</legend>
 
 <!-- Text input-->
-<div class="form-group">
+<div class="form-group" ng-hide="true">
   <label class="col-md-4 control-label" for="textinput">Organization ID</label>  
   <div class="col-md-5">
   <input id="textinput" name="textinput" type="text" placeholder="Organization ID" class="form-control input-md" required="" ng-model="vm.user.orgId" ng-readonly="vm.isView">
@@ -13,13 +13,10 @@
 </div>
 
 <!-- Text input-->
-<div class="form-group {{userprofileform.userId.$invalid === true ? 'has-error'  : 'has-success'}}">
+<div class="form-group" ng-hide="true">
   <label class="col-md-4 control-label" for="textinput">User ID</label>  
   <div class="col-md-5">
-  <input id="textinput" name="userId" type="text" placeholder="User ID" required class="form-control input-md" ng-model="vm.user.rid" ng-readonly="vm.isView">
-  </div>
-  <div ng-show="userprofileform.userId.$invalid" ng-messages="userprofileform.userId.$error" style="color:maroon" role="alert">
-    <div ng-message="required"> User Id Required</div>
+  <input id="textinput" name="userId" type="text" placeholder="User ID"  class="form-control input-md" ng-model="vm.user.rid" ng-readonly="vm.isView">
   </div>
 </div>
 
@@ -156,9 +153,9 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="button1id"></label>
   <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-success" ng-if="vm.isNew" ng-click="vm.saveUser(vm.user)">Save</button>
-    <button id="button2id" name="button2id" class="btn btn-success" ng-if="vm.isEdit" ng-click="vm.updateUser(vm.user)">Update</button>
-    <button id="button3id" name="button3id" class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
+    <button id="button1id" name="button1id" class="btn btn-outline btn-success" ng-if="vm.isNew" ng-click="vm.saveUser(vm.user)">Save</button>
+    <button id="button2id" name="button2id" class="btn btn-outline btn-success" ng-if="vm.isEdit" ng-click="vm.updateUser(vm.user)">Update</button>
+    <button id="button3id" name="button3id" class="btn btn-outline btn-warning" ng-click="vm.cancel()">Cancel</button>
   </div>
 </div>
 </fieldset>
