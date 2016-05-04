@@ -19,6 +19,7 @@ import com.svcet.cashportal.repository.FundTransferRepository;
 import com.svcet.cashportal.repository.UserAccountRepository;
 import com.svcet.cashportal.service.FundTransferService;
 import com.svcet.cashportal.utils.OrganizationUtils;
+import com.svcet.cashportal.utils.ReferenceIDGenerator;
 import com.svcet.cashportal.web.beans.FundTransferInquiryRequest;
 import com.svcet.cashportal.web.beans.FundTransferInquiryResponse;
 import com.svcet.cashportal.web.beans.FundTransferRequest;
@@ -48,6 +49,7 @@ public class FundTransferController {
 		FundTransferResponse fundTransferResponse = new FundTransferResponse();
 		fundTransferResponse.setCustomerUser(true);
 		FundTransfer fundTransfer = new FundTransfer();
+		fundTransfer.setRefId(ReferenceIDGenerator.getFTReference());
 		// SET APPLICATION DATE AS CURRENT ATE
 		fundTransfer.setApplicationDate(new Date());
 

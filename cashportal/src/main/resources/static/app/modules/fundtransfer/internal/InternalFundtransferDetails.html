@@ -22,7 +22,7 @@
             <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">System ID</label>  
             <div class="col-md-5">
-            <input id="textinput" name="textinput" type="text" placeholder="System ID" class="form-control input-md" ng-model="vm.screenFT.fundTransfer.refId" ng-readonly="vm.isView">
+            <input id="textinput" name="textinput" type="text" placeholder="System ID" class="form-control input-md" ng-model="vm.screenFT.fundTransfer.refId" ng-readonly="true">
             </div>
             </div>
 
@@ -30,7 +30,7 @@
             <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Application Date</label>  
             <div class="col-md-5">
-            <input id="textinput" name="textinput" type="text" placeholder="Application Date" class="form-control input-md" required="" ng-model="vm.screenFT.fundTransfer.applicationDate | date:'dd-MMM-yyyy'" ng-readonly="vm.isView">
+            <input id="textinput" name="textinput" type="text" placeholder="Application Date" class="form-control input-md"  ng-model="vm.screenFT.fundTransfer.applicationDate | date:'dd-MMM-yyyy'" ng-readonly="true">
             </div>
             </div>
 

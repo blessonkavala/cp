@@ -27,7 +27,7 @@
                     <td>{{customerAccount.account.description}}</td>
                     <td>{{customerAccount.account.accountType}}</td>
                     <td>{{customerAccount.account.curCode}}</td>
-                    <td>{{customerAccount.account.active}}</td>
+                    <td>{{customerAccount.account.active === 'Y'? 'Yes' : 'No'}}</td>
                     <td>
                         <button class="btn btn-outline btn-info" ng-click="vm.viewCustomerAccount(customerAccount.rid)">View</button>
                         <button class="btn btn-outline btn-info" ng-click="vm.editCustomerAccount(customerAccount.rid)">Edit</button>
